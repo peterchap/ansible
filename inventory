@@ -1,0 +1,40 @@
+contabo1 ansible_host=194.163.165.147 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo2 ansible_host=194.5.152.127 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo3 ansible_host=109.205.182.32 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo4 ansible_host=109.123.245.175 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo5 ansible_host=109.123.243.224 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo6 ansible_host=109.123.245.85 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo7 ansible_host=109.123.246.38 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo8 ansible_host=109.123.245.81 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo9 ansible_host=109.123.246.14 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo10 ansible_host=109.123.244.20 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabox ansible_host=82.208.21.122 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+
+
+
+contabox
+
+[run2]
+contabo1
+contabo2
+contabo3
+contabo4
+contabo5
+contabo6
+contabo7
+contabo8
+contabo9
+contabo10
+
+[all]
+contabo1
+contabo2
+contabo3
+contabo4
+contabo5
+contabo6
+contabo7
+contabo8
+contabo9
+contabo10
+contabox

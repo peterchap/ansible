@@ -1,0 +1,17 @@
+---
+- hosts: contabox
+  tasks:
+    - name: Execute the Python script within venv on servers
+      ansible.builtin.shell:
+        cmd: |
+          source ~/dnsenv/bin/activate
+          nohup python ~/dnsproject/asyncio_dns_daily_updates.py > /root/dnsproject/output.log 2>&1 &
+      args:
+        executable: /bin/bash
+      async: 60
+      poll: 0
+      register: shell_out
+      
+    - name: Display shell task details
+      debug:
+        var: shell_out

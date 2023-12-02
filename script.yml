@@ -1,0 +1,5 @@
+---
+- hosts: contabox
+  become: true
+  roles:
+    - update_repo

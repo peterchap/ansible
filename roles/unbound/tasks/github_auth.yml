@@ -1,0 +1,8 @@
+---
+- name: Copy githubtoken
+  copy:
+    dest: ~/ghtoken.txt
+    content: "{{ github_token }} "
+ 
+- name: Authorize gh
+  shell: gh auth login --with-token < ~/ghtoken.txt

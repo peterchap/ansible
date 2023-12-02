@@ -1,0 +1,29 @@
+---
+- name: Check if AWS CLI is already installed
+  command: aws --version
+  register: aws_cli_check
+  failed_when: false
+  changed_when: false
+
+      
+- name: Set fact if AWS CLI is installed
+  set_fact:
+    aws_cli_installed: true
+  when: aws_cli_check.rc == 0
+
+- name: Download AWS CLI v2
+  get_url:
+    url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+    dest: "/tmp/awscliv2.zip"
+  when: aws_cli_installed is not defined
+
+- name: Unzip the AWS CLI v2 package
+  unarchive:
+    src: "/tmp/awscliv2.zip"
+    dest: "/tmp/"
+    remote_src: yes
+  when: aws_cli_installed is not defined
+
+- name: Install AWS CLI v2
+  command: "/tmp/aws/install"
+  when: aws_cli_installed is not defined

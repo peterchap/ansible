@@ -1,0 +1,3 @@
+---
+- name: Flush Unbound cache
+  command: unbound-control flush_zone .

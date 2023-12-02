@@ -1,0 +1,35 @@
+---
+- name: Install logrotate
+  apt:
+    name: logrotate
+    state: present
+  become: true
+
+- name: Set up logrotate configuration for unbound
+  copy:
+    content: |
+      /var/log/unbound/*.log {
+          weekly
+          rotate 7
+          missingok
+          notifempty
+          compress
+          delaycompress
+          sharedscripts
+          create 644
+          postrotate
+              /usr/sbin/unbound-control log_reopen
+          endscript
+      }
+    dest: /etc/logrotate.d/unbound
+    mode: "0644"
+  become: true
+  notify:
+    - Restart logrotate
+    - Restart unbound
+
+- name: Ensure logrotate service is running
+  service:
+    name: logrotate
+    state: started
+  become: true

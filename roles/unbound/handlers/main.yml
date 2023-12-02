@@ -1,0 +1,12 @@
+---
+- name: Restart unbound
+  ansible.builtin.service:
+    name: unbound
+    state: restarted
+  become: true
+
+- name: Restart logrotate
+  ansible.builtin.service:
+    name: logrotate
+    state: restarted
+  become: true

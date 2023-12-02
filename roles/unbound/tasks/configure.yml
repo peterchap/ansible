@@ -1,0 +1,37 @@
+---
+- name: Create and set permissions for unbound log directory
+  file:
+    path: /var/log/unbound
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Create unbound log file and set ownership
+  file:
+    path: /var/log/unbound/unbound.log
+    state: touch
+    owner: unbound
+    group: unbound
+  become: true
+
+- name: Set ownership for Unbound log file
+  file:
+    path: /var/log/unbound/unbound.log
+    owner: unbound
+    group: unbound
+    state: file
+  become: true
+
+- name: Modify AppArmor for unbound logging
+  blockinfile:
+    path: /etc/apparmor.d/local/usr.sbin.unbound
+    block: |
+      /var/log/unbound/unbound.log rw,
+  become: true
+
+- name: Configure unbound
+  template:
+    src: unbound.conf.j2
+    dest: /etc/unbound/unbound.conf
+  become: true
+

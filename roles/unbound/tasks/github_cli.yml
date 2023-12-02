@@ -1,0 +1,45 @@
+---
+- name: Ensure curl is installed
+  apt:
+    name: curl
+    state: present
+
+- name: Import GitHub CLI keyring
+  command: "curl -fsSL -o /usr/share/keyrings/githubcli-archive-keyring.gpg https://cli.github.com/packages/githubcli-archive-keyring.gpg"
+  args:
+    creates: /usr/share/keyrings/githubcli-archive-keyring.gpg
+  register: download_result
+  changed_when: "'saved' in download_result.stdout or '200 OK' in download_result.stdout"
+
+
+- name: Set chmod go+r permissions for the keyring
+  file:
+    path: /usr/share/keyrings/githubcli-archive-keyring.gpg
+    mode: 'go+r'
+  when: download_result.changed
+ 
+- name: Determine the architecture
+  command:
+    cmd: dpkg --print-architecture
+  register: architecture_result
+  changed_when: false
+
+- name: Construct the apt source line
+  set_fact:
+    apt_line: "deb [arch={{ architecture_result.stdout }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+
+- name: Add the apt source line to github-cli.list
+  copy:
+    content: "{{ apt_line }}"
+    dest: /etc/apt/sources.list.d/github-cli.list
+  
+- name: Update apt cache
+  apt:
+    update_cache: true
+
+- name: Install gh
+  apt:
+    name: gh
+    state: present
+    update_cache: true
+  become: yes

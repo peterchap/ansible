@@ -1,0 +1,25 @@
+---
+- name: Update apt cache and upgrade
+  apt:
+    update_cache: true
+    upgrade: dist
+
+- name: Install unbound
+  apt:
+    name: unbound
+    state: present
+
+- name: Install git
+  apt:
+    name: git
+    state: present
+
+- name: Install netstats
+  apt: 
+    name: net-tools
+    state: present
+
+- name: Install unzip
+  apt:
+    name: unzip
+    state: present

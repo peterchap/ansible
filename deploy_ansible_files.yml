@@ -1,0 +1,9 @@
+---
+- name: Deploy Files to Ansible server
+  hosts: contabox
+  gather_facts: no
+  tasks:
+     - name: Transfer Files
+       copy:
+          src: "/home/peter/Documents/ansible"
+          dest: "~/"       

@@ -1,0 +1,30 @@
+---
+- name: Stop systemd-resolved
+  ansible.builtin.systemd:
+     name: systemd-resolved
+     state: stopped
+
+- name: Disable systemd-resolved
+  ansible.builtin.systemd:
+     name: systemd-resolved
+     enabled: false
+
+- name: Remove resolv.conf
+  ansible.builtin.file:
+     path: /etc/resolv.conf
+     state: absent
+
+- name: Set nameserver to 127.0.0.1 in resolv.conf
+  ansible.builtin.copy:
+     content: "nameserver 127.0.0.1"
+     dest: /etc/resolv.conf
+
+- name: Start unbound
+  ansible.builtin.systemd:
+    name: unbound
+    state: started
+
+- name: Enable unbound
+  ansible.builtin.systemd:
+    name: unbound
+    enabled: true		

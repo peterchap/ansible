@@ -1,0 +1,26 @@
+---
+- name: Copy Domain-Monitor update files from local directory to remote server
+  hosts: contabox
+  vars:
+    local_dir: "/home/peter/Documents/updates/"
+    remote_dir: "/root/updates"
+  tasks:
+    - name: Ensure remote directory exists
+      ansible.builtin.file:
+        path: "{{ remote_dir }}"
+        state: directory
+        mode: '0755'
+    - name: Find files in local directory
+      ansible.builtin.find:
+        paths: "{{ local_dir }}"
+        file_type: file
+      delegate_to: localhost
+      register: files_to_copy
+
+    - name: Copy files to remote directory
+      ansible.builtin.copy:
+        src: "{{ item.path }}"
+        dest: "{{ remote_dir }}/{{ item.path | basename }}"
+        mode: preserve  # Optional: preserve mode of the files
+      loop: "{{ files_to_copy.files }}"
+      when: files_to_copy.matched > 0

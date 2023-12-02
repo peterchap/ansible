@@ -1,0 +1,17 @@
+---
+- hosts: all
+  tasks:
+    - name: Execute the Python script within venv on servers
+      ansible.builtin.shell:
+        cmd: |
+          source ~/dnsenv/bin/activate
+           nohup python ~/dnsproject/arrow_to_s3.py > /root/dnsproject/s3output.log 2>&1 &
+      args:
+        executable: /bin/bash
+      async: 200
+      poll: 0
+      register: shell_out
+      
+    - name: Display shell task details
+      debug:
+        var: shell_out
