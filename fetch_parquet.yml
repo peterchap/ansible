@@ -1,0 +1,10 @@
+---
+- name: Fetch a file from remote servers with unique names
+  hosts: run2
+  tasks:
+     - name: Fetch file
+       fetch:
+        src: /root/dnsproject/domains_all.parquet
+        dest: "/home/peter/Documents/arrow/{{ inventory_hostname }}_domains_all.parquet"
+        flat: yes
+
