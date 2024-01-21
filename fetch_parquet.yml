@@ -4,7 +4,7 @@
   tasks:
      - name: Fetch file
        fetch:
-        src: /root/dnsproject/domains_all.parquet
-        dest: "/home/peter/Documents/arrow/{{ inventory_hostname }}_domains_all.parquet"
+        src: /root/domains_all.parquet
+        dest: "/home/peter/Documents/arrow/{{ inventory_hostname }}_domains_all_refresh.parquet"
         flat: yes
 

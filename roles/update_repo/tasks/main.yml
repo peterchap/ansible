@@ -5,10 +5,10 @@
     dest: "~/dnsproject"
     clone: true
     force: true
-#- name: Install requirements from requirements.txt
-#  pip:
-#    requirements: ~/dnsproject/requirements.txt
-#    virtualenv: ~/dnsenv
-#    state: latest
+- name: Install requirements from requirements.txt
+  pip:
+    requirements: ~/dnsproject/requirements.txt
+    virtualenv: ~/dnsenv
+    state: latest
 
 
