@@ -1,0 +1,39 @@
+---
+- name: clean up Ubuntu Servers
+  hosts: run2
+  gather_facts: no
+  tasks:
+      - name: Delete file parquet files
+        file:
+             path: /root/dns_input.parquet
+             state: absent
+      - name: Delete file domains_all.arrow
+        file:
+             path: /root/domains_all.arrow
+             state: absent
+      - name: Delete file parquet files
+        file:
+             path: /root/domains_all.parquet
+             state: absent
+      - name: Delete file db files
+        file:
+             path: /root/domains.db
+             state: absent
+      - name: Delete file dnslogfiles
+        file:
+             path: /root/dnslog.log
+             state: absent
+      - name: Delete log files
+        file:
+             path: /root/output.log
+             state: absent
+      - name: Delete dnsproject log files
+        file:
+             path: /root/dnsproject/dnslog.log
+             state: absent
+      - name: Delete dnsproject output.log file
+        file:
+             path: /root/dnsproject/output.log
+             state: absent
+
+      

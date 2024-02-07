@@ -1,5 +1,5 @@
 ---
-- hosts: contabo1, contabo5, contabo6
+- hosts: all
   become: true
   roles:
     - update_repo
