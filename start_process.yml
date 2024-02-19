@@ -10,7 +10,7 @@
          executable: /bin/bash
       async: 60
       poll: 0
-      register: shell_out     
+      register: shell_out
     - name: Display shell task details
       debug:
         var: shell_out
