@@ -1,8 +1,9 @@
 ---
 - name: Copy githubtoken
-  copy:
-    dest: ~/ghtoken.txt
-    content: "{{ github_token }} "
+  ansible.builtin.fetch:
+    src: ~/ghtoken.txt
+    dest: ~/
+    
  
 - name: Authorize gh
   shell: gh auth login --with-token < ~/ghtoken.txt

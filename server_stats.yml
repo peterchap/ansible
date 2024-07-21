@@ -1,0 +1,30 @@
+- name: Server utilization report in ansible
+  hosts: run2
+  gather_facts: true
+  tasks:
+          - name: Disk Report
+            command: df -h /opt /
+            register: disk
+          - debug:
+                  var: disk.stdout_lines
+          - name: Memory report
+            command: free -wh
+            register: ram
+          - debug:
+                  var: ram.stdout_lines
+          - name: top
+#           command: top -cbn1
+            shell: top -bco +%CPU -n1|head -n15
+            register: process
+          - debug:
+                  var: process.stdout_lines
+          - name: Read last line of dnslog.log file
+            shell: tail -5 ~/dnslog.log
+            register: dnslog
+          - debug:
+                 var: dnslog.stdout_lines
+          - name: Read output.log
+            shell: cat ~/output.log
+            register: output
+          - debug:
+                  var: output.stdout_lines

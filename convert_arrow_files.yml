@@ -2,10 +2,6 @@
 - name: Fetch a file from remote servers with unique names
   hosts: run2
   tasks:
-     - name: Delete domains_all.parquet file
-       file:
-        path: /root/dnsproject/domains_all.parquet
-        state: absent
      - name: Execute the Python script within venv on servers
        ansible.builtin.shell:
         cmd: |
@@ -15,9 +11,7 @@
          executable: /bin/bash
        async: 60
        poll: 0
-       register: shell_out  
-                
+       register: shell_out
      - name: Display shell task details
        debug:
          var: shell_out
-

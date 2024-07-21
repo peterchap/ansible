@@ -29,7 +29,7 @@
   ansible.builtin.pip:
     name: setuptools
     virtualenv: ~/dnsenv
-    virtualenv_command: python3.11 -m venv
+    virtualenv_command: python3.12 -m venv
 
 - name: Install pip packages
   ansible.builtin.pip:
