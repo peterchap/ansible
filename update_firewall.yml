@@ -1,0 +1,10 @@
+---
+- name: Update firewall on client servers
+  hosts: run2
+  gather_facts: no
+  tasks:
+     - name: Allow Prometheus on port 9100
+       community.general.ufw:
+         rule: allow
+         port: 9100
+       become: yes

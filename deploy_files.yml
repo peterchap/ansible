@@ -12,7 +12,6 @@
        when: inventory_hostname == item[1]
   vars:
     files:
-      - "/root/dnsall/dma_0.parquet"
       - "/root/dnsall/dma_1.parquet"
       - "/root/dnsall/dma_2.parquet"
       - "/root/dnsall/dma_3.parquet"
@@ -22,4 +21,6 @@
       - "/root/dnsall/dma_7.parquet"
       - "/root/dnsall/dma_8.parquet"
       - "/root/dnsall/dma_9.parquet"
+      - "/root/dnsall/dma_10.parquet"
+
     play_hosts: "{{ play_hosts | default([]) + [inventory_hostname] }}"
