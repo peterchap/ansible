@@ -1,5 +1,5 @@
 ---
-- hosts: ready
+- hosts: contabo10
   become: true
   vars_files:
     - ~/Documents/ansible/pass.yml
