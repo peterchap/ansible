@@ -26,6 +26,44 @@ contabo8
 contabo9
 contabo10
 
+[run1]
+server11 ansible_host=62.169.31.141 ansible_user=root
+server12 ansible_host=62.169.31.143 ansible_user=root
+server13 ansible_host=62.169.31.165 ansible_user=root
+server14 ansible_host=62.169.31.188 ansible_user=root
+server15 ansible_host=62.169.31.150 ansible_user=root
+server16 ansible_host=62.169.31.152 ansible_user=root
+server17 ansible_host=62.169.31.155 ansible_user=root
+server18 ansible_host=62.169.31.167 ansible_user=root
+server19 ansible_host=77.237.232.219 ansible_user=root
+server20 ansible_host=62.169.31.178 ansible_user=root
+
+
+
+[run3]
+server1 ansible_host=194.163.165.147 ansible_user=root
+server2 ansible_host=194.5.152.127 ansible_user=root
+server3 ansible_host=109.205.182.32 ansible_user=root
+server4 ansible_host=109.123.245.175 ansible_user=root
+server5 ansible_host=109.123.243.224 ansible_user=root
+server6 ansible_host=109.123.245.85 ansible_user=root
+server7 ansible_host=109.123.246.38 ansible_user=root
+server8 ansible_host=109.123.245.81 ansible_user=root
+server9 ansible_host=109.123.246.14 ansible_user=root
+
+
+
+[run4]
+contabo1
+contabo2
+contabo3
+contabo4
+contabo5
+contabo6
+contabo7
+contabo8
+contabo9
+
 [all]
 contabo1
 contabo2
