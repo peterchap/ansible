@@ -8,11 +8,29 @@ contabo7 ansible_host=109.123.246.38 ansible_connection=ssh ansible_user=root an
 contabo8 ansible_host=109.123.245.81 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
 contabo9 ansible_host=109.123.246.14 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
 contabo10 ansible_host=109.123.244.20 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo11 ansible_host=62.169.31.141 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo12 ansible_host=62.169.31.143 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo13 ansible_host=62.169.31.165 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo14 ansible_host=62.169.31.188 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo15 ansible_host=62.169.31.150 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo16 ansible_host=62.169.31.152 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo17 ansible_host=62.169.31.155 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo18 ansible_host=62.169.31.167 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo19 ansible_host=77.237.232.219 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+contabo20 ansible_host=62.169.31.178 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
 contabox ansible_host=82.208.21.122 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
 
-
-
-contabox
+[run1]
+contabo11
+contabo12
+contabo13
+contabo14
+contabo15
+contabo16
+contabo17
+contabo18
+contabo19
+contabo20
 
 [run2]
 contabo1
@@ -26,6 +44,28 @@ contabo8
 contabo9
 contabo10
 
+[runall]
+contabo1
+contabo2
+contabo3
+contabo4
+contabo5
+contabo6
+contabo7
+contabo8
+contabo9
+contabo10
+contabo11
+contabo12
+contabo13
+contabo14
+contabo15
+contabo16
+contabo17
+contabo18
+contabo19
+contabo20
+
 [all]
 contabo1
 contabo2
@@ -37,6 +77,16 @@ contabo7
 contabo8
 contabo9
 contabo10
+contabo11
+contabo12
+contabo13
+contabo14
+contabo15
+contabo16
+contabo17
+contabo18
+contabo19
+contabo20
 contabox
 
 [c10]
