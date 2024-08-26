@@ -4,7 +4,7 @@
   tasks:
      - name: Fetch file
        fetch:
-        src: /root/domains_all.parquet
+        src: ~/domains_all.parquet
         dest: "/root/refresh/{{ inventory_hostname }}_domains_all_refresh.parquet"
         flat: yes
 
