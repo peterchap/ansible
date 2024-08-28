@@ -4,18 +4,18 @@
     name:
       - software-properties-common
       - git
-      - python3.11
-      - python3.11-venv
+      - python3.12
+      - python3.12-venv
     state: present
 
 - name: Install dead snakes for the latest python version
   ansible.builtin.shell: add-apt-repository ppa:deadsnakes/ppa -y
   register: result
  
-- name: Install python 3.11
+- name: Install python 3.12
   ansible.builtin.apt:
     name:
-      - python3.11
+      - python3.12
       - python3.11-venv
     state: present
 
