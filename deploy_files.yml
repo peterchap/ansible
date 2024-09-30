@@ -1,6 +1,6 @@
 ---
 - name: Deploy Files to Ubuntu Servers
-  hosts: run2
+  hosts: runall
   gather_facts: no
   tasks:
      - name: Transfer and Rename Files
@@ -22,5 +22,15 @@
       - "/root/dnsall/dma_8.parquet"
       - "/root/dnsall/dma_9.parquet"
       - "/root/dnsall/dma_10.parquet"
+      - "/root/dnsall/dma_11.parquet"
+      - "/root/dnsall/dma_12.parquet"
+      - "/root/dnsall/dma_13.parquet"
+      - "/root/dnsall/dma_14.parquet"
+      - "/root/dnsall/dma_15.parquet"
+      - "/root/dnsall/dma_16.parquet"
+      - "/root/dnsall/dma_17.parquet"
+      - "/root/dnsall/dma_18.parquet"
+      - "/root/dnsall/dma_19.parquet"
+      - "/root/dnsall/dma_20.parquet"
 
     play_hosts: "{{ play_hosts | default([]) + [inventory_hostname] }}"

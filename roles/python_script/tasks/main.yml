@@ -21,15 +21,15 @@
 
 - name: Clone Git repository
   ansible.builtin.git:
-    repo: 'https://github.com/peterchap/dnsproject.git'
-    dest: "~/dnsproject"
+    repo: git@github.com:peterchap/dnsproject.git
+    dest: ~/dnsproject
     clone: true
 
 - name: Setup python virtual environment
   ansible.builtin.pip:
     name: setuptools
     virtualenv: ~/dnsenv
-    virtualenv_command: python3.12 -m venv
+    virtualenv_command: python3.11 -m venv
 
 - name: Install pip packages
   ansible.builtin.pip:

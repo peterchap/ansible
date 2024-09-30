@@ -1,5 +1,5 @@
 ---
-- hosts: run2
+- hosts: runall
   tasks:
     - name: Execute the Python script within venv on servers
       ansible.builtin.shell:

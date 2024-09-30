@@ -1,6 +1,6 @@
 ---
 - name: Replace Unbound Configuration and Restart Service
-  hosts: run2
+  hosts: runall
   become: yes
   tasks:
 

@@ -1,10 +1,10 @@
 ---
 - name: Fetch a file from remote servers with unique names
-  hosts: run2
+  hosts: runall
   tasks:
      - name: Fetch file
        fetch:
-        src: ~/domains_all.parquet
-        dest: "/root/refresh/{{ inventory_hostname }}_domains_all_refresh.parquet"
+        src: ~/processed_dns_output.parquet
+        dest: "/root/refresh/{{ inventory_hostname }}_processed_dns_lookup.parquet"
         flat: yes
 

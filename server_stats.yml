@@ -1,5 +1,5 @@
 - name: Server utilization report in ansible
-  hosts: run2
+  hosts: runall
   gather_facts: true
   tasks:
           - name: Disk Report
