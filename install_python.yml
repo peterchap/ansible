@@ -1,0 +1,46 @@
+- name: Install Python 3.11 alongside Python 3.12
+  hosts: run1
+  become: yes
+  tasks:
+    - name: Ensure all necessary packages are installed
+      ansible.builtin.apt:
+        name:
+          - software-properties-common
+          - apt-transport-https
+          - ca-certificates
+          - gnupg
+        state: present
+        update_cache: yes
+
+    - name: Add deadsnakes PPA GPG key manually
+      ansible.builtin.apt_key:
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6A755776
+        state: present
+
+    - name: Add deadsnakes PPA repository
+      ansible.builtin.apt_repository:
+        repo: 'ppa:deadsnakes/ppa'
+        state: present
+
+    - name: Update apt cache after adding PPA
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Fix broken dependencies before installation
+      ansible.builtin.shell: apt --fix-broken install -y
+      ignore_errors: yes
+
+    - name: Run dpkg to forcefully fix any broken dependencies
+      ansible.builtin.shell: dpkg --configure -a
+      ignore_errors: yes
+
+    - name: Ensure the system is clean and all dependencies are resolved
+      ansible.builtin.shell: apt-get -f install -y
+      ignore_errors: yes
+
+    - name: Install Python 3.11 and dependencies
+      ansible.builtin.apt:
+        name:
+          - python3.11
+        state: present
+        update_cache: yes
