@@ -1,29 +1,36 @@
 ---
 - name: Deploy Files to Ubuntu Servers
-  hosts: run2
+  hosts: runall
   gather_facts: no
   tasks:
-     - name: Delete file domains_all.arrow
-       file:
-         path: /root/snsproject/domains_all.arrow
-         state: absent
      - name: Transfer and Rename Files
        copy:
           src: "{{ item[0] }}"
-          dest: "~/dnsproject/dns_input.parquet"
+          dest: "~/dns_input.parquet"
           remote_src: no
        loop: "{{ files|zip(play_hosts)|list }}"
        when: inventory_hostname == item[1]
   vars:
     files:
-      - "/home/peter/Documents/dma_0.parquet"
-      - "/home/peter/Documents/dma_1.parquet"
-      - "/home/peter/Documents/dma_2.parquet"
-      - "/home/peter/Documents/dma_3.parquet"
-      - "/home/peter/Documents/dma_4.parquet"
-      - "/home/peter/Documents/dma_5.parquet"
-      - "/home/peter/Documents/dma_6.parquet"
-      - "/home/peter/Documents/dma_7.parquet"
-      - "/home/peter/Documents/dma_8.parquet"
-      - "/home/peter/Documents/dma_9.parquet"
+      - "/root/dnsall/dma_1.parquet"
+      - "/root/dnsall/dma_2.parquet"
+      - "/root/dnsall/dma_3.parquet"
+      - "/root/dnsall/dma_4.parquet"
+      - "/root/dnsall/dma_5.parquet"
+      - "/root/dnsall/dma_6.parquet"
+      - "/root/dnsall/dma_7.parquet"
+      - "/root/dnsall/dma_8.parquet"
+      - "/root/dnsall/dma_9.parquet"
+      - "/root/dnsall/dma_10.parquet"
+      - "/root/dnsall/dma_11.parquet"
+      - "/root/dnsall/dma_12.parquet"
+      - "/root/dnsall/dma_13.parquet"
+      - "/root/dnsall/dma_14.parquet"
+      - "/root/dnsall/dma_15.parquet"
+      - "/root/dnsall/dma_16.parquet"
+      - "/root/dnsall/dma_17.parquet"
+      - "/root/dnsall/dma_18.parquet"
+      - "/root/dnsall/dma_19.parquet"
+      - "/root/dnsall/dma_20.parquet"
+
     play_hosts: "{{ play_hosts | default([]) + [inventory_hostname] }}"

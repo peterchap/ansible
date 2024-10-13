@@ -1,0 +1,29 @@
+---
+- name: Deploy Files to Ubuntu Servers
+  hosts: run2
+  gather_facts: no
+  tasks:
+     - name: Delete file domains_all.arrow
+       file:
+         path: /root/dnsproject/domains_all.arrow
+         state: absent
+     - name: Transfer and Rename Files
+       copy:
+          src: "{{ item[0] }}"
+          dest: "~/dnsproject/dns_input.parquet"
+          remote_src: no
+       loop: "{{ files|zip(play_hosts)|list }}"
+       when: inventory_hostname == item[1]
+  vars:
+    files:
+      - "/root/dnsproject/reprocess_1.parquet"
+      - "/root/dnsproject/reprocess_2.parquet"
+      - "/root/dnsproject/reprocess_3.parquet"
+      - "/root/dnsproject/reprocess_4.parquet"
+      - "/root/dnsproject/reprocess_5.parquet"
+      - "/root/dnsproject/reprocess_6.parquet"
+      - "/root/dnsproject/reprocess_7.parquet"
+      - "/root/dnsproject/reprocess_8.parquet"
+      - "/root/dnsproject/reprocess_9.parquet"
+      - "/root/dnsproject/reprocess_10.parquet"
+    play_hosts: "{{ play_hosts | default([]) + [inventory_hostname] }}"

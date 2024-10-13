@@ -1,0 +1,9 @@
+---
+- hosts: c10
+  become: true
+  vars_files:
+    - ~/Documents/ansible/pass.yml
+  roles:
+    - common
+    - unbound
+    - python_script

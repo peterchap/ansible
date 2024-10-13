@@ -1,0 +1,10 @@
+---
+- name: Fetch a file from remote servers with unique names
+  hosts: run2
+  tasks:
+     - name: Fetch file
+       fetch:
+        src: /root/domains_all.parquet
+        dest: "/root/refresh/{{ inventory_hostname }}_redo_refresh.parquet"
+        flat: yes
+

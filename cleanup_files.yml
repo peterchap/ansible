@@ -1,6 +1,6 @@
 ---
 - name: clean up Ubuntu Servers
-  hosts: run2
+  hosts: runall
   gather_facts: no
   tasks:
       - name: Delete file parquet files

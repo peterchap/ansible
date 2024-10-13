@@ -1,0 +1,26 @@
+---
+- name: Deploy Files to Ubuntu Servers
+  hosts: run2
+  gather_facts: no
+  tasks:
+     - name: Transfer and Rename Files
+       copy:
+          src: "{{ item[0] }}"
+          dest: "~/dns_input.parquet"
+          remote_src: no
+       loop: "{{ files|zip(play_hosts)|list }}"
+       when: inventory_hostname == item[1]
+  vars:
+    files:
+      - "/root/refresh/contabo1_error.parquet"
+      - "/root/refresh/contabo2_error.parquet"
+      - "/root/refresh/contabo3_error.parquet"
+      - "/root/refresh/contabo4_error.parquet"
+      - "/root/refresh/contabo5_error.parquet"
+      - "/root/refresh/contabo6_error.parquet"
+      - "/root/refresh/contabo7_error.parquet"
+      - "/root/refresh/contabo8_error.parquet"
+      - "/root/refresh/contabo9_error.parquet"
+      - "/root/refresh/contabo10_error.parquet"
+
+    play_hosts: "{{ play_hosts | default([]) + [inventory_hostname] }}"

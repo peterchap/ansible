@@ -1,0 +1,59 @@
+---
+- name: Update dnsenv virtual environment on Ubuntu servers
+  hosts: runall
+  become: yes
+
+  vars:
+    venv_path: /root/dnsenv
+
+  tasks:
+    - name: Install necessary packages
+      ansible.builtin.apt:
+        name:
+          - software-properties-common
+          - apt-transport-https
+          - ca-certificates
+          - gnupg
+        state: present
+
+    - name: Add deadsnakes PPA GPG key manually
+      ansible.builtin.apt_key:
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6A755776
+        state: present
+
+    - name: Refresh GitHub CLI GPG key
+      ansible.builtin.shell: |
+        curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null
+      become: yes
+
+
+    - name: Add deadsnakes PPA repository
+      ansible.builtin.apt_repository:
+        repo: 'ppa:deadsnakes/ppa'
+        state: present
+
+    - name: Update apt cache after adding PPA
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install python 3.12
+      ansible.builtin.apt:
+        name:
+          - python3.12
+          - python3.12-venv
+        state: present
+        update_cache: yes
+
+    - name: Remove existing dnsenv virtual environment
+      file:
+        path: "{{ venv_path }}"
+        state: absent
+
+    - name: Create new dnsenv virtual environment using Python 3.12
+      command: python3.12 -m venv "{{ venv_path }}"
+
+    - name: Install requirements from requirements.txt
+      pip:
+        requirements: ~/dnsproject/requirements.txt
+        virtualenv: ~/dnsenv
+        state: latest

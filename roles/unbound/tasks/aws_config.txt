@@ -1,0 +1,9 @@
+---
+- name: Configure AWS credentials
+  command: "aws configure set {{ item.key }} {{ item.value }}"
+  with_items:
+    - { key: aws_access_key_id, value: "{{ aws_access_key_id }}" }
+    - { key: aws_secret_access_key, value: "{{ aws_secret_key }}" }
+    - { key: aws_global_region, value: "{{ aws_region }}" }
+  become: false
+  no_log: false

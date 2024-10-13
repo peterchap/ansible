@@ -1,0 +1,31 @@
+---
+- name: Replace Unbound Configuration and Restart Service
+  hosts: runall
+  become: yes
+  tasks:
+
+    - name: Replace the Unbound configuration file
+      ansible.builtin.copy:
+        src: /root/unbound.conf
+        dest: /etc/unbound/unbound.conf
+        backup: yes  # Create a backup of the original configuration
+
+    - name: Check Unbound configuration for errors
+      ansible.builtin.shell: "unbound-checkconf /etc/unbound/unbound.conf"
+      register: unbound_check
+      ignore_errors: yes
+
+    - name: Report Unbound configuration check status
+      ansible.builtin.debug:
+        msg: "Unbound configuration check: {{ 'OK' if unbound_check.rc == 0 else 'FAILED' }}"
+
+    - name: Restart Unbound service if configuration is OK
+      ansible.builtin.service:
+        name: unbound
+        state: restarted
+      when: unbound_check.rc == 0
+
+    - name: Fail the play if Unbound configuration check failed
+      ansible.builtin.fail:
+        msg: "Unbound configuration check failed. Please review the configuration file."
+      when: unbound_check.rc != 0

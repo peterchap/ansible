@@ -1,0 +1,13 @@
+---
+- name: install dnstop on ubuntu servers
+  hosts: runall
+  become: yes # Ensure using sudo
+  tasks:
+     - name: Update apt cache
+       apt:
+         update_cache: yes
+
+     - name: install latest dnstop
+       apt:
+         name: dnstop
+         state: present

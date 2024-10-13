@@ -5,7 +5,7 @@
   tasks:
        - name: Delete python script file
          file:
-           path: /root/dnsproject/convert_\ arrow_to_parquet.py
+           path: /root/dnsproject/convert_arrow_to_parquet.py
            state: absent
        - name: Delete folder
          file:

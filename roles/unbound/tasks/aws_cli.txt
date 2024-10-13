@@ -5,7 +5,6 @@
   failed_when: false
   changed_when: false
 
-      
 - name: Set fact if AWS CLI is installed
   set_fact:
     aws_cli_installed: true

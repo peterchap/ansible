@@ -1,10 +1,9 @@
 ---
 - name: Clone latest Git repository
   ansible.builtin.git:
-    repo: 'https://github.com/peterchap/dnsproject.git'
+    repo: 'git@github.com:peterchap/dnsproject.git'
     dest: "~/dnsproject"
-    clone: true
-    force: true
+    update: yes
 - name: Install requirements from requirements.txt
   pip:
     requirements: ~/dnsproject/requirements.txt

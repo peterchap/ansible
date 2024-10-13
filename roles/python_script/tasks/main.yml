@@ -8,34 +8,32 @@
     name:
       - software-properties-common
       - git
+      - python3.12
+      - python3.12-venv
     state: present
 
-- name: Add dead snakes for the latest python version
-  ansible.builtin.apt_repository:
-    repo: ppa:deadsnakes/ppa
+- name: Install dead snakes for the latest python version
+  ansible.builtin.shell: add-apt-repository ppa:deadsnakes/ppa -y
+  register: result
 
-- name: Update apt cache again after adding PPA
-  ansible.builtin.apt:
-    update_cache: yes
- 
-- name: Install python 3.12 and venv
+- name: Install python 3.12
   ansible.builtin.apt:
     name:
       - python3.12
       - python3.12-venv
     state: present
 
-- name: Clone GitHub repository using GitHub CLI
-  ansible.builtin.shell: |
-    gh repo clone https://github.com/peterchap/dnsproject.git ~/dnsproject
-  args:
-    executable: /bin/bash
+- name: Clone Git repository
+  ansible.builtin.git:
+    repo: git@github.com:peterchap/dnsproject.git
+    dest: ~/dnsproject
+    clone: true
 
-- name: Create virtual environemnt
-  ansible.builtin.shell:
-    cmd: python3.12 -m venv ~/dnsenv
-  args:
-   creates: ~/dnsenv/bin/activate
+- name: Setup python virtual environment
+  ansible.builtin.pip:
+    name: setuptools
+    virtualenv: ~/dnsenv
+    virtualenv_command: python3.12 -m venv
 
 - name: Install pip packages
   ansible.builtin.pip:
