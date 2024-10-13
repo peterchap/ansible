@@ -1,0 +1,26 @@
+---
+- hosts: slaves
+  gather_facts: no
+  tasks:
+    - name: Remove old known_hosts entry (if exists)
+      local_action: command ssh-keygen -R {{ ansible_host }}
+
+    - name: Install OpenSSH if not already installed
+      become: yes
+      apt:
+        name: openssh-server
+        state: present
+
+    - name: Ensure .ssh directory exists
+      file:
+        path: /{{ ansible_user }}/.ssh
+        state: directory
+        mode: 0700
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+
+    - name: Copy the SSH public key to the slave servers
+      authorized_key:
+        user: "{{ ansible_user }}"
+        state: present
+        key: "{{ lookup('file', '/{{ ansible_user }}/.ssh/id_rsa.pub') }}"

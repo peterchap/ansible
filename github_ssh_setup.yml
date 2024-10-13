@@ -1,0 +1,52 @@
+---
+- name: Set up GitHub SSH access and clone project
+  hosts: runall  # assuming you have defined the slave servers group in your inventory
+  become: yes
+  vars:
+    github_repo_url: "git@github.com:peterchap/dnsproject.git"  # GitHub SSH repo URL
+    project_directory: "/root/dnsproject"  # Directory to clone the project into
+    ssh_private_key_path: "/root/.ssh/id_rsa"  # Path to store SSH key on the slaves
+    control_machine_ssh_key: "/root/.ssh/id_rsa"  # Path to the SSH key on control machine
+
+  tasks:
+    - name: Install Git on slave servers
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+
+    - name: Ensure .ssh directory exists
+      file:
+        path: "/root/.ssh"
+        state: directory
+        mode: '0700'
+        owner: root
+        group: root
+
+    - name: Copy SSH private key to slave servers
+      copy:
+        src: "{{ control_machine_ssh_key }}"
+        dest: "{{ ssh_private_key_path }}"
+        owner: root
+        group: root
+        mode: '0600'
+
+    - name: Ensure SSH key has correct permissions
+      file:
+        path: "{{ ssh_private_key_path }}"
+        mode: '0600'
+        owner: root
+        group: root
+
+    - name: Add GitHub to known hosts (avoiding prompt during first connect)
+      shell: ssh-keyscan -H github.com >> /root/.ssh/known_hosts
+      args:
+        creates: /root/.ssh/known_hosts
+
+    - name: Clone the project repository
+      git:
+        repo: "{{ github_repo_url }}"
+        dest: "{{ project_directory }}"
+        version: main  # or the branch you want to clone
+        key_file: "{{ ssh_private_key_path }}"
+        update: yes

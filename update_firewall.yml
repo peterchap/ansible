@@ -1,6 +1,6 @@
 ---
 - name: Update firewall on client servers
-  hosts: run2
+  hosts: runall
   gather_facts: no
   tasks:
      - name: Allow Prometheus on port 9100

@@ -7,9 +7,9 @@
 
 - name: Setup logging for unbound
   ansible.builtin.include_tasks: logging.yml
-  
+
 - name: Start unbound
-  ansible.builtin.include_tasks: start.yml 
+  ansible.builtin.include_tasks: start.yml
 
 - name: Run tests for unbound
   ansible.builtin.include_tasks: tests.yml
@@ -20,11 +20,11 @@
 - name: Authenticate with GitHub
   ansible.builtin.include_tasks: github_auth.yml
 
-- name: Install AWS CLI
-  ansible.builtin.include_tasks: aws_cli.yml
+#- name: Install AWS CLI
+#  ansible.builtin.include_tasks: aws_cli.yml
 
-- name: Configure AWS CLI
-  ansible.builtin.include_tasks: aws_config.yml
+#- name: Configure AWS CLI
+#  ansible.builtin.include_tasks: aws_config.yml
 
 - name: Configure firewall
   ansible.builtin.include_tasks: firewall.yml

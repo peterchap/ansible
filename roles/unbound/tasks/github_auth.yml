@@ -3,7 +3,6 @@
   ansible.builtin.fetch:
     src: ~/ghtoken.txt
     dest: ~/
-    
- 
+
 - name: Authorize gh
   shell: gh auth login --with-token < ~/ghtoken.txt

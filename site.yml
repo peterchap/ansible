@@ -1,9 +1,9 @@
 ---
-- hosts: contabo19
+- hosts: runall
   become: true
-  #vars_files:
-  #  - ~/ansible/pass.yml
+  vars_files:
+    - ~/ansible/pass.yml
   roles:
-    # - common
-    # - unbound
+    - common
+    - unbound
     - python_script
