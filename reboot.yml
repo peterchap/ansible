@@ -1,5 +1,5 @@
 ---
-- hosts: runall
+- hosts: slaves
   tasks:
      - name: Reboot machine and send a message
        ansible.builtin.reboot:

@@ -1,0 +1,106 @@
+---
+- name: Set up Celery on slave servers
+  hosts: slaves  # Define your inventory group for slave servers
+  become: yes
+
+  vars:
+    project_dir: /root/celery_app
+    venv_dir: "{{ project_dir }}/venv"  # Virtual environment directory
+    master_rabbitmq_ip: "10.0.0.3"  # Replace with your master server's IP
+    master_redis_ip: "10.0.0.3"     # Replace with your master server's IP
+    input_folder: "/mnt/shared/subfiles"  # Path to the shared NFS folder
+    processed_folder: "/mnt/shared/processed"  # Path to the processed folder in NFS
+
+  tasks:
+    - name: Delete content & directory
+      ansible.builtin.file:
+        state: absent
+        path: /root/celery_app/
+
+    - name: Install Python3 and pip3
+      apt:
+        name:
+          - python3.12
+          - python3-pip
+          - python3-venv
+        state: present
+        update_cache: yes
+
+    - name: Create project directory
+      file:
+        path: "{{ project_dir }}"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+
+    - name: Create virtual environment
+      command: python3.12 -m venv {{ venv_dir }}
+
+
+    - name: Install Celery and Redis client for Python
+      command: "{{ venv_dir }}/bin/pip install celery[redis]"
+
+    - name: Create celery_app.py file in project directory
+      copy:
+        dest: "{{ project_dir }}/celery_app.py"
+        content: |
+          from celery import Celery
+
+          app = Celery('file_processor',
+                      broker='pyamqp://rabbit:1Francis2@{{ master_rabbitmq_ip }}//',
+                      backend='redis://{{ master_redis_ip }}')
+
+          app.conf.task_routes = {'task.process_file': {'queue': 'file_queue'}}
+          app.conf.broker_connection_retry_on_startup = True
+
+          # Import tasks to register them with Celery
+          import task
+
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0644'
+
+    - name: Create task.py file in project directory
+      copy:
+        dest: "{{ project_dir }}/task.py"
+        content: |
+          from celery_app import app  # Import the Celery app from celery_app.py
+
+          @app.task
+          def process_file(file_path):
+              # Example task logic (modify as needed)
+              return f"Processing file at path: {file_path}"
+
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0644'
+
+
+    - name: Create Celery systemd service file for worker
+      copy:
+        dest: /etc/systemd/system/celery_worker.service
+        content: |
+          [Unit]
+          Description=Celery Worker
+          After=network.target
+
+          [Service]
+          User={{ ansible_user }}
+          Group={{ ansible_user }}
+          WorkingDirectory={{ project_dir }}
+          ExecStart=/root/celery_app/celery -A celery_app worker --loglevel=info -Q file_queue
+          Restart=always
+
+          [Install]
+          WantedBy=multi-user.target
+        mode: '0644'
+
+    - name: Reload systemd to apply the new service
+      systemd:
+        daemon_reload: yes
+
+    - name: Enable and start the Celery worker service
+      systemd:
+        name: celery_worker
+        enabled: yes
+        state: started

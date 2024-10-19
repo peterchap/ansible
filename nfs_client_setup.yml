@@ -1,6 +1,6 @@
 ---
 - name: NFS Client Configuration Playbook
-  hosts: runall
+  hosts: slaves
   become: true
   vars:
     nfs_master_server: "10.0.0.3"      # IP address of the master server

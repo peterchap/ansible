@@ -1,0 +1,44 @@
+---
+- name: NFS Server Configuration Playbook
+  hosts: localhost
+  become: true
+  connection: local
+  vars:
+    nfs_shared_dir: "/srv/nfs/shared"
+    nfs_export_options: "(rw,sync,no_subtree_check)"
+    allowed_clients:
+      - "10.0.0.0/22"
+
+  tasks:
+    - name: Install NFS server packages
+      apt:
+        name: nfs-kernel-server
+        state: present
+        update_cache: yes
+
+    - name: Create NFS shared directory
+      file:
+        path: "{{ nfs_shared_dir }}"
+        state: directory
+        owner: nobody
+        group: nogroup
+        mode: '0777'
+
+    - name: Configure NFS exports
+      copy:
+        dest: /etc/exports
+        content: |
+          {% for client in allowed_clients %}
+          {{ nfs_shared_dir }}    {{ client }}{{ nfs_export_options }}
+          {% endfor %}
+      notify: Restart NFS server
+
+    - name: Export NFS shares
+      command: exportfs -a
+      notify: Restart NFS server
+
+  handlers:
+    - name: Restart NFS server
+      service:
+        name: nfs-kernel-server
+        state: restarted
