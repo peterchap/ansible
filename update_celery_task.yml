@@ -1,0 +1,108 @@
+
+---
+- name: update task.py on slave servers
+  hosts: slaves  # Define your inventory group for slave servers
+  become: yes
+
+  vars:
+    project_dir: /root/celery_app
+    venv_dir: "{{ project_dir }}/venv"
+    master_rabbitmq_ip: 82.208.21.122
+  tasks:
+    - name: Create Celery systemd service file for worker
+      copy:
+        dest: /etc/systemd/system/celery_worker.service
+        content: |
+          [Unit]
+          Description=Celery Worker
+          After=network.target
+
+          [Service]
+          User=root
+          Group=root
+          WorkingDirectory=/root/celery_app
+          Environment="PATH=/root/celery_app/venv/bin"
+          Environment="PYTHONPATH=/root/celery_app"
+          ExecStart=/root/celery_app/venv/bin/celery -A celery_app worker --loglevel=info -Q file_queue
+          Restart=always
+          StandardOutput=append:/root/celery_app/celery_worker.log
+          StandardError=append:/root/celery_app/celery_worker_error.log
+
+          [Install]
+          WantedBy=multi-user.target
+        mode: '0644'
+
+    - name: Create celery_app.py file in project directory
+      copy:
+        dest: "{{ project_dir }}/celery_app.py"
+        content: |
+          import logging
+          import polars as pl
+          from kombu import Queue
+          from celery import Celery
+
+          app = Celery('task',
+                      broker='pyamqp://rabbit:1Francis2@{{ master_rabbitmq_ip }}//')
+
+          # Define the custom exchange and queue for file processing
+          file_exchange = Exchange('file_exchange', type='direct')
+
+          # Set up the file_queue with the correct exchange and routing key
+          app.conf.task_queues = [
+              Queue('file_queue', exchange=file_exchange, routing_key='file_queue')
+          ]
+
+          # Route the tasks to the correct queue
+          app.conf.task_routes = {
+              'task.process_file': {'queue': 'file_queue', 'routing_key': 'file_queue'}
+
+
+          app.conf.broker_connection_retry_on_startup = True
+
+          # Import tasks to register them with Celery
+          import task
+
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0644'
+
+    - name: Instal Polars for Python
+      ansible.builtin.pip:
+        name:
+          - polars
+        virtualenv: "{{ venv_dir }}"
+    - name: Create task.py file in project directory
+      copy:
+        dest: "{{ project_dir }}/task.py"
+        content: |
+          import logging
+          import polars as pl
+          from celery_app import app  # Import the Celery app from celery_app.py
+
+          # Configure logging
+          logging.basicConfig(
+              filename='process.log',
+              level=logging.INFO,
+              format='%(asctime)s %(levelname)s:%(message)s'
+          )
+
+          @app.task(name="task.process_file")
+          def process_file(file):
+              #Task to process a Parquet file, count records, and write the result.
+              input_folder = "/mnt/shared/subfiles/"
+              processed_folder = "/mnt/shared/processed/"
+              file_path = input_folder + file
+              processed_file_path = processed_folder + "processed" + file
+              # Read the Parquet file
+
+              logging.info(f"Started processing file: {file}")
+              try:
+                 data = pl.scan_parquet(file_path).select(pl.count()).collect()
+                 data.write_parquet(processed_file_path)
+                 logging.info(f"Processed file at path: {file_path}")
+              except Exception as e:
+                 logging.error(f"Failed to read {file_path}: {str(e)}")
+                 raise
+    - name: Reboot machine and send a message
+      ansible.builtin.reboot:
+        msg: "Rebooting machine in 5 seconds"

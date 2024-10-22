@@ -1,11 +1,11 @@
 ---
 - name: NFS Client Configuration Playbook
-  hosts: slaves
+  hosts: runbad
   become: true
   vars:
     nfs_master_server: "10.0.0.3"      # IP address of the master server
-    nfs_shared_remote_dir: "/srv/nfs/shared"  # Shared directory on the master server
-    nfs_mount_point: "/mnt/shared"            # Mount point on slave servers
+    nfs_shared_remote_dir: "/srv/nfs/shared/"  # Shared directory on the master server
+    nfs_mount_point: "/mnt/shared/"            # Mount point on slave servers
     nfs_mount_options: "defaults,_netdev"
 
   tasks:

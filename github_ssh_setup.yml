@@ -1,6 +1,6 @@
 ---
 - name: Set up GitHub SSH access and clone project
-  hosts: runall  # assuming you have defined the slave servers group in your inventory
+  hosts: runbad  # assuming you have defined the slave servers group in your inventory
   become: yes
   vars:
     github_repo_url: "git@github.com:peterchap/dnsproject.git"  # GitHub SSH repo URL

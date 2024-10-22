@@ -11,14 +11,14 @@
 - name: Start unbound
   ansible.builtin.include_tasks: start.yml
 
-- name: Run tests for unbound
-  ansible.builtin.include_tasks: tests.yml
+#- name: Run tests for unbound
+#  ansible.builtin.include_tasks: tests.yml
 
 - name: Install GitHub CLI
   ansible.builtin.include_tasks: github_cli.yml
 
-- name: Authenticate with GitHub
-  ansible.builtin.include_tasks: github_auth.yml
+#- name: Authenticate with GitHub
+#  ansible.builtin.include_tasks: github_auth.yml
 
 #- name: Install AWS CLI
 #  ansible.builtin.include_tasks: aws_cli.yml

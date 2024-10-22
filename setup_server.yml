@@ -1,5 +1,5 @@
 ---
-- hosts: contabox
+- hosts: runbad
   become: true
   vars_files:
   # - ~/ansible/pass.yml
