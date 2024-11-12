@@ -1,5 +1,5 @@
 ---
-- hosts: slaves
+- hosts: badslaves
   tasks:
      - name: Reboot machine and send a message
        ansible.builtin.reboot:

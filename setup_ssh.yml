@@ -1,5 +1,5 @@
 ---
-- hosts: runbad
+- hosts: badslaves
   gather_facts: no
   tasks:
     - name: Remove old known_hosts entry (if exists)

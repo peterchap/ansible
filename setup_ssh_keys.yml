@@ -1,6 +1,6 @@
 ---
 - name: Set up SSH keys on multiple Ubuntu servers
-  hosts: run1
+  hosts: contabo21
   gather_facts: no
   vars:
     local_user: peter

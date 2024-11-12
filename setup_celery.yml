@@ -1,6 +1,6 @@
 ---
 - name: Set up Celery on slave servers
-  hosts: runbad  # Define your inventory group for slave servers
+  hosts: badslaves
   become: yes
 
   vars:
@@ -111,13 +111,15 @@
           [Service]
           User=root
           Group=root
-          WorkingDirectory=/root/celery_app
-          Environment="PATH=/root/celery_app/venv/bin"
-          Environment="PYTHONPATH=/root/celery_app"
-          ExecStart=/root/celery_app/venv/bin/celery -A celery_app worker --loglevel=info -Q file_queue
+          WorkingDirectory=/root/celery_app/
+          ExecStart=/bin/bash -c 'source /root/celeryapp/bin/activate && /root/celeryapp/bin/celery -A celery_app worker --loglevel=info -Q file_queue'
+
+          # Correct redirection of logs
+          StandardOutput=file:/root/celery_app/celery_worker.log
+          StandardError=file:/root/celery_app/celery_worker_error.log
+
           Restart=always
-          StandardOutput=append:/root/celery_app/celery_worker.log
-          StandardError=append:/root/celery_app/celery_worker_error.log
+          RestartSec=10
 
           [Install]
           WantedBy=multi-user.target

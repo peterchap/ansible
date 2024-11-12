@@ -1,3 +1,4 @@
+
 contabo1 ansible_host=194.163.165.147 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
 contabo2 ansible_host=194.5.152.127 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
 contabo3 ansible_host=109.205.182.32 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
@@ -18,6 +19,28 @@ contabo17 ansible_host=62.169.31.155 ansible_connection=ssh ansible_user=root an
 contabo18 ansible_host=62.169.31.167 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
 contabo19 ansible_host=77.237.232.219 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
 contabo20 ansible_host=62.169.31.178 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo21 ansible_host=37.60.251.50 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo22 ansible_host=37.60.251.53 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo23 ansible_host=37.60.251.102 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo24 ansible_host=37.60.251.224 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo25 ansible_host=37.60.251.169 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo26 ansible_host=37.60.251.238 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo27 ansible_host=37.60.252.226 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo28 ansible_host=37.60.252.178 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo29 ansible_host=37.60.252.141 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo30 ansible_host=37.60.252.136 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo31 ansible_host=37.60.251.206 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo32 ansible_host=37.60.251.168 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo33 ansible_host=37.60.254.24 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo34 ansible_host=37.60.253.252 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo35 ansible_host=37.60.253.64 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo36 ansible_host=37.60.253.31 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo37 ansible_host=37.60.253.18 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo38 ansible_host=37.60.252.237 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo39 ansible_host=37.60.252.135 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo40 ansible_host=37.60.252.6 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo41 ansible_host=38.242.211.101 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabo42 ansible_host=45.149.205.202 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
 contabox ansible_host=82.208.21.122 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
 
 [run1]
@@ -32,13 +55,12 @@ contabo18
 contabo19
 contabo20
 
-[runbad]
-contabo3
-contabo4
-contabo5
-contabo6
-contabo7
-contabo8
+[badslaves]
+contabo36
+contabo37
+contabo38
+contabo39
+
 
 [slaves]
 contabo1
@@ -61,27 +83,52 @@ contabo17
 contabo18
 contabo19
 contabo20
+contabo21
+contabo22
+contabo23
+contabo24
+contabo25
+contabo26
+contabo27
+contabo28
+contabo29
+contabo30
+contabo31
+contabo32
+contabo33
+contabo34
+contabo35
+contabo36
+contabo37
+contabo38
+contabo39
+contabo40
+contabo41
 
-[runrestrict]
-contabo1
-contabo2
-contabo3
-contabo4
-contabo5
-contabo6
-contabo7
-contabo8
-contabo9
-contabo10
-contabo11
-contabo12
-contabo13
-contabo15
-contabo16
-contabo17
-contabo18
-contabo19
-contabo20
+[newslaves]
+contabo21
+contabo22
+contabo23
+contabo24
+contabo25
+contabo26
+contabo27
+contabo28
+contabo29
+contabo30
+contabo31
+contabo32
+contabo33
+contabo34
+contabo35
+contabo36
+contabo37
+contabo38
+contabo39
+contabo40
+contabo41
+
+
 
 [all]
 contabo1
@@ -104,7 +151,26 @@ contabo17
 contabo18
 contabo19
 contabo20
+contabo21
+contabo22
+contabo23
+contabo24
+contabo25
+contabo26
+contabo27
+contabo28
+contabo29
+contabo30
+contabo31
+contabo32
+contabo33
+contabo34
+contabo35
+contabo36
+contabo37
+contabo38
+contabo39
+contabo40
+contabo41
 contabox
 
-[c10]
-contabo10

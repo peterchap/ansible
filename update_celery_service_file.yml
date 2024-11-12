@@ -1,0 +1,39 @@
+---
+- name: update scripts on slave servers
+  hosts: badslaves  # Define your inventory group for slave servers
+  become: yes
+
+  vars:
+    project_dir: /root/celery_app
+    venv_dir: "{{ project_dir }}/venv"
+    master_rabbitmq_ip: 82.208.21.122
+  tasks:
+    - name: Create Celery systemd service file for worker
+      copy:
+        dest: /etc/systemd/system/celery_worker.service
+        content: |
+          [Unit]
+          Description=Celery Worker
+          After=network.target
+
+          [Service]
+          User=root
+          Group=root
+          WorkingDirectory=/root/celery_app/
+          ExecStart=/bin/bash -c 'source /root/celeryapp/bin/activate && /root/celeryapp/bin/celery -A celery_app worker --loglevel=info -Q file_queue'
+
+          # Correct redirection of logs
+          StandardOutput=file:/root/celery_app/celery_worker.log
+          StandardError=file:/root/celery_app/celery_worker_error.log
+
+          Restart=always
+          RestartSec=10
+
+          [Install]
+          WantedBy=multi-user.target
+
+        mode: '0644'
+
+    - name: Reboot machine and send a message
+      ansible.builtin.reboot:
+        msg: "Rebooting machine in 5 seconds"

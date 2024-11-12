@@ -1,20 +1,37 @@
 ---
-- name: Update apt cache
-  ansible.builtin.apt:
-    update_cache: yes
+- name: Install python 3.12 dnsenv virtual environment on Ubuntu servers
+  vars:
+    venv_path: /root/dnsenv
+
 
 - name: Install necessary packages
   ansible.builtin.apt:
     name:
       - software-properties-common
-      - git
-      - python3.12
-      - python3.12-venv
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
     state: present
 
-- name: Install dead snakes for the latest python version
-  ansible.builtin.shell: add-apt-repository ppa:deadsnakes/ppa -y
-  register: result
+- name: Add deadsnakes PPA GPG key manually
+  ansible.builtin.apt_key:
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6A755776
+    state: present
+
+- name: Refresh GitHub CLI GPG key
+  ansible.builtin.shell: |
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null
+  become: yes
+
+
+- name: Add deadsnakes PPA repository
+  ansible.builtin.apt_repository:
+    repo: 'ppa:deadsnakes/ppa'
+    state: present
+
+- name: Update apt cache after adding PPA
+  ansible.builtin.apt:
+    update_cache: yes
 
 - name: Install python 3.12
   ansible.builtin.apt:
@@ -22,20 +39,18 @@
       - python3.12
       - python3.12-venv
     state: present
+    update_cache: yes
 
-- name: Clone Git repository
-  ansible.builtin.git:
-    repo: git@github.com:peterchap/dnsproject.git
-    dest: ~/dnsproject
-    clone: true
+- name: Remove existing dnsenv virtual environment
+  file:
+    path: "{{ venv_path }}"
+    state: absent
 
-- name: Setup python virtual environment
-  ansible.builtin.pip:
-    name: setuptools
-    virtualenv: ~/dnsenv
-    virtualenv_command: python3.12 -m venv
+- name: Create new dnsenv virtual environment using Python 3.12
+  command: python3.12 -m venv "{{ venv_path }}"
 
-- name: Install pip packages
-  ansible.builtin.pip:
+- name: Install requirements from requirements.txt
+  pip:
     requirements: ~/dnsproject/requirements.txt
     virtualenv: ~/dnsenv
+    state: latest

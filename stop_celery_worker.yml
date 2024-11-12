@@ -1,0 +1,9 @@
+---
+- name: update scripts on slave servers
+  hosts: slaves  #Slave servers
+  become: yes
+  tasks:
+    - name: Stop Celery worker service
+      systemd:
+        name: celery_worker.service
+        state: started

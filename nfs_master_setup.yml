@@ -16,13 +16,23 @@
         state: present
         update_cache: yes
 
-    - name: Create NFS shared directory
+    - name: Create NFS shared directory with setgid for group inheritance
       file:
         path: "{{ nfs_shared_dir }}"
         state: directory
         owner: nobody
         group: nogroup
-        mode: '0777'
+        mode: '2777'  # rwx for all, with setgid to inherit group permissions
+
+    - name: Set recursive permissions on NFS shared directory
+      command: chmod -R 777 {{ nfs_shared_dir }}
+      args:
+        creates: "{{ nfs_shared_dir }}"  # Only applies if the directory exists
+      changed_when: false
+
+    - name: Set recursive ownership on NFS shared directory
+      command: chown -R nobody:nogroup {{ nfs_shared_dir }}
+      changed_when: false
 
     - name: Configure NFS exports
       copy:
@@ -42,3 +52,4 @@
       service:
         name: nfs-kernel-server
         state: restarted
+

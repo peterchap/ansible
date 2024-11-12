@@ -1,0 +1,41 @@
+---
+- name: NFS slave check
+  hosts: slaves
+  become: true
+  vars:
+    nfs_master_server: "10.0.0.9"      # IP address of the master server
+    nfs_shared_remote_dir: "/srv/nfs/shared/"  # Shared directory on the master server
+    nfs_mount_point: "/mnt/shared/"            # Mount point on slave servers
+    nfs_mount_options: "defaults,_netdev"
+  tasks:
+    - name: Check if NFS share is mounted
+      ansible.builtin.shell: "mount | grep '{{ nfs_mount_point }}'"
+      register: mount_check
+      ignore_errors: true
+      changed_when: false
+
+    - name: Mount NFS share if not already mounted
+      ansible.builtin.mount:
+        src: "{{ nfs_master_server }}:{{ nfs_shared_remote_dir }}"
+        path: "{{ nfs_mount_point }}"
+        fstype: nfs
+        opts: "{{ nfs_mount_options }}"
+        state: mounted
+      when: mount_check.rc != 0
+
+    - name: Test write access to NFS share
+      ansible.builtin.file:
+        path: "{{ nfs_mount_point }}/testfile_ansible.txt"
+        state: touch
+      register: test_write_access
+      failed_when: test_write_access is failed or ('Permission denied' in test_write_access.stderr | default(''))
+
+    - name: Remove test file from NFS share
+      ansible.builtin.file:
+        path: "{{ nfs_mount_point }}/testfile_ansible.txt"
+        state: absent
+      when: test_write_access.changed
+
+    - name: Display success message
+      ansible.builtin.debug:
+        msg: "NFS share {{ nfs_master_server }}:{{ nfs_shared_remote_dir }} mounted successfully on {{ nfs_mount_point }}"

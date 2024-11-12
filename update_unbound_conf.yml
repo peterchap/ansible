@@ -1,6 +1,6 @@
 ---
 - name: Replace Unbound Configuration and Restart Service
-  hosts: slaves
+  hosts: badslaves
   become: yes
   tasks:
 

@@ -1,0 +1,26 @@
+---
+- name: update scripts on slave servers
+  hosts: badslaves  # Define your inventory group for slave servers
+  become: yes
+  tasks:
+    - name: Delete content & directory
+      ansible.builtin.file:
+        state: absent
+        path: /root/celery_app/
+
+    - name: Clone latest Git repository
+      ansible.builtin.git:
+        repo: 'git@github.com:peterchap/celery_app.git'
+        dest: "~/celery_app/"
+        clone: True
+
+    - name: Setup python virtual environment
+      ansible.builtin.pip:
+        name: setuptools
+        virtualenv: ~/celeryapp
+        virtualenv_command: python3.12 -m venv
+
+    - name: Install pip packages
+      ansible.builtin.pip:
+        requirements: ~/celery_app/requirements.txt
+        virtualenv: ~/celeryapp

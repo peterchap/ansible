@@ -1,5 +1,5 @@
 ---
-- name: Clone latest Git repository
+- name: Clone latest Git dnsproject repository
   ansible.builtin.git:
     repo: 'git@github.com:peterchap/dnsproject.git'
     dest: "~/dnsproject"

@@ -1,12 +1,12 @@
 ---
 - name: NFS Client Configuration Playbook
-  hosts: runbad
+  hosts: badslaves
   become: true
   vars:
     nfs_master_server: "10.0.0.9"      # IP address of the master server
     nfs_shared_remote_dir: "/srv/nfs/shared/"  # Shared directory on the master server
     nfs_mount_point: "/mnt/shared/"            # Mount point on slave servers
-    nfs_mount_options: "defaults,_netdev"
+    nfs_mount_options: "defaults,_netdev,noatime,hard,intr,timeo=600,retrans=2,rsize=65536,wsize=65536"
 
   tasks:
     - name: Install NFS client packages
@@ -38,7 +38,7 @@
         path: "{{ nfs_mount_point }}/testfile_ansible.txt"
         state: touch
       register: test_write_access
-      failed_when: "'Permission denied' in test_write_access.msg"
+      failed_when: test_write_access is failed or ('Permission denied' in test_write_access.stderr | default(''))
 
     - name: Remove test file from NFS share
       ansible.builtin.file:

@@ -1,9 +1,9 @@
 ---
-- hosts: runbad
+- hosts: badslaves
   become: true
   vars_files:
   # - ~/ansible/pass.yml
   roles:
     - common
     - unbound
-    - python_script
+#    - python_script

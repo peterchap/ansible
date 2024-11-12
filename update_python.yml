@@ -1,6 +1,6 @@
 ---
 - name: Update dnsenv virtual environment on Ubuntu servers
-  hosts: runall
+  hosts: badslaves
   become: yes
 
   vars:

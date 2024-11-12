@@ -1,6 +1,6 @@
 
 ---
-- name: update task.py on slave servers
+- name: update scripts on slave servers
   hosts: slaves  # Define your inventory group for slave servers
   become: yes
 
@@ -21,9 +21,9 @@
           User=root
           Group=root
           WorkingDirectory=/root/celery_app
-          Environment="PATH=/root/celery_app/venv/bin"
+          Environment="PATH=/root/celeryapp/bin"
           Environment="PYTHONPATH=/root/celery_app"
-          ExecStart=/root/celery_app/venv/bin/celery -A celery_app worker --loglevel=info -Q file_queue
+          ExecStart=/root/celeryapp/bin/celery -A celery_app worker --loglevel=info -Q file_queue
           Restart=always
           StandardOutput=append:/root/celery_app/celery_worker.log
           StandardError=append:/root/celery_app/celery_worker_error.log
@@ -38,7 +38,7 @@
         content: |
           import logging
           import polars as pl
-          from kombu import Queue
+          from kombu import Exchange, Queue
           from celery import Celery
 
           app = Celery('task',
@@ -46,6 +46,9 @@
 
           # Define the custom exchange and queue for file processing
           file_exchange = Exchange('file_exchange', type='direct')
+
+          # Limit Slave to one file at a time
+          app.conf.worker_concurrency = 1
 
           # Set up the file_queue with the correct exchange and routing key
           app.conf.task_queues = [
@@ -55,7 +58,7 @@
           # Route the tasks to the correct queue
           app.conf.task_routes = {
               'task.process_file': {'queue': 'file_queue', 'routing_key': 'file_queue'}
-
+          }
 
           app.conf.broker_connection_retry_on_startup = True
 
@@ -86,7 +89,7 @@
               format='%(asctime)s %(levelname)s:%(message)s'
           )
 
-          @app.task(name="task.process_file")
+          @app.task(name="task.process_file", acks_late=True, soft_time_limit=300)
           def process_file(file):
               #Task to process a Parquet file, count records, and write the result.
               input_folder = "/mnt/shared/subfiles/"
