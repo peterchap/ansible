@@ -1,11 +1,29 @@
 server:
   interface: 127.0.0.1
-  do-ip6: no 
-  num-threads: 4
-  msg-cache-slabs: 4
-  chroot: ""
+  port: 53
   logfile: "/var/log/unbound/unbound.log"
   verbosity: 1
   log-queries: no
   use-syslog: no
   log-time-ascii: yes
+  msg-cache-size: 256m
+  rrset-cache-size: 512m
+  prefetch: yes
+  prefetch-key: yes
+  cache-max-ttl: 86400
+  cache-min-ttl: 3600
+  infra-host-ttl: 60
+  infra-cache-slabs: 4
+  serve-expired: yes
+  outgoing-range: 512
+  do-ip4: yes
+  do-ip6: no
+  do-udp: yes
+  do-tcp: yes
+
+forward-zone:
+    name: "."
+    forward-first: yes        # Use forwarders only if recursive fails
+    forward-addr: 8.8.8.8     # Google Public DNS
+    forward-addr: 1.1.1.1     # Cloudflare DNS
+    forward-addr: 9.9.9.9     # Quad9
