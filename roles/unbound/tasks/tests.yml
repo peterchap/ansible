@@ -1,3 +1,10 @@
 ---
-- name: Flush Unbound cache
-  command: unbound-control flush_zone .
+- name: Check if unbound cache is empty
+  command: unbound-control stats_noreset | grep total.num.cachehits
+  register: cache_hits
+  ignore_errors: yes
+
+- name: Flush unbound cache if not empty
+  command: unbound-control flush_bogus
+  when: cache_hits.stdout != "total.num.cachehits=0"
+  ignore_errors: yes
