@@ -1,13 +1,5 @@
 ---
-- name: Set up Celery on slave servers
-  vars:
-    project_dir: /root/celery_app
-    venv_dir: "{{ project_dir }}/venv"  # Virtual environment directory
-    master_rabbitmq_ip: "10.0.0.9"  # Replace with your master server's IP
-    master_redis_ip: "10.0.0.9"     # Replace with your master server's IP
-    input_folder: "/mnt/shared/subfiles"  # Path to the shared NFS folder
-    processed_folder: "/mnt/shared/processed"  # Path to the processed folder in NFS
-
+# Set up Celery on slave servers
 - name: Create Celery systemd service file for worker
   copy:
     dest: /etc/systemd/system/celery_worker.service
