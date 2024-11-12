@@ -14,17 +14,5 @@
 - name: Run tests for unbound
   ansible.builtin.include_tasks: tests.yml
 
-- name: Install GitHub CLI
-  ansible.builtin.include_tasks: github_cli.yml
-
-#- name: Authenticate with GitHub
-#  ansible.builtin.include_tasks: github_auth.yml
-
-#- name: Install AWS CLI
-#  ansible.builtin.include_tasks: aws_cli.yml
-
-#- name: Configure AWS CLI
-#  ansible.builtin.include_tasks: aws_config.yml
-
 - name: Configure firewall
   ansible.builtin.include_tasks: firewall.yml
