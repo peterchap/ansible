@@ -1,1 +1,44 @@
-#setup celery
+---
+- name: Set up Celery on slave servers
+  vars:
+    project_dir: /root/celery_app
+    venv_dir: "{{ project_dir }}/venv"  # Virtual environment directory
+    master_rabbitmq_ip: "10.0.0.9"  # Replace with your master server's IP
+    master_redis_ip: "10.0.0.9"     # Replace with your master server's IP
+    input_folder: "/mnt/shared/subfiles"  # Path to the shared NFS folder
+    processed_folder: "/mnt/shared/processed"  # Path to the processed folder in NFS
+
+- name: Create Celery systemd service file for worker
+  copy:
+    dest: /etc/systemd/system/celery_worker.service
+    content: |
+      [Unit]
+      Description=Celery Worker
+      After=network.target
+
+      [Service]
+      User=root
+      Group=root
+      WorkingDirectory=/root/celery_app/
+      ExecStart=/bin/bash -c 'source /root/celeryapp/bin/activate && /root/celeryapp/bin/celery -A celery_app worker --loglevel=info -Q file_queue'
+
+      # Correct redirection of logs
+      StandardOutput=file:/root/celery_app/celery_worker.log
+      StandardError=file:/root/celery_app/celery_worker_error.log
+
+      Restart=always
+      RestartSec=10
+
+      [Install]
+      WantedBy=multi-user.target
+    mode: '0644'
+
+- name: Reload systemd to apply the new service
+  systemd:
+    daemon_reload: yes
+
+- name: Enable and start the Celery worker service
+  systemd:
+    name: celery_worker
+    enabled: yes
+    state: started
