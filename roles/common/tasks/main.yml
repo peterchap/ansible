@@ -3,3 +3,6 @@
   apt:
     update_cache: yes
     upgrade: yes
+    
+- name: Configure firewall
+  ansible.builtin.include_tasks: firewall.yml
