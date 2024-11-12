@@ -13,6 +13,3 @@
 
 - name: Run tests for unbound
   ansible.builtin.include_tasks: tests.yml
-
-- name: Configure firewall
-  ansible.builtin.include_tasks: firewall.yml
