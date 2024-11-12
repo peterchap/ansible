@@ -1,25 +1,29 @@
 ---
 - name: Setup virtual environments and download github repositories
   vars:
-    venv_dnspath: ~/dnsenv
-    venv_celpath: ~/
+    venv_dnspath: ~/root/
+    venv_celpath: ~/root/
+    ssh_private_key_path: /root
+    
 - name: Create new dnsenv virtual environment using Python 3.12
-  command: python3.12 -m venv "{{ venv_path }}"
+  command: python3.12 -m venv "{{ venv_dnspath }}"
 
-- name: Install requirements from requirements.txt
+- name: Clone the dnsproject repository
+  git:
+    repo: "{{ github_dnsproject_url }}"
+    dest: "{{ dnsproject_directory }}"
+    version: main  # or the branch you want to clone
+    key_file: "{{ ssh_private_key_path }}"
+    update: yes
+
+- name: Install dnsproject requirements from requirements.txt
   pip:
     requirements: ~/dnsproject/requirements.txt
     virtualenv: ~/dnsenv
     state: latest
 
 - name: Create new celery_app virtual environment using Python 3.12
-  command: python3.12 -m venv "{{ venv_path }}"
-
-- name: Install requirements from requirements.txt
-  pip:
-    requirements: ~/dnsproject/requirements.txt
-    virtualenv: ~/dnsenv
-    state: latest
+  command: python3.12 -m venv "{{ venv_celpath }}"
 
 - name: Clone Celery project repository
   git:
@@ -29,10 +33,9 @@
     key_file: "{{ ssh_private_key_path }}"
     update: yes
 
-- name: Clone the dnsproject repository
-  git:
-    repo: "{{ github_dnsproject_url }}"
-    dest: "{{ dnsproject_directory }}"
-    version: main  # or the branch you want to clone
-    key_file: "{{ ssh_private_key_path }}"
-    update: yes
+- name: Install celery requirements from requirements.txt
+  pip:
+    requirements: ~/celery_app/requirements.txt
+    virtualenv: ~/celeryapp
+    state: latest
+    
