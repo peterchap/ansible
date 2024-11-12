@@ -6,4 +6,4 @@
   roles:
     - common
     - unbound
-#    - python_script
+    - python_script
