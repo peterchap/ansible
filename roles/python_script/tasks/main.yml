@@ -20,3 +20,19 @@
     requirements: ~/dnsproject/requirements.txt
     virtualenv: ~/dnsenv
     state: latest
+
+- name: Clone Celery project repository
+  git:
+    repo: "{{ github_celery_url }}"
+    dest: "{{ celery_directory }}"
+    version: master  # or the branch you want to clone
+    key_file: "{{ ssh_private_key_path }}"
+    update: yes
+
+- name: Clone the dnsproject repository
+  git:
+    repo: "{{ github_dnsproject_url }}"
+    dest: "{{ dnsproject_directory }}"
+    version: main  # or the branch you want to clone
+    key_file: "{{ ssh_private_key_path }}"
+    update: yes
