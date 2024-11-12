@@ -29,17 +29,11 @@
       /var/log/unbound/unbound.log rw,
   become: true
 
-#- name: Configure unbound
-#  template:
-#    src: unbound.conf.j2
-#    dest: /etc/unbound/unbound.conf
-#  become: true
-
-- name: Replace the Unbound configuration file
-      ansible.builtin.copy:
-        src: /root/unbound.conf
-        dest: /etc/unbound/unbound.conf
-        backup: yes  # Create a backup of the original configuration
+- name: Configure unbound
+  template:
+    src: unbound.conf.j2
+    dest: /etc/unbound/unbound.conf
+  become: true
 
 - name: Check Unbound configuration for errors
   ansible.builtin.shell: "unbound-checkconf /etc/unbound/unbound.conf"
