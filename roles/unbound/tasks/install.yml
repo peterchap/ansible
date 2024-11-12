@@ -8,13 +8,3 @@
   ansible.builtin.apt:
     name: unbound
     state: present
-
-- name: Install git
-  ansible.builtin.apt:
-    name: git
-    state: present
-
-- name: Install unzip
-  ansible.builtin.apt:
-    name: unzip
-    state: present
