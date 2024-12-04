@@ -12,12 +12,12 @@
 #            register: ram
 #          - debug:
 #                  var: ram.stdout_lines
-#          - name: top
-#           command: top -cbn1
-#            shell: top -bco +%CPU -n1|head -n15
-#            register: process
-#          - debug:
-#                  var: process.stdout_lines
+          - name: top
+#            command: top -cbn1
+            shell: top -bco +%CPU -n1|head -n15
+            register: process
+          - debug:
+                  var: process.stdout_lines
           - name: Read last line of dnslog.log file
             shell: tail -2 ~/celery_app/dnslog.log
             register: dnslog

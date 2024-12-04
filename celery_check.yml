@@ -1,0 +1,14 @@
+---
+- name: Check celery slave service status
+  hosts: slaves
+  become: yes
+  tasks:
+    - name: Check if celery worker service is running
+      systemd:
+        name: celery_worker.service
+        state: started
+        enabled: yes
+      register: celery_worker_service_status
+    - name: Display Celery Worker service status
+      debug:
+        var: celery_worker_service_status

@@ -1,16 +1,12 @@
 ---
-- name: Install python 3.12 dnsenv virtual environment on Ubuntu servers
-  vars:
-    venv_path: /root/dnsenv
-
 - name: Install necessary packages
-      ansible.builtin.apt:
-        name:
-          - software-properties-common
-          - apt-transport-https
-          - ca-certificates
-          - gnupg
-        state: present
+  ansible.builtin.apt:
+    name:
+      - software-properties-common
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+    state: present
 
 - name: Add deadsnakes PPA GPG key manually
   ansible.builtin.apt_key:

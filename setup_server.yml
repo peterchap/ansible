@@ -1,5 +1,5 @@
 ---
-- hosts: badslaves
+- hosts: contabo42
   become: true
   vars_files:
   # - ~/ansible/pass.yml
@@ -9,5 +9,5 @@
     - unbound
     - python_install
     - python_script
-    - nfs
     - celery
+    - nfs

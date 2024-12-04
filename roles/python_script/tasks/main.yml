@@ -7,16 +7,16 @@
     dest: "~/dnsproject/"
     clone: True
 
-  - name: Setup dnsenv virtual environment
-    ansible.builtin.pip:
-      name: setuptools
-      virtualenv: ~/dnsenv
-      virtualenv_command: python3.12 -m venv
+- name: Setup dnsenv virtual environment
+  ansible.builtin.pip:
+    name: setuptools
+    virtualenv: ~/dnsenv
+    virtualenv_command: python3.12 -m venv
 
-  - name: Install dnsproject module requirements
-    ansible.builtin.pip:
-      requirements: ~/dnsproject/requirements.txt
-      virtualenv: ~/dnsenv
+- name: Install dnsproject module requirements
+  ansible.builtin.pip:
+    requirements: ~/dnsproject/requirements.txt
+    virtualenv: ~/dnsenv
 
 - name: Clone Celery_App Git repository
   ansible.builtin.git:
@@ -24,14 +24,13 @@
     dest: "~/celery_app/"
     clone: True
 
-  - name: Setup celeryapp virtual environment
-    ansible.builtin.pip:
-      name: setuptools
-      virtualenv: ~/celeryapp
-      virtualenv_command: python3.12 -m venv
+- name: Setup celeryapp virtual environment
+  ansible.builtin.pip:
+    name: setuptools
+    virtualenv: ~/celeryapp
+    virtualenv_command: python3.12 -m venv
 
-  - name: Install celery_app module requirements
-    ansible.builtin.pip:
-      requirements: ~/celery_app/requirements.txt
-      virtualenv: ~/celeryapp
-    
+- name: Install celery_app module requirements
+  ansible.builtin.pip:
+    requirements: ~/celery_app/requirements.txt
+    virtualenv: ~/celeryapp

@@ -1,6 +1,6 @@
 ---
 - name: update scripts on slave servers
-  hosts: badslaves  # Define your inventory group for slave servers
+  hosts: contabo42  # Define your inventory group for slave servers
   become: yes
   tasks:
     - name: Delete content & directory
