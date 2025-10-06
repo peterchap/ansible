@@ -27,10 +27,10 @@
   ansible.builtin.apt:
     update_cache: yes
 
-- name: Install python 3.12
+- name: Install python 3.13
   ansible.builtin.apt:
     name:
-      - python3.12
-      - python3.12-venv
+      - python3.13
+      - python3.13-venv
     state: present
     update_cache: yes
