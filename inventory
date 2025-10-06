@@ -61,7 +61,7 @@ contabo59 ansible_host=84.247.177.2 ansible_connection=ssh ansible_user=root ans
 contabo60 ansible_host=213.199.51.47 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
 contabo61 ansible_host=62.169.17.181 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
 contabo62 ansible_host=84.247.133.56 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabox ansible_host=82.208.21.122 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
+contabox ansible_host=109.123.250.0 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
 
 [run1]
 contabo45
@@ -208,4 +208,5 @@ contabo39
 contabo40
 contabo41
 contabox
+
 
