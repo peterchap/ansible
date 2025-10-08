@@ -5,10 +5,10 @@
   # - ~/ansible/pass.yml
   roles:
     - common
-    - github_auth
-    - github
     - unbound
+    - github
     - python_install
-    - python_script
+    - github_auth
+    - python_script 
     - celery
     - nfs

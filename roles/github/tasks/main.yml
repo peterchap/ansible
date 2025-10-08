@@ -5,18 +5,3 @@
     state: present
     update_cache: yes
 
-- name: Clone Celery project repository
-  ansible.builtin.git:
-    # Build the URL directly here
-    repo: "https://x-access-token:{{ github_access_token }}@github.com/peterchap/celery_master.git"
-    dest: "{{ celery_directory }}"
-    version: master
-    update: yes
-
-- name: Clone the dnsproject repository
-  ansible.builtin.git:
-    # Build the URL directly here as well
-    repo: "https://x-access-token:{{ github_access_token }}@github.com/peterchap/dnsproject.git"
-    dest: "{{ dnsproject_directory }}"
-    version: main
-    update: yes
