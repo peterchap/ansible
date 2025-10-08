@@ -1,0 +1,6 @@
+---
+- name: Configure Celery Master Server
+  hosts: celery_master
+  become: yes
+  roles:
+    - celery_master

@@ -1,8 +1,15 @@
 ---
-- name: Update and upgrade apt packages
-  apt:
+- name: Update apt cache and install required system packages
+  ansible.builtin.apt:
+    name:
+      - nfs-kernel-server
+      - python3-pip         # Installs pip for the system Python
+      - python3-venv        # Good practice to have for virtual environments
+      - python3-cryptography # Installs the required 'cryptography' library
+      - python3-openssl     # Often a required dependency for cryptography
+      - git                 # Make sure git is installed
+    state: present
     update_cache: yes
-    upgrade: yes
     
 - name: Configure firewall
   ansible.builtin.include_tasks: firewall.yml

@@ -1,8 +1,7 @@
 ---
 - name: NFS Server Configuration Playbook
-  hosts: localhost
+  hosts: contabox
   become: true
-  connection: local
   vars:
     nfs_shared_dir: "/srv/nfs/shared"
     nfs_export_options: "(rw,sync,no_subtree_check)"
@@ -11,45 +10,33 @@
 
   tasks:
     - name: Install NFS server packages
-      apt:
+      ansible.builtin.apt:
         name: nfs-kernel-server
         state: present
         update_cache: yes
 
-    - name: Create NFS shared directory with setgid for group inheritance
-      file:
+    - name: Create NFS shared directory and set permissions
+      ansible.builtin.file:
         path: "{{ nfs_shared_dir }}"
         state: directory
         owner: nobody
         group: nogroup
-        mode: '2777'  # rwx for all, with setgid to inherit group permissions
+        mode: '2777'  # '2' is for setgid
+        recurse: yes  # Apply owner/group/mode to existing content
 
-    - name: Set recursive permissions on NFS shared directory
-      command: chmod -R 777 {{ nfs_shared_dir }}
-      args:
-        creates: "{{ nfs_shared_dir }}"  # Only applies if the directory exists
-      changed_when: false
-
-    - name: Set recursive ownership on NFS shared directory
-      command: chown -R nobody:nogroup {{ nfs_shared_dir }}
-      changed_when: false
-
-    - name: Configure NFS exports
-      copy:
-        dest: /etc/exports
-        content: |
+    - name: Configure NFS exports safely with blockinfile
+      ansible.builtin.blockinfile:
+        path: /etc/exports
+        create: yes
+        block: |
           {% for client in allowed_clients %}
           {{ nfs_shared_dir }}    {{ client }}{{ nfs_export_options }}
           {% endfor %}
       notify: Restart NFS server
 
-    - name: Export NFS shares
-      command: exportfs -a
-      notify: Restart NFS server
-
   handlers:
     - name: Restart NFS server
-      service:
+      ansible.builtin.service:
         name: nfs-kernel-server
         state: restarted
 

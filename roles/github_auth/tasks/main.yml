@@ -1,0 +1,14 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/github_auth
+- name: Generate and set GitHub App access token
+  run_once: true
+  set_fact:
+    github_access_token: "{{ lookup('community.general.github_app_access_token', **github_app_vars) }}"
+  vars:
+    github_app_vars:
+      app_id: "{{ github_app_id }}"
+      installation_id: "{{ github_installation_id }}"
+      private_key: "{{ lookup('file', github_private_key_path) }}"
+
+

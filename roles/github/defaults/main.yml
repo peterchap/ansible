@@ -1,7 +1,7 @@
 ---
-github_celery_url: "git@github.com:peterchap/celery_app.git"  # GitHub SSH repo URL
+github_celery_url: "git@github.com:peterchap/celery_master.git"  # GitHub SSH repo URL
 github_dnsproject_url: "git@github.com:peterchap/dnsproject.git"
-celery_directory: "/root/celery_app"  # Directory to clone the project into
+celery_directory: "/root/celery_master"  # Directory to clone the project into
 dnsproject_directory: "/root/dnsproject"
 ssh_private_key_path: "/root/.ssh/id_rsa"  # Path to store SSH key on the slaves
 control_machine_ssh_key: "/root/.ssh/id_rsa"  # Path to the SSH key on control machine

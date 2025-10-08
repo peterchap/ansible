@@ -1,0 +1,7 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for roles/github_auth
+# Path to the private key on the machine running Ansible
+github_private_key_path: "/home/peter/Documents/dz-repositories.2025-10-06.private-key.pem"
+github_app_id: "2072760"
+github_installation_id: "88966232"

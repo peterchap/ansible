@@ -1,0 +1,10 @@
+#SPDX-License-Identifier: MIT-0
+---
+# vars file for roles/celery_master
+app_dir: "/root/celery_master_app"
+venv_dir: "/root/celery_master_venv"
+log_dir: "/var/log/celery"
+app_user: "root"
+app_group: "root"
+git_repo: "git@github.com:peterchap/celery_master.git"
+git_branch: "main"

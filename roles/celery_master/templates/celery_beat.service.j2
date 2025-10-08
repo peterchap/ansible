@@ -1,0 +1,18 @@
+[Unit]
+Description=Celery Beat Scheduler (Redis)
+After=network.target redis-server.service
+
+[Service]
+User={{ app_user }}
+Group={{ app_group }}
+WorkingDirectory={{ app_dir }}
+ExecStart={{ venv_dir }}/bin/celery -A celery_masterapp beat --loglevel=info
+
+StandardOutput=file:{{ log_dir }}/celery_beat.log
+StandardError=file:{{ log_dir }}/celery_beat_error.log
+
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,7 @@
+#SPDX-License-Identifier: MIT-0
+---
+# handlers file for roles/celery_mastery
+  systemd:
+    name: celery_beat
+    state: restarted
+

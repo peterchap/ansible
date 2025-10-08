@@ -1,0 +1,587 @@
+ansible-playbook [core 2.19.3]
+  config file = /home/peter/Documents/ansible/ansible.cfg
+  configured module search path = ['/home/peter/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/peter/anaconda3/envs/ansible.env/lib/python3.13/site-packages/ansible
+  ansible collection location = /home/peter/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/peter/anaconda3/envs/ansible.env/bin/ansible-playbook
+  python version = 3.13.7 | packaged by Anaconda, Inc. | (main, Sep  9 2025, 19:59:03) [GCC 11.2.0] (/home/peter/anaconda3/envs/ansible.env/bin/python3.13)
+  jinja version = 3.1.6
+  pyyaml version = 6.0.3 (with libyaml v0.2.5)
+Using /home/peter/Documents/ansible/ansible.cfg as config file
+host_list declined parsing /home/peter/Documents/ansible/inventory as it did not pass its verify_file() method
+script declined parsing /home/peter/Documents/ansible/inventory as it did not pass its verify_file() method
+auto declined parsing /home/peter/Documents/ansible/inventory as it did not pass its verify_file() method
+Parsed /home/peter/Documents/ansible/inventory inventory source with ini plugin
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+
+PLAYBOOK: master_setup.yml *****************************************************
+1 plays in master_setup.yml
+
+PLAY [contabox] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+task path: /home/peter/Documents/ansible/master_setup.yml:2
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'echo ~root && sleep 0'"'"''
+<109.123.250.0> (0, b'/root\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /root/.ansible/tmp `"&& mkdir "` echo /root/.ansible/tmp/ansible-tmp-1759871945.4111812-36918-265290175652514 `" && echo ansible-tmp-1759871945.4111812-36918-265290175652514="` echo /root/.ansible/tmp/ansible-tmp-1759871945.4111812-36918-265290175652514 `" ) && sleep 0'"'"''
+<109.123.250.0> (0, b'ansible-tmp-1759871945.4111812-36918-265290175652514=/root/.ansible/tmp/ansible-tmp-1759871945.4111812-36918-265290175652514\n', b'')
+Using module file /home/peter/anaconda3/envs/ansible.env/lib/python3.13/site-packages/ansible/modules/setup.py
+<109.123.250.0> PUT /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmp3jajfa9x TO /root/.ansible/tmp/ansible-tmp-1759871945.4111812-36918-265290175652514/AnsiballZ_setup.py
+<109.123.250.0> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 '[109.123.250.0]'
+<109.123.250.0> (0, b'sftp> put /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmp3jajfa9x /root/.ansible/tmp/ansible-tmp-1759871945.4111812-36918-265290175652514/AnsiballZ_setup.py\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'chmod u+rwx /root/.ansible/tmp/ansible-tmp-1759871945.4111812-36918-265290175652514/ /root/.ansible/tmp/ansible-tmp-1759871945.4111812-36918-265290175652514/AnsiballZ_setup.py && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 -tt 109.123.250.0 '/bin/sh -c '"'"'/usr/bin/python3.12 /root/.ansible/tmp/ansible-tmp-1759871945.4111812-36918-265290175652514/AnsiballZ_setup.py && sleep 0'"'"''
+<109.123.250.0> (0, b'\r\n{"ansible_facts": {"ansible_virtualization_role": "guest", "ansible_virtualization_type": "kvm", "ansible_virtualization_tech_guest": ["kvm"], "ansible_virtualization_tech_host": [], "ansible_is_chroot": false, "ansible_system": "Linux", "ansible_kernel": "6.8.0-85-generic", "ansible_kernel_version": "#85-Ubuntu SMP PREEMPT_DYNAMIC Thu Sep 18 15:26:59 UTC 2025", "ansible_machine": "x86_64", "ansible_python_version": "3.12.3", "ansible_fqdn": "vmi2841010.contaboserver.net", "ansible_hostname": "vmi2841010", "ansible_nodename": "vmi2841010", "ansible_domain": "contaboserver.net", "ansible_userspace_bits": "64", "ansible_architecture": "x86_64", "ansible_userspace_architecture": "x86_64", "ansible_machine_id": "c7117995f3cd40f5a7cddeadf1644ef7", "ansible_user_id": "root", "ansible_user_uid": 0, "ansible_user_gid": 0, "ansible_user_gecos": "root", "ansible_user_dir": "/root", "ansible_user_shell": "/bin/bash", "ansible_real_user_id": 0, "ansible_effective_user_id": 0, "ansible_real_group_id": 0, "ansible_effective_group_id": 0, "ansible_date_time": {"year": "2025", "month": "10", "weekday": "Tuesday", "weekday_number": "2", "weeknumber": "40", "day": "07", "hour": "23", "minute": "19", "second": "06", "epoch": "1759871946", "epoch_int": "1759871946", "date": "2025-10-07", "time": "23:19:06", "iso8601_micro": "2025-10-07T21:19:06.629080Z", "iso8601": "2025-10-07T21:19:06Z", "iso8601_basic": "20251007T231906629080", "iso8601_basic_short": "20251007T231906", "tz": "CEST", "tz_dst": "CEST", "tz_offset": "+0200"}, "ansible_cmdline": {"BOOT_IMAGE": "/vmlinuz-6.8.0-85-generic", "root": "UUID=d36f7414-beb7-45e0-900e-9ab79cdbcb2d", "ro": true, "console": "ttyS0"}, "ansible_proc_cmdline": {"BOOT_IMAGE": "/vmlinuz-6.8.0-85-generic", "root": "UUID=d36f7414-beb7-45e0-900e-9ab79cdbcb2d", "ro": true, "console": ["tty1", "ttyS0"]}, "ansible_local": {}, "ansible_system_capabilities_enforced": "False", "ansible_system_capabilities": [], "ansible_env": {"USER": "root", "SSH_CLIENT": "145.40.130.90 37978 22", "XDG_SESSION_TYPE": "tty", "SHLVL": "0", "HOME": "/root", "SSH_TTY": "/dev/pts/2", "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/0/bus", "LOGNAME": "root", "_": "/bin/sh", "XDG_SESSION_CLASS": "user", "TERM": "xterm-256color", "XDG_SESSION_ID": "64", "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin", "XDG_RUNTIME_DIR": "/run/user/0", "LANG": "C.UTF-8", "SHELL": "/bin/bash", "PWD": "/root", "SSH_CONNECTION": "145.40.130.90 37978 109.123.250.0 22"}, "ansible_ssh_host_key_rsa_public": "AAAAB3NzaC1yc2EAAAADAQABAAABgQCUOjlBVUsyVHOyRCsCugoOYLp1HWOvHyWbuY0ohDhkgjJQeU+6dU7mbNgSEGueEVAfiAMsLe21kytQPie0bB3qk+HsHlyt5vIPMML3PLPC49Ps5BVe7eh+d3ZNYqf5nPOTpE/ZsF2R6JvA8/yCbFJ7EmpM89CJWP1WfIg8/QTGbLmuj/OmV6/C6pve8vKxJFa61HPsT15XjybJXTk9THpo4poUnE3wsPRlkV/Ml7SiQXYUhK+PfN7jWgKfpH5hpwBoO5DgprHZZ6BHGnqnYAn59+Lk6V++Ucj7JYx4kTVH1zj/AHQYkhuZW/YPhC4j+e0SbBmCH1pvfdtW9GmEgs5WXgEKObDRY9rW0aUuBvMGdFZbNPAdwMTaEnMBVXaQdRWj+u/E5XbXVbqN/Y0I2blbe2TSVOdKilbYh1vZcHL/xPvpqGFbVmQ0c+14G/1LeT0KAHgfDwcJPwwiHGThMkHi+189QMi6/SqH9kY/8QQSADXkpOxYXDKt98iBT+lQeZk=", "ansible_ssh_host_key_rsa_public_keytype": "ssh-rsa", "ansible_ssh_host_key_ecdsa_public": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBK+7AMf3NauGTQU8JzXbYNgtfYXDXd1Bh0YAnV39utTYHLJNqhXUnfPhuLyuuFtgBBX6hqguPJN6gQ26ycbLKM=", "ansible_ssh_host_key_ecdsa_public_keytype": "ecdsa-sha2-nistp256", "ansible_ssh_host_key_ed25519_public": "AAAAC3NzaC1lZDI1NTE5AAAAINfZxJT3v7CTKtmLwVBDrGH9CWodYNWsr02BgIJpiVqr", "ansible_ssh_host_key_ed25519_public_keytype": "ssh-ed25519", "ansible_distribution": "Ubuntu", "ansible_distribution_release": "noble", "ansible_distribution_version": "24.04", "ansible_distribution_major_version": "24", "ansible_distribution_file_path": "/etc/os-release", "ansible_distribution_file_variety": "Debian", "ansible_distribution_file_parsed": true, "ansible_os_family": "Debian", "ansible_dns": {"nameservers": ["127.0.0.1"]}, "ansible_processor": ["0", "AuthenticAMD", "AMD EPYC Processor (with IBPB)", "1", "AuthenticAMD", "AMD EPYC Processor (with IBPB)", "2", "AuthenticAMD", "AMD EPYC Processor (with IBPB)", "3", "AuthenticAMD", "AMD EPYC Processor (with IBPB)", "4", "AuthenticAMD", "AMD EPYC Processor (with IBPB)", "5", "AuthenticAMD", "AMD EPYC Processor (with IBPB)", "6", "AuthenticAMD", "AMD EPYC Processor (with IBPB)", "7", "AuthenticAMD", "AMD EPYC Processor (with IBPB)"], "ansible_flags": ["fpu", "vme", "de", "pse", "tsc", "msr", "pae", "mce", "cx8", "apic", "sep", "mtrr", "pge", "mca", "cmov", "pat", "pse36", "clflush", "mmx", "fxsr", "sse", "sse2", "ht", "syscall", "nx", "mmxext", "fxsr_opt", "pdpe1gb", "rdtscp", "lm", "rep_good", "nopl", "cpuid", "extd_apicid", "tsc_known_freq", "pni", "pclmulqdq", "ssse3", "fma", "cx16", "sse4_1", "sse4_2", "x2apic", "movbe", "popcnt", "aes", "xsave", "avx", "f16c", "rdrand", "hypervisor", "lahf_lm", "cmp_legacy", "cr8_legacy", "abm", "sse4a", "misalignsse", "3dnowprefetch", "osvw", "topoext", "ssbd", "ibpb", "stibp", "vmmcall", "fsgsbase", "bmi1", "avx2", "smep", "bmi2", "rdseed", "adx", "smap", "clflushopt", "sha_ni", "xsaveopt", "xsavec", "xgetbv1", "arat"], "ansible_processor_count": 1, "ansible_processor_cores": 8, "ansible_processor_threads_per_core": 1, "ansible_processor_vcpus": 8, "ansible_processor_nproc": 8, "ansible_memtotal_mb": 24031, "ansible_memfree_mb": 23551, "ansible_swaptotal_mb": 0, "ansible_swapfree_mb": 0, "ansible_memory_mb": {"real": {"total": 24031, "used": 480, "free": 23551}, "nocache": {"free": 23696, "used": 335}, "swap": {"total": 0, "free": 0, "used": 0, "cached": 0}}, "ansible_bios_date": "04/01/2014", "ansible_bios_vendor": "SeaBIOS", "ansible_bios_version": "rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org", "ansible_board_asset_tag": "NA", "ansible_board_name": "NA", "ansible_board_serial": "NA", "ansible_board_vendor": "NA", "ansible_board_version": "NA", "ansible_chassis_asset_tag": "NA", "ansible_chassis_serial": "NA", "ansible_chassis_vendor": "QEMU", "ansible_chassis_version": "pc-i440fx-9.0", "ansible_form_factor": "Other", "ansible_product_name": "Standard PC (i440FX + PIIX, 1996)", "ansible_product_serial": "NA", "ansible_product_uuid": "c7117995-f3cd-40f5-a7cd-deadf1644ef7", "ansible_product_version": "pc-i440fx-9.0", "ansible_system_vendor": "QEMU", "ansible_devices": {"loop1": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "0", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectorsize": "512", "sectors": 0, "size": "0.00 Bytes", "host": "", "holders": []}, "loop6": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "0", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectorsize": "512", "sectors": 0, "size": "0.00 Bytes", "host": "", "holders": []}, "loop4": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "0", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectorsize": "512", "sectors": 0, "size": "0.00 Bytes", "host": "", "holders": []}, "loop2": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "0", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectorsize": "512", "sectors": 0, "size": "0.00 Bytes", "host": "", "holders": []}, "loop0": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "4096", "partitions": {}, "rotational": "0", "scheduler_mode": "none", "sectorsize": "512", "sectors": 0, "size": "0.00 Bytes", "host": "", "holders": []}, "loop7": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "0", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectorsize": "512", "sectors": 0, "size": "0.00 Bytes", "host": "", "holders": []}, "sda": {"virtual": 1, "links": {"ids": ["scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"], "uuids": [], "labels": [], "masters": []}, "vendor": "QEMU", "model": "QEMU HARDDISK", "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "4096", "partitions": {"sda16": {"links": {"ids": ["scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-part16"], "uuids": ["cc2d5907-a56d-4ba5-b398-19d5f860a9e1"], "labels": ["BOOT"], "masters": []}, "start": "227328", "sectorsize": 512, "sectors": 1869825, "size": "913.00 MB", "uuid": "cc2d5907-a56d-4ba5-b398-19d5f860a9e1", "holders": []}, "sda14": {"links": {"ids": ["scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-part14"], "uuids": [], "labels": [], "masters": []}, "start": "2048", "sectorsize": 512, "sectors": 8192, "size": "4.00 MB", "uuid": null, "holders": []}, "sda15": {"links": {"ids": ["scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-part15"], "uuids": ["0683-2D32"], "labels": ["UEFI"], "masters": []}, "start": "10240", "sectorsize": 512, "sectors": 217088, "size": "106.00 MB", "uuid": "0683-2D32", "holders": []}, "sda1": {"links": {"ids": ["scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-part1"], "uuids": ["d36f7414-beb7-45e0-900e-9ab79cdbcb2d"], "labels": ["cloudimg-rootfs"], "masters": []}, "start": "2099200", "sectorsize": 512, "sectors": 417331167, "size": "199.00 GB", "uuid": "d36f7414-beb7-45e0-900e-9ab79cdbcb2d", "holders": []}}, "rotational": "0", "scheduler_mode": "none", "sectorsize": "512", "sectors": 419430400, "size": "200.00 GB", "host": "SCSI storage controller: Red Hat, Inc. Virtio SCSI", "holders": []}, "loop5": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "0", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectorsize": "512", "sectors": 0, "size": "0.00 Bytes", "host": "", "holders": []}, "loop3": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "0", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectorsize": "512", "sectors": 0, "size": "0.00 Bytes", "host": "", "holders": []}}, "ansible_device_links": {"ids": {"sda14": ["scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-part14"], "sda16": ["scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-part16"], "sda1": ["scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-part1"], "sda15": ["scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-part15"], "sda": ["scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"]}, "uuids": {"sda1": ["d36f7414-beb7-45e0-900e-9ab79cdbcb2d"], "sda16": ["cc2d5907-a56d-4ba5-b398-19d5f860a9e1"], "sda15": ["0683-2D32"]}, "labels": {"sda1": ["cloudimg-rootfs"], "sda16": ["BOOT"], "sda15": ["UEFI"]}, "masters": {}}, "ansible_uptime_seconds": 21609, "ansible_lvm": {"lvs": {}, "vgs": {}, "pvs": {}}, "ansible_mounts": [{"mount": "/", "device": "/dev/sda1", "fstype": "ext4", "options": "rw,relatime,discard,errors=remount-ro,commit=30", "dump": 0, "passno": 0, "size_total": 206900281344, "size_available": 204122468352, "block_size": 4096, "block_total": 50512764, "block_available": 49834587, "block_used": 678177, "inode_total": 26083328, "inode_available": 25964511, "inode_used": 118817, "uuid": "d36f7414-beb7-45e0-900e-9ab79cdbcb2d"}, {"mount": "/boot", "device": "/dev/sda16", "fstype": "ext4", "options": "rw,relatime", "dump": 0, "passno": 0, "size_total": 923156480, "size_available": 741367808, "block_size": 4096, "block_total": 225380, "block_available": 180998, "block_used": 44382, "inode_total": 58496, "inode_available": 57892, "inode_used": 604, "uuid": "cc2d5907-a56d-4ba5-b398-19d5f860a9e1"}, {"mount": "/boot/efi", "device": "/dev/sda15", "fstype": "vfat", "options": "rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro", "dump": 0, "passno": 0, "size_total": 109395456, "size_available": 102995968, "block_size": 512, "block_total": 213663, "block_available": 201164, "block_used": 12499, "inode_total": 0, "inode_available": 0, "inode_used": 0, "uuid": "0683-2D32"}], "ansible_python": {"version": {"major": 3, "minor": 12, "micro": 3, "releaselevel": "final", "serial": 0}, "version_info": [3, 12, 3, "final", 0], "executable": "/usr/bin/python3.12", "has_sslcontext": true, "type": "cpython"}, "ansible_systemd": {"features": "+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified", "version": 255}, "ansible_fips": false, "ansible_fibre_channel_wwn": [], "ansible_apparmor": {"status": "enabled"}, "ansible_loadavg": {"1m": 0.08740234375, "5m": 0.021484375, "15m": 0.00537109375}, "ansible_lsb": {"id": "Ubuntu", "description": "Ubuntu 24.04.3 LTS", "release": "24.04", "codename": "noble", "major_release": "24"}, "ansible_iscsi_iqn": "", "ansible_hostnqn": "", "ansible_selinux_python_present": true, "ansible_selinux": {"status": "disabled"}, "ansible_interfaces": ["lo", "eth0"], "ansible_eth0": {"device": "eth0", "macaddress": "00:50:56:5d:64:7f", "mtu": 1500, "active": true, "type": "ether", "pciid": "virtio2", "speed": -1, "promisc": false, "ipv4": {"address": "109.123.250.0", "broadcast": "109.123.255.255", "netmask": "255.255.240.0", "network": "109.123.240.0", "prefix": "20"}, "ipv6": [{"address": "2a02:c207:2284:1010::1", "prefix": "64", "scope": "global"}, {"address": "fe80::250:56ff:fe5d:647f", "prefix": "64", "scope": "link"}], "features": {"rx_checksumming": "on [fixed]", "tx_checksumming": "on", "tx_checksum_ipv4": "off [fixed]", "tx_checksum_ip_generic": "on", "tx_checksum_ipv6": "off [fixed]", "tx_checksum_fcoe_crc": "off [fixed]", "tx_checksum_sctp": "off [fixed]", "scatter_gather": "on", "tx_scatter_gather": "on", "tx_scatter_gather_fraglist": "off [fixed]", "tcp_segmentation_offload": "on", "tx_tcp_segmentation": "on", "tx_tcp_ecn_segmentation": "on", "tx_tcp_mangleid_segmentation": "off", "tx_tcp6_segmentation": "on", "generic_segmentation_offload": "on", "generic_receive_offload": "on", "large_receive_offload": "off [fixed]", "rx_vlan_offload": "off [fixed]", "tx_vlan_offload": "off [fixed]", "ntuple_filters": "off [fixed]", "receive_hashing": "off [fixed]", "highdma": "on [fixed]", "rx_vlan_filter": "on [fixed]", "vlan_challenged": "off [fixed]", "tx_lockless": "off [fixed]", "netns_local": "off [fixed]", "tx_gso_robust": "on [fixed]", "tx_fcoe_segmentation": "off [fixed]", "tx_gre_segmentation": "off [fixed]", "tx_gre_csum_segmentation": "off [fixed]", "tx_ipxip4_segmentation": "off [fixed]", "tx_ipxip6_segmentation": "off [fixed]", "tx_udp_tnl_segmentation": "off [fixed]", "tx_udp_tnl_csum_segmentation": "off [fixed]", "tx_gso_partial": "off [fixed]", "tx_tunnel_remcsum_segmentation": "off [fixed]", "tx_sctp_segmentation": "off [fixed]", "tx_esp_segmentation": "off [fixed]", "tx_udp_segmentation": "off", "tx_gso_list": "off [fixed]", "fcoe_mtu": "off [fixed]", "tx_nocache_copy": "off", "loopback": "off [fixed]", "rx_fcs": "off [fixed]", "rx_all": "off [fixed]", "tx_vlan_stag_hw_insert": "off [fixed]", "rx_vlan_stag_hw_parse": "off [fixed]", "rx_vlan_stag_filter": "off [fixed]", "l2_fwd_offload": "off [fixed]", "hw_tc_offload": "off [fixed]", "esp_hw_offload": "off [fixed]", "esp_tx_csum_hw_offload": "off [fixed]", "rx_udp_tunnel_port_offload": "off [fixed]", "tls_hw_tx_offload": "off [fixed]", "tls_hw_rx_offload": "off [fixed]", "rx_gro_hw": "on", "tls_hw_record": "off [fixed]", "rx_gro_list": "off", "macsec_hw_offload": "off [fixed]", "rx_udp_gro_forwarding": "off", "hsr_tag_ins_offload": "off [fixed]", "hsr_tag_rm_offload": "off [fixed]", "hsr_fwd_offload": "off [fixed]", "hsr_dup_offload": "off [fixed]"}, "timestamping": [], "hw_timestamp_filters": []}, "ansible_lo": {"device": "lo", "mtu": 65536, "active": true, "type": "loopback", "promisc": false, "ipv4": {"address": "127.0.0.1", "broadcast": "", "netmask": "255.0.0.0", "network": "127.0.0.0", "prefix": "8"}, "ipv6": [{"address": "::1", "prefix": "128", "scope": "host"}], "features": {"rx_checksumming": "on [fixed]", "tx_checksumming": "on", "tx_checksum_ipv4": "off [fixed]", "tx_checksum_ip_generic": "on [fixed]", "tx_checksum_ipv6": "off [fixed]", "tx_checksum_fcoe_crc": "off [fixed]", "tx_checksum_sctp": "on [fixed]", "scatter_gather": "on", "tx_scatter_gather": "on [fixed]", "tx_scatter_gather_fraglist": "on [fixed]", "tcp_segmentation_offload": "on", "tx_tcp_segmentation": "on", "tx_tcp_ecn_segmentation": "on", "tx_tcp_mangleid_segmentation": "on", "tx_tcp6_segmentation": "on", "generic_segmentation_offload": "on", "generic_receive_offload": "on", "large_receive_offload": "off [fixed]", "rx_vlan_offload": "off [fixed]", "tx_vlan_offload": "off [fixed]", "ntuple_filters": "off [fixed]", "receive_hashing": "off [fixed]", "highdma": "on [fixed]", "rx_vlan_filter": "off [fixed]", "vlan_challenged": "on [fixed]", "tx_lockless": "on [fixed]", "netns_local": "on [fixed]", "tx_gso_robust": "off [fixed]", "tx_fcoe_segmentation": "off [fixed]", "tx_gre_segmentation": "off [fixed]", "tx_gre_csum_segmentation": "off [fixed]", "tx_ipxip4_segmentation": "off [fixed]", "tx_ipxip6_segmentation": "off [fixed]", "tx_udp_tnl_segmentation": "off [fixed]", "tx_udp_tnl_csum_segmentation": "off [fixed]", "tx_gso_partial": "off [fixed]", "tx_tunnel_remcsum_segmentation": "off [fixed]", "tx_sctp_segmentation": "on", "tx_esp_segmentation": "off [fixed]", "tx_udp_segmentation": "on", "tx_gso_list": "on", "fcoe_mtu": "off [fixed]", "tx_nocache_copy": "off [fixed]", "loopback": "on [fixed]", "rx_fcs": "off [fixed]", "rx_all": "off [fixed]", "tx_vlan_stag_hw_insert": "off [fixed]", "rx_vlan_stag_hw_parse": "off [fixed]", "rx_vlan_stag_filter": "off [fixed]", "l2_fwd_offload": "off [fixed]", "hw_tc_offload": "off [fixed]", "esp_hw_offload": "off [fixed]", "esp_tx_csum_hw_offload": "off [fixed]", "rx_udp_tunnel_port_offload": "off [fixed]", "tls_hw_tx_offload": "off [fixed]", "tls_hw_rx_offload": "off [fixed]", "rx_gro_hw": "off [fixed]", "tls_hw_record": "off [fixed]", "rx_gro_list": "off", "macsec_hw_offload": "off [fixed]", "rx_udp_gro_forwarding": "off", "hsr_tag_ins_offload": "off [fixed]", "hsr_tag_rm_offload": "off [fixed]", "hsr_fwd_offload": "off [fixed]", "hsr_dup_offload": "off [fixed]"}, "timestamping": [], "hw_timestamp_filters": []}, "ansible_default_ipv4": {"gateway": "109.123.240.1", "interface": "eth0", "address": "109.123.250.0", "broadcast": "109.123.255.255", "netmask": "255.255.240.0", "network": "109.123.240.0", "prefix": "20", "macaddress": "00:50:56:5d:64:7f", "mtu": 1500, "type": "ether", "alias": "eth0"}, "ansible_default_ipv6": {"gateway": "fe80::1", "interface": "eth0", "address": "2a02:c207:2284:1010::1", "prefix": "64", "scope": "global", "macaddress": "00:50:56:5d:64:7f", "mtu": 1500, "type": "ether"}, "ansible_all_ipv4_addresses": ["109.123.250.0"], "ansible_all_ipv6_addresses": ["2a02:c207:2284:1010::1", "fe80::250:56ff:fe5d:647f"], "ansible_locally_reachable_ips": {"ipv4": ["109.123.250.0", "127.0.0.0/8", "127.0.0.1"], "ipv6": ["::1", "2a02:c207:2284:1010::1", "fe80::250:56ff:fe5d:647f"]}, "ansible_pkg_mgr": "apt", "ansible_service_mgr": "systemd", "gather_subset": ["all"], "module_setup": true}, "invocation": {"module_args": {"gather_subset": ["all"], "gather_timeout": 10, "filter": [], "fact_path": "/etc/ansible/facts.d"}}}\r\n', b'Shared connection to 109.123.250.0 closed.\r\n')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'rm -f -r /root/.ansible/tmp/ansible-tmp-1759871945.4111812-36918-265290175652514/ > /dev/null 2>&1 && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+ok: [contabox]
+
+TASK [common : Update apt cache and install required system packages] **********
+task path: /home/peter/Documents/ansible/roles/common/tasks/main.yml:2
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'echo ~root && sleep 0'"'"''
+<109.123.250.0> (0, b'/root\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /root/.ansible/tmp `"&& mkdir "` echo /root/.ansible/tmp/ansible-tmp-1759871947.499706-36930-4825911539186 `" && echo ansible-tmp-1759871947.499706-36930-4825911539186="` echo /root/.ansible/tmp/ansible-tmp-1759871947.499706-36930-4825911539186 `" ) && sleep 0'"'"''
+<109.123.250.0> (0, b'ansible-tmp-1759871947.499706-36930-4825911539186=/root/.ansible/tmp/ansible-tmp-1759871947.499706-36930-4825911539186\n', b'')
+Using module file /home/peter/anaconda3/envs/ansible.env/lib/python3.13/site-packages/ansible/modules/apt.py
+<109.123.250.0> PUT /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmpibyhl4b4 TO /root/.ansible/tmp/ansible-tmp-1759871947.499706-36930-4825911539186/AnsiballZ_apt.py
+<109.123.250.0> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 '[109.123.250.0]'
+<109.123.250.0> (0, b'sftp> put /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmpibyhl4b4 /root/.ansible/tmp/ansible-tmp-1759871947.499706-36930-4825911539186/AnsiballZ_apt.py\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'chmod u+rwx /root/.ansible/tmp/ansible-tmp-1759871947.499706-36930-4825911539186/ /root/.ansible/tmp/ansible-tmp-1759871947.499706-36930-4825911539186/AnsiballZ_apt.py && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 -tt 109.123.250.0 '/bin/sh -c '"'"'/usr/bin/python3.12 /root/.ansible/tmp/ansible-tmp-1759871947.499706-36930-4825911539186/AnsiballZ_apt.py && sleep 0'"'"''
+<109.123.250.0> (0, b'/usr/lib/python3/dist-packages/apt/cache.py:562: Warning: W:https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu/dists/noble/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.\r\n  res = self._cache.update(fetch_progress, slist, pulse_interval)\r\n\r\n{"changed": true, "stdout": "Reading package lists...\\nBuilding dependency tree...\\nReading state information...\\nThe following additional packages will be installed:\\n  python3-pip-whl python3-setuptools-whl python3.12-venv\\nSuggested packages:\\n  python-openssl-doc python3-openssl-dbg\\nThe following NEW packages will be installed:\\n  python3-openssl python3-pip-whl python3-setuptools-whl python3-venv\\n  python3.12-venv\\n0 upgraded, 5 newly installed, 0 to remove and 0 not upgraded.\\nNeed to get 2477 kB of archives.\\nAfter this operation, 3042 kB of additional disk space will be used.\\nGet:1 http://archive.ubuntu.com/ubuntu noble/main amd64 python3-openssl all 23.2.0-1 [47.8 kB]\\nGet:2 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-pip-whl all 24.0+dfsg-1ubuntu1.3 [1707 kB]\\nGet:3 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-setuptools-whl all 68.1.2-2ubuntu1.2 [716 kB]\\nGet:4 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3.12-venv amd64 3.12.3-1ubuntu0.8 [5678 B]\\nGet:5 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-venv amd64 3.12.3-0ubuntu2 [1034 B]\\nFetched 2477 kB in 0s (13.1 MB/s)\\nSelecting previously unselected package python3-openssl.\\r\\n(Reading database ... \\r(Reading database ... 5%\\r(Reading database ... 10%\\r(Reading database ... 15%\\r(Reading database ... 20%\\r(Reading database ... 25%\\r(Reading database ... 30%\\r(Reading database ... 35%\\r(Reading database ... 40%\\r(Reading database ... 45%\\r(Reading database ... 50%\\r(Reading database ... 55%\\r(Reading database ... 60%\\r(Reading database ... 65%\\r(Reading database ... 70%\\r(Reading database ... 75%\\r(Reading database ... 80%\\r(Reading database ... 85%\\r(Reading database ... 90%\\r(Reading database ... 95%\\r(Reading database ... 100%\\r(Reading database ... 108365 files and directories currently installed.)\\r\\nPreparing to unpack .../python3-openssl_23.2.0-1_all.deb ...\\r\\nUnpacking python3-openssl (23.2.0-1) ...\\r\\nSelecting previously unselected package python3-pip-whl.\\r\\nPreparing to unpack .../python3-pip-whl_24.0+dfsg-1ubuntu1.3_all.deb ...\\r\\nUnpacking python3-pip-whl (24.0+dfsg-1ubuntu1.3) ...\\r\\nSelecting previously unselected package python3-setuptools-whl.\\r\\nPreparing to unpack .../python3-setuptools-whl_68.1.2-2ubuntu1.2_all.deb ...\\r\\nUnpacking python3-setuptools-whl (68.1.2-2ubuntu1.2) ...\\r\\nSelecting previously unselected package python3.12-venv.\\r\\nPreparing to unpack .../python3.12-venv_3.12.3-1ubuntu0.8_amd64.deb ...\\r\\nUnpacking python3.12-venv (3.12.3-1ubuntu0.8) ...\\r\\nSelecting previously unselected package python3-venv.\\r\\nPreparing to unpack .../python3-venv_3.12.3-0ubuntu2_amd64.deb ...\\r\\nUnpacking python3-venv (3.12.3-0ubuntu2) ...\\r\\nSetting up python3-setuptools-whl (68.1.2-2ubuntu1.2) ...\\r\\nSetting up python3-pip-whl (24.0+dfsg-1ubuntu1.3) ...\\r\\nSetting up python3-openssl (23.2.0-1) ...\\r\\nSetting up python3.12-venv (3.12.3-1ubuntu0.8) ...\\r\\nSetting up python3-venv (3.12.3-0ubuntu2) ...\\r\\n\\nRunning kernel seems to be up-to-date.\\n\\nNo services need to be restarted.\\n\\nNo containers need to be restarted.\\n\\nNo user sessions are running outdated binaries.\\n\\nNo VM guests are running outdated hypervisor (qemu) binaries on this host.\\n", "stderr": "", "diff": {}, "cache_updated": true, "cache_update_time": 1759871950, "invocation": {"module_args": {"name": ["nfs-kernel-server", "python3-pip", "python3-venv", "python3-cryptography", "python3-openssl", "git"], "state": "present", "update_cache": true, "package": ["nfs-kernel-server", "python3-pip", "python3-venv", "python3-cryptography", "python3-openssl", "git"], "update_cache_retries": 5, "update_cache_retry_max_delay": 12, "cache_valid_time": 0, "purge": false, "force": false, "upgrade": null, "dpkg_options": "force-confdef,force-confold", "autoremove": false, "autoclean": false, "fail_on_autoremove": false, "only_upgrade": false, "force_apt_get": false, "clean": false, "allow_unauthenticated": false, "allow_downgrade": false, "allow_change_held_packages": false, "lock_timeout": 60, "auto_install_module_deps": true, "deb": null, "default_release": null, "install_recommends": null, "policy_rc_d": null}}}\r\n', b'Shared connection to 109.123.250.0 closed.\r\n')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'rm -f -r /root/.ansible/tmp/ansible-tmp-1759871947.499706-36930-4825911539186/ > /dev/null 2>&1 && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+changed: [contabox] => {
+    "cache_update_time": 1759871950,
+    "cache_updated": true,
+    "changed": true,
+    "diff": {},
+    "invocation": {
+        "module_args": {
+            "allow_change_held_packages": false,
+            "allow_downgrade": false,
+            "allow_unauthenticated": false,
+            "auto_install_module_deps": true,
+            "autoclean": false,
+            "autoremove": false,
+            "cache_valid_time": 0,
+            "clean": false,
+            "deb": null,
+            "default_release": null,
+            "dpkg_options": "force-confdef,force-confold",
+            "fail_on_autoremove": false,
+            "force": false,
+            "force_apt_get": false,
+            "install_recommends": null,
+            "lock_timeout": 60,
+            "name": [
+                "nfs-kernel-server",
+                "python3-pip",
+                "python3-venv",
+                "python3-cryptography",
+                "python3-openssl",
+                "git"
+            ],
+            "only_upgrade": false,
+            "package": [
+                "nfs-kernel-server",
+                "python3-pip",
+                "python3-venv",
+                "python3-cryptography",
+                "python3-openssl",
+                "git"
+            ],
+            "policy_rc_d": null,
+            "purge": false,
+            "state": "present",
+            "update_cache": true,
+            "update_cache_retries": 5,
+            "update_cache_retry_max_delay": 12,
+            "upgrade": null
+        }
+    },
+    "stderr": "",
+    "stderr_lines": [],
+    "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following additional packages will be installed:\n  python3-pip-whl python3-setuptools-whl python3.12-venv\nSuggested packages:\n  python-openssl-doc python3-openssl-dbg\nThe following NEW packages will be installed:\n  python3-openssl python3-pip-whl python3-setuptools-whl python3-venv\n  python3.12-venv\n0 upgraded, 5 newly installed, 0 to remove and 0 not upgraded.\nNeed to get 2477 kB of archives.\nAfter this operation, 3042 kB of additional disk space will be used.\nGet:1 http://archive.ubuntu.com/ubuntu noble/main amd64 python3-openssl all 23.2.0-1 [47.8 kB]\nGet:2 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-pip-whl all 24.0+dfsg-1ubuntu1.3 [1707 kB]\nGet:3 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-setuptools-whl all 68.1.2-2ubuntu1.2 [716 kB]\nGet:4 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3.12-venv amd64 3.12.3-1ubuntu0.8 [5678 B]\nGet:5 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-venv amd64 3.12.3-0ubuntu2 [1034 B]\nFetched 2477 kB in 0s (13.1 MB/s)\nSelecting previously unselected package python3-openssl.\r\n(Reading database ... \r(Reading database ... 5%\r(Reading database ... 10%\r(Reading database ... 15%\r(Reading database ... 20%\r(Reading database ... 25%\r(Reading database ... 30%\r(Reading database ... 35%\r(Reading database ... 40%\r(Reading database ... 45%\r(Reading database ... 50%\r(Reading database ... 55%\r(Reading database ... 60%\r(Reading database ... 65%\r(Reading database ... 70%\r(Reading database ... 75%\r(Reading database ... 80%\r(Reading database ... 85%\r(Reading database ... 90%\r(Reading database ... 95%\r(Reading database ... 100%\r(Reading database ... 108365 files and directories currently installed.)\r\nPreparing to unpack .../python3-openssl_23.2.0-1_all.deb ...\r\nUnpacking python3-openssl (23.2.0-1) ...\r\nSelecting previously unselected package python3-pip-whl.\r\nPreparing to unpack .../python3-pip-whl_24.0+dfsg-1ubuntu1.3_all.deb ...\r\nUnpacking python3-pip-whl (24.0+dfsg-1ubuntu1.3) ...\r\nSelecting previously unselected package python3-setuptools-whl.\r\nPreparing to unpack .../python3-setuptools-whl_68.1.2-2ubuntu1.2_all.deb ...\r\nUnpacking python3-setuptools-whl (68.1.2-2ubuntu1.2) ...\r\nSelecting previously unselected package python3.12-venv.\r\nPreparing to unpack .../python3.12-venv_3.12.3-1ubuntu0.8_amd64.deb ...\r\nUnpacking python3.12-venv (3.12.3-1ubuntu0.8) ...\r\nSelecting previously unselected package python3-venv.\r\nPreparing to unpack .../python3-venv_3.12.3-0ubuntu2_amd64.deb ...\r\nUnpacking python3-venv (3.12.3-0ubuntu2) ...\r\nSetting up python3-setuptools-whl (68.1.2-2ubuntu1.2) ...\r\nSetting up python3-pip-whl (24.0+dfsg-1ubuntu1.3) ...\r\nSetting up python3-openssl (23.2.0-1) ...\r\nSetting up python3.12-venv (3.12.3-1ubuntu0.8) ...\r\nSetting up python3-venv (3.12.3-0ubuntu2) ...\r\n\nRunning kernel seems to be up-to-date.\n\nNo services need to be restarted.\n\nNo containers need to be restarted.\n\nNo user sessions are running outdated binaries.\n\nNo VM guests are running outdated hypervisor (qemu) binaries on this host.\n",
+    "stdout_lines": [
+        "Reading package lists...",
+        "Building dependency tree...",
+        "Reading state information...",
+        "The following additional packages will be installed:",
+        "  python3-pip-whl python3-setuptools-whl python3.12-venv",
+        "Suggested packages:",
+        "  python-openssl-doc python3-openssl-dbg",
+        "The following NEW packages will be installed:",
+        "  python3-openssl python3-pip-whl python3-setuptools-whl python3-venv",
+        "  python3.12-venv",
+        "0 upgraded, 5 newly installed, 0 to remove and 0 not upgraded.",
+        "Need to get 2477 kB of archives.",
+        "After this operation, 3042 kB of additional disk space will be used.",
+        "Get:1 http://archive.ubuntu.com/ubuntu noble/main amd64 python3-openssl all 23.2.0-1 [47.8 kB]",
+        "Get:2 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-pip-whl all 24.0+dfsg-1ubuntu1.3 [1707 kB]",
+        "Get:3 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-setuptools-whl all 68.1.2-2ubuntu1.2 [716 kB]",
+        "Get:4 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3.12-venv amd64 3.12.3-1ubuntu0.8 [5678 B]",
+        "Get:5 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-venv amd64 3.12.3-0ubuntu2 [1034 B]",
+        "Fetched 2477 kB in 0s (13.1 MB/s)",
+        "Selecting previously unselected package python3-openssl.",
+        "(Reading database ... ",
+        "(Reading database ... 5%",
+        "(Reading database ... 10%",
+        "(Reading database ... 15%",
+        "(Reading database ... 20%",
+        "(Reading database ... 25%",
+        "(Reading database ... 30%",
+        "(Reading database ... 35%",
+        "(Reading database ... 40%",
+        "(Reading database ... 45%",
+        "(Reading database ... 50%",
+        "(Reading database ... 55%",
+        "(Reading database ... 60%",
+        "(Reading database ... 65%",
+        "(Reading database ... 70%",
+        "(Reading database ... 75%",
+        "(Reading database ... 80%",
+        "(Reading database ... 85%",
+        "(Reading database ... 90%",
+        "(Reading database ... 95%",
+        "(Reading database ... 100%",
+        "(Reading database ... 108365 files and directories currently installed.)",
+        "Preparing to unpack .../python3-openssl_23.2.0-1_all.deb ...",
+        "Unpacking python3-openssl (23.2.0-1) ...",
+        "Selecting previously unselected package python3-pip-whl.",
+        "Preparing to unpack .../python3-pip-whl_24.0+dfsg-1ubuntu1.3_all.deb ...",
+        "Unpacking python3-pip-whl (24.0+dfsg-1ubuntu1.3) ...",
+        "Selecting previously unselected package python3-setuptools-whl.",
+        "Preparing to unpack .../python3-setuptools-whl_68.1.2-2ubuntu1.2_all.deb ...",
+        "Unpacking python3-setuptools-whl (68.1.2-2ubuntu1.2) ...",
+        "Selecting previously unselected package python3.12-venv.",
+        "Preparing to unpack .../python3.12-venv_3.12.3-1ubuntu0.8_amd64.deb ...",
+        "Unpacking python3.12-venv (3.12.3-1ubuntu0.8) ...",
+        "Selecting previously unselected package python3-venv.",
+        "Preparing to unpack .../python3-venv_3.12.3-0ubuntu2_amd64.deb ...",
+        "Unpacking python3-venv (3.12.3-0ubuntu2) ...",
+        "Setting up python3-setuptools-whl (68.1.2-2ubuntu1.2) ...",
+        "Setting up python3-pip-whl (24.0+dfsg-1ubuntu1.3) ...",
+        "Setting up python3-openssl (23.2.0-1) ...",
+        "Setting up python3.12-venv (3.12.3-1ubuntu0.8) ...",
+        "Setting up python3-venv (3.12.3-0ubuntu2) ...",
+        "",
+        "Running kernel seems to be up-to-date.",
+        "",
+        "No services need to be restarted.",
+        "",
+        "No containers need to be restarted.",
+        "",
+        "No user sessions are running outdated binaries.",
+        "",
+        "No VM guests are running outdated hypervisor (qemu) binaries on this host."
+    ]
+}
+
+TASK [common : Configure firewall] *********************************************
+task path: /home/peter/Documents/ansible/roles/common/tasks/main.yml:14
+included: /home/peter/Documents/ansible/roles/common/tasks/firewall.yml for contabox
+
+TASK [common : Set UFW default rule to deny incoming traffic] ******************
+task path: /home/peter/Documents/ansible/roles/common/tasks/firewall.yml:2
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'echo ~root && sleep 0'"'"''
+<109.123.250.0> (0, b'/root\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /root/.ansible/tmp `"&& mkdir "` echo /root/.ansible/tmp/ansible-tmp-1759871956.803388-36967-113236003835794 `" && echo ansible-tmp-1759871956.803388-36967-113236003835794="` echo /root/.ansible/tmp/ansible-tmp-1759871956.803388-36967-113236003835794 `" ) && sleep 0'"'"''
+<109.123.250.0> (0, b'ansible-tmp-1759871956.803388-36967-113236003835794=/root/.ansible/tmp/ansible-tmp-1759871956.803388-36967-113236003835794\n', b'')
+Using module file /home/peter/.ansible/collections/ansible_collections/community/general/plugins/modules/ufw.py
+<109.123.250.0> PUT /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmp2ao70g0j TO /root/.ansible/tmp/ansible-tmp-1759871956.803388-36967-113236003835794/AnsiballZ_ufw.py
+<109.123.250.0> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 '[109.123.250.0]'
+<109.123.250.0> (0, b'sftp> put /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmp2ao70g0j /root/.ansible/tmp/ansible-tmp-1759871956.803388-36967-113236003835794/AnsiballZ_ufw.py\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'chmod u+rwx /root/.ansible/tmp/ansible-tmp-1759871956.803388-36967-113236003835794/ /root/.ansible/tmp/ansible-tmp-1759871956.803388-36967-113236003835794/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 -tt 109.123.250.0 '/bin/sh -c '"'"'/usr/bin/python3.12 /root/.ansible/tmp/ansible-tmp-1759871956.803388-36967-113236003835794/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'\r\n{"changed": false, "commands": ["/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules", "/usr/sbin/ufw default deny incoming", "/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"], "msg": "Status: active\\nLogging: on (low)\\nDefault: deny (incoming), allow (outgoing), disabled (routed)\\nNew profiles: skip\\n\\nTo                         Action      From\\n--                         ------      ----\\n443                        ALLOW IN    Anywhere                  \\n22                         ALLOW IN    Anywhere                  \\n80                         ALLOW IN    Anywhere                  \\n443 (v6)                   ALLOW IN    Anywhere (v6)             \\n22 (v6)                    ALLOW IN    Anywhere (v6)             \\n80 (v6)                    ALLOW IN    Anywhere (v6)", "invocation": {"module_args": {"direction": "incoming", "policy": "deny", "default": "deny", "delete": false, "route": false, "insert_relative_to": "zero", "log": false, "from_ip": "any", "to_ip": "any", "state": null, "logging": null, "insert": null, "rule": null, "interface": null, "interface_in": null, "interface_out": null, "from_port": null, "to_port": null, "proto": null, "name": null, "comment": null}}}\r\n', b'Shared connection to 109.123.250.0 closed.\r\n')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'rm -f -r /root/.ansible/tmp/ansible-tmp-1759871956.803388-36967-113236003835794/ > /dev/null 2>&1 && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+ok: [contabox] => {
+    "changed": false,
+    "commands": [
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules",
+        "/usr/sbin/ufw default deny incoming",
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"
+    ],
+    "invocation": {
+        "module_args": {
+            "comment": null,
+            "default": "deny",
+            "delete": false,
+            "direction": "incoming",
+            "from_ip": "any",
+            "from_port": null,
+            "insert": null,
+            "insert_relative_to": "zero",
+            "interface": null,
+            "interface_in": null,
+            "interface_out": null,
+            "log": false,
+            "logging": null,
+            "name": null,
+            "policy": "deny",
+            "proto": null,
+            "route": false,
+            "rule": null,
+            "state": null,
+            "to_ip": "any",
+            "to_port": null
+        }
+    },
+    "msg": "Status: active\nLogging: on (low)\nDefault: deny (incoming), allow (outgoing), disabled (routed)\nNew profiles: skip\n\nTo                         Action      From\n--                         ------      ----\n443                        ALLOW IN    Anywhere                  \n22                         ALLOW IN    Anywhere                  \n80                         ALLOW IN    Anywhere                  \n443 (v6)                   ALLOW IN    Anywhere (v6)             \n22 (v6)                    ALLOW IN    Anywhere (v6)             \n80 (v6)                    ALLOW IN    Anywhere (v6)"
+}
+
+TASK [common : Set UFW default rule to allow outgoing traffic] *****************
+task path: /home/peter/Documents/ansible/roles/common/tasks/firewall.yml:8
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'echo ~root && sleep 0'"'"''
+<109.123.250.0> (0, b'/root\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /root/.ansible/tmp `"&& mkdir "` echo /root/.ansible/tmp/ansible-tmp-1759871959.7895918-36992-240908915217203 `" && echo ansible-tmp-1759871959.7895918-36992-240908915217203="` echo /root/.ansible/tmp/ansible-tmp-1759871959.7895918-36992-240908915217203 `" ) && sleep 0'"'"''
+<109.123.250.0> (0, b'ansible-tmp-1759871959.7895918-36992-240908915217203=/root/.ansible/tmp/ansible-tmp-1759871959.7895918-36992-240908915217203\n', b'')
+Using module file /home/peter/.ansible/collections/ansible_collections/community/general/plugins/modules/ufw.py
+<109.123.250.0> PUT /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmp5qtkv25e TO /root/.ansible/tmp/ansible-tmp-1759871959.7895918-36992-240908915217203/AnsiballZ_ufw.py
+<109.123.250.0> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 '[109.123.250.0]'
+<109.123.250.0> (0, b'sftp> put /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmp5qtkv25e /root/.ansible/tmp/ansible-tmp-1759871959.7895918-36992-240908915217203/AnsiballZ_ufw.py\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'chmod u+rwx /root/.ansible/tmp/ansible-tmp-1759871959.7895918-36992-240908915217203/ /root/.ansible/tmp/ansible-tmp-1759871959.7895918-36992-240908915217203/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 -tt 109.123.250.0 '/bin/sh -c '"'"'/usr/bin/python3.12 /root/.ansible/tmp/ansible-tmp-1759871959.7895918-36992-240908915217203/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'\r\n{"changed": false, "commands": ["/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules", "/usr/sbin/ufw default allow outgoing", "/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"], "msg": "Status: active\\nLogging: on (low)\\nDefault: deny (incoming), allow (outgoing), disabled (routed)\\nNew profiles: skip\\n\\nTo                         Action      From\\n--                         ------      ----\\n443                        ALLOW IN    Anywhere                  \\n22                         ALLOW IN    Anywhere                  \\n80                         ALLOW IN    Anywhere                  \\n443 (v6)                   ALLOW IN    Anywhere (v6)             \\n22 (v6)                    ALLOW IN    Anywhere (v6)             \\n80 (v6)                    ALLOW IN    Anywhere (v6)", "invocation": {"module_args": {"direction": "outgoing", "policy": "allow", "default": "allow", "delete": false, "route": false, "insert_relative_to": "zero", "log": false, "from_ip": "any", "to_ip": "any", "state": null, "logging": null, "insert": null, "rule": null, "interface": null, "interface_in": null, "interface_out": null, "from_port": null, "to_port": null, "proto": null, "name": null, "comment": null}}}\r\n', b'Shared connection to 109.123.250.0 closed.\r\n')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'rm -f -r /root/.ansible/tmp/ansible-tmp-1759871959.7895918-36992-240908915217203/ > /dev/null 2>&1 && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+ok: [contabox] => {
+    "changed": false,
+    "commands": [
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules",
+        "/usr/sbin/ufw default allow outgoing",
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"
+    ],
+    "invocation": {
+        "module_args": {
+            "comment": null,
+            "default": "allow",
+            "delete": false,
+            "direction": "outgoing",
+            "from_ip": "any",
+            "from_port": null,
+            "insert": null,
+            "insert_relative_to": "zero",
+            "interface": null,
+            "interface_in": null,
+            "interface_out": null,
+            "log": false,
+            "logging": null,
+            "name": null,
+            "policy": "allow",
+            "proto": null,
+            "route": false,
+            "rule": null,
+            "state": null,
+            "to_ip": "any",
+            "to_port": null
+        }
+    },
+    "msg": "Status: active\nLogging: on (low)\nDefault: deny (incoming), allow (outgoing), disabled (routed)\nNew profiles: skip\n\nTo                         Action      From\n--                         ------      ----\n443                        ALLOW IN    Anywhere                  \n22                         ALLOW IN    Anywhere                  \n80                         ALLOW IN    Anywhere                  \n443 (v6)                   ALLOW IN    Anywhere (v6)             \n22 (v6)                    ALLOW IN    Anywhere (v6)             \n80 (v6)                    ALLOW IN    Anywhere (v6)"
+}
+
+TASK [common : Allow HTTPS port 443] *******************************************
+task path: /home/peter/Documents/ansible/roles/common/tasks/firewall.yml:14
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'echo ~root && sleep 0'"'"''
+<109.123.250.0> (0, b'/root\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /root/.ansible/tmp `"&& mkdir "` echo /root/.ansible/tmp/ansible-tmp-1759871962.578826-37009-269655386417982 `" && echo ansible-tmp-1759871962.578826-37009-269655386417982="` echo /root/.ansible/tmp/ansible-tmp-1759871962.578826-37009-269655386417982 `" ) && sleep 0'"'"''
+<109.123.250.0> (0, b'ansible-tmp-1759871962.578826-37009-269655386417982=/root/.ansible/tmp/ansible-tmp-1759871962.578826-37009-269655386417982\n', b'')
+Using module file /home/peter/.ansible/collections/ansible_collections/community/general/plugins/modules/ufw.py
+<109.123.250.0> PUT /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmp8bulums9 TO /root/.ansible/tmp/ansible-tmp-1759871962.578826-37009-269655386417982/AnsiballZ_ufw.py
+<109.123.250.0> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 '[109.123.250.0]'
+<109.123.250.0> (0, b'sftp> put /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmp8bulums9 /root/.ansible/tmp/ansible-tmp-1759871962.578826-37009-269655386417982/AnsiballZ_ufw.py\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'chmod u+rwx /root/.ansible/tmp/ansible-tmp-1759871962.578826-37009-269655386417982/ /root/.ansible/tmp/ansible-tmp-1759871962.578826-37009-269655386417982/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 -tt 109.123.250.0 '/bin/sh -c '"'"'/usr/bin/python3.12 /root/.ansible/tmp/ansible-tmp-1759871962.578826-37009-269655386417982/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'\r\n{"changed": false, "commands": ["/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules", "/usr/sbin/ufw --version", "/usr/sbin/ufw allow from any to any port 443", "/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"], "msg": "Status: active\\nLogging: on (low)\\nDefault: deny (incoming), allow (outgoing), disabled (routed)\\nNew profiles: skip\\n\\nTo                         Action      From\\n--                         ------      ----\\n443                        ALLOW IN    Anywhere                  \\n22                         ALLOW IN    Anywhere                  \\n80                         ALLOW IN    Anywhere                  \\n443 (v6)                   ALLOW IN    Anywhere (v6)             \\n22 (v6)                    ALLOW IN    Anywhere (v6)             \\n80 (v6)                    ALLOW IN    Anywhere (v6)", "invocation": {"module_args": {"port": 443, "rule": "allow", "to_port": "443", "delete": false, "route": false, "insert_relative_to": "zero", "log": false, "from_ip": "any", "to_ip": "any", "state": null, "default": null, "logging": null, "direction": null, "insert": null, "interface": null, "interface_in": null, "interface_out": null, "from_port": null, "proto": null, "name": null, "comment": null}}}\r\n', b'Shared connection to 109.123.250.0 closed.\r\n')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'rm -f -r /root/.ansible/tmp/ansible-tmp-1759871962.578826-37009-269655386417982/ > /dev/null 2>&1 && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+ok: [contabox] => {
+    "changed": false,
+    "commands": [
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules",
+        "/usr/sbin/ufw --version",
+        "/usr/sbin/ufw allow from any to any port 443",
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"
+    ],
+    "invocation": {
+        "module_args": {
+            "comment": null,
+            "default": null,
+            "delete": false,
+            "direction": null,
+            "from_ip": "any",
+            "from_port": null,
+            "insert": null,
+            "insert_relative_to": "zero",
+            "interface": null,
+            "interface_in": null,
+            "interface_out": null,
+            "log": false,
+            "logging": null,
+            "name": null,
+            "port": 443,
+            "proto": null,
+            "route": false,
+            "rule": "allow",
+            "state": null,
+            "to_ip": "any",
+            "to_port": "443"
+        }
+    },
+    "msg": "Status: active\nLogging: on (low)\nDefault: deny (incoming), allow (outgoing), disabled (routed)\nNew profiles: skip\n\nTo                         Action      From\n--                         ------      ----\n443                        ALLOW IN    Anywhere                  \n22                         ALLOW IN    Anywhere                  \n80                         ALLOW IN    Anywhere                  \n443 (v6)                   ALLOW IN    Anywhere (v6)             \n22 (v6)                    ALLOW IN    Anywhere (v6)             \n80 (v6)                    ALLOW IN    Anywhere (v6)"
+}
+
+TASK [common : Allow SSH port 22] **********************************************
+task path: /home/peter/Documents/ansible/roles/common/tasks/firewall.yml:20
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'echo ~root && sleep 0'"'"''
+<109.123.250.0> (0, b'/root\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /root/.ansible/tmp `"&& mkdir "` echo /root/.ansible/tmp/ansible-tmp-1759871963.8517282-37030-53318409497423 `" && echo ansible-tmp-1759871963.8517282-37030-53318409497423="` echo /root/.ansible/tmp/ansible-tmp-1759871963.8517282-37030-53318409497423 `" ) && sleep 0'"'"''
+<109.123.250.0> (0, b'ansible-tmp-1759871963.8517282-37030-53318409497423=/root/.ansible/tmp/ansible-tmp-1759871963.8517282-37030-53318409497423\n', b'')
+Using module file /home/peter/.ansible/collections/ansible_collections/community/general/plugins/modules/ufw.py
+<109.123.250.0> PUT /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmpnwsq5vhm TO /root/.ansible/tmp/ansible-tmp-1759871963.8517282-37030-53318409497423/AnsiballZ_ufw.py
+<109.123.250.0> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 '[109.123.250.0]'
+<109.123.250.0> (0, b'sftp> put /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmpnwsq5vhm /root/.ansible/tmp/ansible-tmp-1759871963.8517282-37030-53318409497423/AnsiballZ_ufw.py\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'chmod u+rwx /root/.ansible/tmp/ansible-tmp-1759871963.8517282-37030-53318409497423/ /root/.ansible/tmp/ansible-tmp-1759871963.8517282-37030-53318409497423/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 -tt 109.123.250.0 '/bin/sh -c '"'"'/usr/bin/python3.12 /root/.ansible/tmp/ansible-tmp-1759871963.8517282-37030-53318409497423/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'\r\n{"changed": false, "commands": ["/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules", "/usr/sbin/ufw --version", "/usr/sbin/ufw allow from any to any port 22", "/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"], "msg": "Status: active\\nLogging: on (low)\\nDefault: deny (incoming), allow (outgoing), disabled (routed)\\nNew profiles: skip\\n\\nTo                         Action      From\\n--                         ------      ----\\n443                        ALLOW IN    Anywhere                  \\n22                         ALLOW IN    Anywhere                  \\n80                         ALLOW IN    Anywhere                  \\n443 (v6)                   ALLOW IN    Anywhere (v6)             \\n22 (v6)                    ALLOW IN    Anywhere (v6)             \\n80 (v6)                    ALLOW IN    Anywhere (v6)", "invocation": {"module_args": {"port": 22, "rule": "allow", "to_port": "22", "delete": false, "route": false, "insert_relative_to": "zero", "log": false, "from_ip": "any", "to_ip": "any", "state": null, "default": null, "logging": null, "direction": null, "insert": null, "interface": null, "interface_in": null, "interface_out": null, "from_port": null, "proto": null, "name": null, "comment": null}}}\r\n', b'Shared connection to 109.123.250.0 closed.\r\n')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'rm -f -r /root/.ansible/tmp/ansible-tmp-1759871963.8517282-37030-53318409497423/ > /dev/null 2>&1 && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+ok: [contabox] => {
+    "changed": false,
+    "commands": [
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules",
+        "/usr/sbin/ufw --version",
+        "/usr/sbin/ufw allow from any to any port 22",
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"
+    ],
+    "invocation": {
+        "module_args": {
+            "comment": null,
+            "default": null,
+            "delete": false,
+            "direction": null,
+            "from_ip": "any",
+            "from_port": null,
+            "insert": null,
+            "insert_relative_to": "zero",
+            "interface": null,
+            "interface_in": null,
+            "interface_out": null,
+            "log": false,
+            "logging": null,
+            "name": null,
+            "port": 22,
+            "proto": null,
+            "route": false,
+            "rule": "allow",
+            "state": null,
+            "to_ip": "any",
+            "to_port": "22"
+        }
+    },
+    "msg": "Status: active\nLogging: on (low)\nDefault: deny (incoming), allow (outgoing), disabled (routed)\nNew profiles: skip\n\nTo                         Action      From\n--                         ------      ----\n443                        ALLOW IN    Anywhere                  \n22                         ALLOW IN    Anywhere                  \n80                         ALLOW IN    Anywhere                  \n443 (v6)                   ALLOW IN    Anywhere (v6)             \n22 (v6)                    ALLOW IN    Anywhere (v6)             \n80 (v6)                    ALLOW IN    Anywhere (v6)"
+}
+
+TASK [common : Allow HTTP port 80] *********************************************
+task path: /home/peter/Documents/ansible/roles/common/tasks/firewall.yml:26
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'echo ~root && sleep 0'"'"''
+<109.123.250.0> (0, b'/root\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /root/.ansible/tmp `"&& mkdir "` echo /root/.ansible/tmp/ansible-tmp-1759871965.0899193-37045-88895690032778 `" && echo ansible-tmp-1759871965.0899193-37045-88895690032778="` echo /root/.ansible/tmp/ansible-tmp-1759871965.0899193-37045-88895690032778 `" ) && sleep 0'"'"''
+<109.123.250.0> (0, b'ansible-tmp-1759871965.0899193-37045-88895690032778=/root/.ansible/tmp/ansible-tmp-1759871965.0899193-37045-88895690032778\n', b'')
+Using module file /home/peter/.ansible/collections/ansible_collections/community/general/plugins/modules/ufw.py
+<109.123.250.0> PUT /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmpdfprqyoi TO /root/.ansible/tmp/ansible-tmp-1759871965.0899193-37045-88895690032778/AnsiballZ_ufw.py
+<109.123.250.0> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 '[109.123.250.0]'
+<109.123.250.0> (0, b'sftp> put /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmpdfprqyoi /root/.ansible/tmp/ansible-tmp-1759871965.0899193-37045-88895690032778/AnsiballZ_ufw.py\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'chmod u+rwx /root/.ansible/tmp/ansible-tmp-1759871965.0899193-37045-88895690032778/ /root/.ansible/tmp/ansible-tmp-1759871965.0899193-37045-88895690032778/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 -tt 109.123.250.0 '/bin/sh -c '"'"'/usr/bin/python3.12 /root/.ansible/tmp/ansible-tmp-1759871965.0899193-37045-88895690032778/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'\r\n{"changed": false, "commands": ["/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules", "/usr/sbin/ufw --version", "/usr/sbin/ufw allow from any to any port 80", "/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"], "msg": "Status: active\\nLogging: on (low)\\nDefault: deny (incoming), allow (outgoing), disabled (routed)\\nNew profiles: skip\\n\\nTo                         Action      From\\n--                         ------      ----\\n443                        ALLOW IN    Anywhere                  \\n22                         ALLOW IN    Anywhere                  \\n80                         ALLOW IN    Anywhere                  \\n443 (v6)                   ALLOW IN    Anywhere (v6)             \\n22 (v6)                    ALLOW IN    Anywhere (v6)             \\n80 (v6)                    ALLOW IN    Anywhere (v6)", "invocation": {"module_args": {"port": 80, "rule": "allow", "to_port": "80", "delete": false, "route": false, "insert_relative_to": "zero", "log": false, "from_ip": "any", "to_ip": "any", "state": null, "default": null, "logging": null, "direction": null, "insert": null, "interface": null, "interface_in": null, "interface_out": null, "from_port": null, "proto": null, "name": null, "comment": null}}}\r\n', b'Shared connection to 109.123.250.0 closed.\r\n')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'rm -f -r /root/.ansible/tmp/ansible-tmp-1759871965.0899193-37045-88895690032778/ > /dev/null 2>&1 && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+ok: [contabox] => {
+    "changed": false,
+    "commands": [
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules",
+        "/usr/sbin/ufw --version",
+        "/usr/sbin/ufw allow from any to any port 80",
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"
+    ],
+    "invocation": {
+        "module_args": {
+            "comment": null,
+            "default": null,
+            "delete": false,
+            "direction": null,
+            "from_ip": "any",
+            "from_port": null,
+            "insert": null,
+            "insert_relative_to": "zero",
+            "interface": null,
+            "interface_in": null,
+            "interface_out": null,
+            "log": false,
+            "logging": null,
+            "name": null,
+            "port": 80,
+            "proto": null,
+            "route": false,
+            "rule": "allow",
+            "state": null,
+            "to_ip": "any",
+            "to_port": "80"
+        }
+    },
+    "msg": "Status: active\nLogging: on (low)\nDefault: deny (incoming), allow (outgoing), disabled (routed)\nNew profiles: skip\n\nTo                         Action      From\n--                         ------      ----\n443                        ALLOW IN    Anywhere                  \n22                         ALLOW IN    Anywhere                  \n80                         ALLOW IN    Anywhere                  \n443 (v6)                   ALLOW IN    Anywhere (v6)             \n22 (v6)                    ALLOW IN    Anywhere (v6)             \n80 (v6)                    ALLOW IN    Anywhere (v6)"
+}
+
+TASK [common : Enable UFW] *****************************************************
+task path: /home/peter/Documents/ansible/roles/common/tasks/firewall.yml:32
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'echo ~root && sleep 0'"'"''
+<109.123.250.0> (0, b'/root\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /root/.ansible/tmp `"&& mkdir "` echo /root/.ansible/tmp/ansible-tmp-1759871966.298424-37060-157388512513836 `" && echo ansible-tmp-1759871966.298424-37060-157388512513836="` echo /root/.ansible/tmp/ansible-tmp-1759871966.298424-37060-157388512513836 `" ) && sleep 0'"'"''
+<109.123.250.0> (0, b'ansible-tmp-1759871966.298424-37060-157388512513836=/root/.ansible/tmp/ansible-tmp-1759871966.298424-37060-157388512513836\n', b'')
+Using module file /home/peter/.ansible/collections/ansible_collections/community/general/plugins/modules/ufw.py
+<109.123.250.0> PUT /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmphh25v76m TO /root/.ansible/tmp/ansible-tmp-1759871966.298424-37060-157388512513836/AnsiballZ_ufw.py
+<109.123.250.0> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 '[109.123.250.0]'
+<109.123.250.0> (0, b'sftp> put /home/peter/.ansible/tmp/ansible-local-369144tc55h8g/tmphh25v76m /root/.ansible/tmp/ansible-tmp-1759871966.298424-37060-157388512513836/AnsiballZ_ufw.py\n', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'chmod u+rwx /root/.ansible/tmp/ansible-tmp-1759871966.298424-37060-157388512513836/ /root/.ansible/tmp/ansible-tmp-1759871966.298424-37060-157388512513836/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 -tt 109.123.250.0 '/bin/sh -c '"'"'/usr/bin/python3.12 /root/.ansible/tmp/ansible-tmp-1759871966.298424-37060-157388512513836/AnsiballZ_ufw.py && sleep 0'"'"''
+<109.123.250.0> (0, b'\r\n{"changed": false, "commands": ["/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules", "/usr/sbin/ufw -f enable", "/usr/sbin/ufw status verbose", "/usr/bin/grep -h \'^### tuple\' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"], "msg": "Status: active\\nLogging: on (low)\\nDefault: deny (incoming), allow (outgoing), disabled (routed)\\nNew profiles: skip\\n\\nTo                         Action      From\\n--                         ------      ----\\n443                        ALLOW IN    Anywhere                  \\n22                         ALLOW IN    Anywhere                  \\n80                         ALLOW IN    Anywhere                  \\n443 (v6)                   ALLOW IN    Anywhere (v6)             \\n22 (v6)                    ALLOW IN    Anywhere (v6)             \\n80 (v6)                    ALLOW IN    Anywhere (v6)", "invocation": {"module_args": {"state": "enabled", "delete": false, "route": false, "insert_relative_to": "zero", "log": false, "from_ip": "any", "to_ip": "any", "default": null, "logging": null, "direction": null, "insert": null, "rule": null, "interface": null, "interface_in": null, "interface_out": null, "from_port": null, "to_port": null, "proto": null, "name": null, "comment": null}}}\r\n', b'Shared connection to 109.123.250.0 closed.\r\n')
+<109.123.250.0> ESTABLISH SSH CONNECTION FOR USER: root
+<109.123.250.0> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="root"' -o ConnectTimeout=10 -o 'ControlPath="/home/peter/.ansible/cp/d5069128ef"' -o NumberOfPasswordPrompts=1 109.123.250.0 '/bin/sh -c '"'"'rm -f -r /root/.ansible/tmp/ansible-tmp-1759871966.298424-37060-157388512513836/ > /dev/null 2>&1 && sleep 0'"'"''
+<109.123.250.0> (0, b'', b'')
+ok: [contabox] => {
+    "changed": false,
+    "commands": [
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules",
+        "/usr/sbin/ufw -f enable",
+        "/usr/sbin/ufw status verbose",
+        "/usr/bin/grep -h '^### tuple' /lib/ufw/user.rules /lib/ufw/user6.rules /etc/ufw/user.rules /etc/ufw/user6.rules /var/lib/ufw/user.rules /var/lib/ufw/user6.rules"
+    ],
+    "invocation": {
+        "module_args": {
+            "comment": null,
+            "default": null,
+            "delete": false,
+            "direction": null,
+            "from_ip": "any",
+            "from_port": null,
+            "insert": null,
+            "insert_relative_to": "zero",
+            "interface": null,
+            "interface_in": null,
+            "interface_out": null,
+            "log": false,
+            "logging": null,
+            "name": null,
+            "proto": null,
+            "route": false,
+            "rule": null,
+            "state": "enabled",
+            "to_ip": "any",
+            "to_port": null
+        }
+    },
+    "msg": "Status: active\nLogging: on (low)\nDefault: deny (incoming), allow (outgoing), disabled (routed)\nNew profiles: skip\n\nTo                         Action      From\n--                         ------      ----\n443                        ALLOW IN    Anywhere                  \n22                         ALLOW IN    Anywhere                  \n80                         ALLOW IN    Anywhere                  \n443 (v6)                   ALLOW IN    Anywhere (v6)             \n22 (v6)                    ALLOW IN    Anywhere (v6)             \n80 (v6)                    ALLOW IN    Anywhere (v6)"
+}
+
+TASK [github_auth : Generate and set GitHub App access token] ******************
+task path: /home/peter/Documents/ansible/roles/github_auth/tasks/main.yml:4
+[ERROR]: Task failed: Finalization of task args for 'ansible.builtin.set_fact' failed: Error while resolving value for 'github_access_token': The lookup plugin 'community.general.github_app_access_token' failed: Python jwt library is required. Please install using "pip install pyjwt"
+
+Task failed.
+Origin: /home/peter/Documents/ansible/roles/github_auth/tasks/main.yml:4:3
+
+2 ---
+3 # tasks file for roles/github_auth
+4 - name: Generate and set GitHub App access token
+    ^ column 3
+
+<<< caused by >>>
+
+Finalization of task args for 'ansible.builtin.set_fact' failed.
+Origin: /home/peter/Documents/ansible/roles/github_auth/tasks/main.yml:6:3
+
+4 - name: Generate and set GitHub App access token
+5   run_once: true
+6   set_fact:
+    ^ column 3
+
+<<< caused by >>>
+
+Error while resolving value for 'github_access_token': The lookup plugin 'community.general.github_app_access_token' failed: Python jwt library is required. Please install using "pip install pyjwt"
+Origin: /home/peter/Documents/ansible/roles/github_auth/tasks/main.yml:7:26
+
+5   run_once: true
+6   set_fact:
+7     github_access_token: "{{ lookup('community.general.github_app_access_token', **github_app_vars) }}"
+                           ^ column 26
+
+fatal: [contabox]: FAILED! => {
+    "changed": false,
+    "msg": "Task failed: Finalization of task args for 'ansible.builtin.set_fact' failed: Error while resolving value for 'github_access_token': The lookup plugin 'community.general.github_app_access_token' failed: Python jwt library is required. Please install using \"pip install pyjwt\""
+}
+
+PLAY RECAP *********************************************************************
+contabox                   : ok=9    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+

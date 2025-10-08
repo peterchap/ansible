@@ -11,7 +11,7 @@
   ansible.builtin.pip:
     name: setuptools
     virtualenv: ~/dnsenv
-    virtualenv_command: python3.12 -m venv
+    virtualenv_command: python3.13 -m venv
 
 - name: Install dnsproject module requirements
   ansible.builtin.pip:

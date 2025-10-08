@@ -1,0 +1,15 @@
+---
+- hosts: contabox
+  become: true
+  vars_files:
+  # - ~/ansible/pass.yml
+  roles:
+    - common
+    - github_auth
+    - github
+    - deploy_projects
+    - unbound
+    - python_install
+    #- nfs_master
+    
+    
