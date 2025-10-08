@@ -4,6 +4,8 @@
   tasks:
     - name: Remove old known_hosts entry (if exists)
       local_action: command ssh-keygen -R {{ ansible_host }}
+      failed_when: false
+      changed_when: false
 
     - name: Install OpenSSH if not already installed
       become: yes
