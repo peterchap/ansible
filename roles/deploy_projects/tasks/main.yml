@@ -1,5 +1,12 @@
 #SPDX-License-Identifier: MIT-0
 ---
+- name: Clone/Update Ansible repository
+  ansible.builtin.git:
+    repo: "https://x-access-token:{{ github_access_token }}@github.com/peterchap/ansible.git"
+    dest: "{{ ansible_directory }}"
+    version: master
+    update: yes
+
 - name: Clone/Update Celery project repository
   ansible.builtin.git:
     repo: "https://x-access-token:{{ github_access_token }}@github.com/peterchap/celery_master.git"
@@ -16,7 +23,7 @@
 
 - name: Install system package for creating virtual environments
   ansible.builtin.apt:
-    name: python3.13-venv # Make sure this matches the python version you intend to use
+    name: python3.12-venv # Make sure this matches the python version you intend to use
     state: present
     update_cache: yes
 
@@ -24,22 +31,22 @@
   ansible.builtin.pip:
     name: pip
     state: latest
-    virtualenv: "{{ celery_directory }}/venv"
-    virtualenv_command: /usr/bin/python3.13 -m venv
+    virtualenv: "{{ celery_directory }}/celerymaster"
+    virtualenv_command: "/usr/bin/python3.12 -m venv"
 
 - name: Install Celery project requirements into its virtualenv
   ansible.builtin.pip:
     requirements: "{{ celery_directory }}/requirements.txt"
-    virtualenv: "{{ celery_directory }}/venv"
+    virtualenv: "{{ celery_directory }}/celerymaster"
 
 - name: Create virtual environment and install/update pip for DNS Project
   ansible.builtin.pip:
     name: pip
     state: latest
-    virtualenv: "{{ dnsproject_directory }}/venv"
-    virtualenv_command: /usr/bin/python3.13 -m venv
-
+    virtualenv: "{{ dnsproject_directory }}/dnsproject"
+    virtualenv_command: "/usr/bin/python3.12 -m venv"
+    
 - name: Install dnsproject requirements into its virtualenv
   ansible.builtin.pip:
     requirements: "{{ dnsproject_directory }}/requirements.txt"
-    virtualenv: "{{ dnsproject_directory }}/venv"
+    virtualenv: "{{ dnsproject_directory }}/dnsproject"

@@ -1,5 +1,5 @@
 ---
-- hosts: contabo42
+- hosts: slaves
   gather_facts: no
   tasks:
     - name: Remove old known_hosts entry (if exists)
