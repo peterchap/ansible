@@ -8,6 +8,7 @@
     - github
     - unbound
     - python_install
+    - github_auth
     - python_script
     - celery
     - nfs
