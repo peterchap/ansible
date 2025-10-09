@@ -1,36 +1,46 @@
 ---
 # Setup virtual environments and download github repositories
     
-- name: Clone dnsproject Git repository
+- name: Clone/Update Celery project repository
   ansible.builtin.git:
-    repo: 'git@github.com:peterchap/dnsproject.git'
-    dest: "~/dnsproject/"
-    clone: True
+    repo: "https://x-access-token:{{ github_access_token }}@github.com/peterchap/celery_app.git"
+    dest: "{{ celery_directory }}" # Defined in defaults/main.yml
+    version: master
+    update: yes
 
-- name: Setup dnsenv virtual environment
-  ansible.builtin.pip:
-    name: setuptools
-    virtualenv: ~/dnsenv
-    virtualenv_command: python3.13 -m venv
-
-- name: Install dnsproject module requirements
-  ansible.builtin.pip:
-    requirements: ~/dnsproject/requirements.txt
-    virtualenv: ~/dnsenv
-
-- name: Clone Celery_App Git repository
+- name: Clone/Update the dnsproject repository
   ansible.builtin.git:
-    repo: 'git@github.com:peterchap/celery_app.git'
-    dest: "~/celery_app/"
-    clone: True
+    repo: "https://x-access-token:{{ github_access_token }}@github.com/peterchap/django-dns-updater.git"
+    dest: "{{ dnsproject_directory }}" # Defined in defaults/main.yml
+    version: main
+    update: yes
 
-- name: Setup celeryapp virtual environment
-  ansible.builtin.pip:
-    name: setuptools
-    virtualenv: ~/celeryapp
-    virtualenv_command: python3.12 -m venv
+- name: Ensure the python3.13-venv package is installed for creating virtual environments
+  ansible.builtin.apt:
+    name: python3.13-venv
+    state: present
+    update_cache: yes
 
-- name: Install celery_app module requirements
+- name: Create virtual environment and install/update pip for Celery
   ansible.builtin.pip:
-    requirements: ~/celery_app/requirements.txt
-    virtualenv: ~/celeryapp
+    name: pip
+    state: latest
+    virtualenv: "{{ celery_directory }}/venv"
+    virtualenv_command: /usr/bin/python3.13 -m venv
+
+- name: Install Celery project requirements into its virtualenv
+  ansible.builtin.pip:
+    requirements: "{{ celery_directory }}/requirements.txt"
+    virtualenv: "{{ celery_directory }}/venv"
+
+- name: Create virtual environment and install/update pip for DNS Project
+  ansible.builtin.pip:
+    name: pip
+    state: latest
+    virtualenv: "{{ dnsproject_directory }}/venv"
+    virtualenv_command: /usr/bin/python3.13 -m venv
+
+- name: Install dnsproject requirements into its virtualenv
+  ansible.builtin.pip:
+    requirements: "{{ dnsproject_directory }}/requirements.txt"
+    virtualenv: "{{ dnsproject_directory }}/venv"
