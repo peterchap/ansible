@@ -10,7 +10,7 @@
 
 - name: Clone/Update the dnsproject repository
   ansible.builtin.git:
-    repo: "https://x-access-token:{{ github_access_token }}@github.com/peterchap/django-dns-updater.git"
+    repo: "https://x-access-token:{{ github_access_token }}@github.com/peterchap/dnsproject.git"
     dest: "{{ dnsproject_directory }}" # Defined in defaults/main.yml
     version: main
     update: yes
