@@ -4,7 +4,7 @@
   become: true
   vars:
     nfs_shared_dir: "/srv/nfs/shared"
-    nfs_export_options: "(rw,sync,no_subtree_check)"
+    nfs_export_options: "(rw,sync,no_subtree_check,no_root_squash)"
     allowed_clients:
       - "10.0.0.0/22"
 
@@ -21,8 +21,21 @@
         state: directory
         owner: nobody
         group: nogroup
-        mode: '2777'  # '2' is for setgid
-        recurse: yes  # Apply owner/group/mode to existing content
+        mode: '2777'
+        recurse: yes
+
+    - name: Backup current exports file
+      ansible.builtin.copy:
+        src: /etc/exports
+        dest: /etc/exports.backup
+        remote_src: yes
+      ignore_errors: yes
+
+    - name: Remove old export entries for our shared directory
+      ansible.builtin.lineinfile:
+        path: /etc/exports
+        regexp: '^{{ nfs_shared_dir }}\s+'
+        state: absent
 
     - name: Configure NFS exports safely with blockinfile
       ansible.builtin.blockinfile:
@@ -32,11 +45,30 @@
           {% for client in allowed_clients %}
           {{ nfs_shared_dir }}    {{ client }}{{ nfs_export_options }}
           {% endfor %}
-      notify: Restart NFS server
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+      register: exports_changed
 
-  handlers:
-    - name: Restart NFS server
-      ansible.builtin.service:
+    - name: Export NFS shares (apply changes)
+      ansible.builtin.command: exportfs -ra
+      when: exports_changed.changed
+
+    - name: Ensure NFS server is enabled and started
+      ansible.builtin.systemd:
+        name: nfs-kernel-server
+        state: started
+        enabled: yes
+
+    - name: Restart NFS server if exports changed
+      ansible.builtin.systemd:
         name: nfs-kernel-server
         state: restarted
+      when: exports_changed.changed
 
+    - name: Display current NFS exports
+      ansible.builtin.command: exportfs -v
+      register: nfs_exports
+      changed_when: false
+
+    - name: Show active NFS exports
+      ansible.builtin.debug:
+        var: nfs_exports.stdout_lines
