@@ -1,46 +1,46 @@
 # inventory.ini
 
-contabo21 ansible_host=37.60.251.50 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo22 ansible_host=37.60.251.53 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo23 ansible_host=37.60.251.102 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo24 ansible_host=37.60.251.224 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo25 ansible_host=37.60.251.169 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo26 ansible_host=37.60.251.238 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo27 ansible_host=37.60.252.226 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo28 ansible_host=37.60.252.178 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo29 ansible_host=37.60.252.141 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo30 ansible_host=37.60.252.136 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo31 ansible_host=37.60.251.206 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo32 ansible_host=37.60.251.168 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo33 ansible_host=37.60.254.24 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo34 ansible_host=37.60.253.252 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo35 ansible_host=37.60.253.64 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo36 ansible_host=37.60.253.31 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo37 ansible_host=37.60.253.18 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo38 ansible_host=37.60.252.237 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo39 ansible_host=37.60.252.135 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo40 ansible_host=37.60.252.6 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo43 ansible_host=213.199.48.218 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo44 ansible_host=213.199.33.48 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo45 ansible_host=213.199.50.137 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo46 ansible_host=213.199.51.188 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo47 ansible_host=84.247.135.48 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo48 ansible_host=37.60.229.171 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo49 ansible_host=84.247.134.120 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo50 ansible_host=157.173.115.104 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo51 ansible_host=157.173.115.105 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo52 ansible_host=37.60.227.67 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo53 ansible_host=37.60.233.34 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo54 ansible_host=157.173.117.196 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo55 ansible_host=157.173.122.165 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo56 ansible_host=37.60.227.73 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo57 ansible_host=84.247.132.189 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo58 ansible_host=84.247.133.75 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo59 ansible_host=84.247.177.2 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo60 ansible_host=213.199.51.47 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo61 ansible_host=62.169.17.181 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabo62 ansible_host=84.247.133.56 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96
-contabox ansible_host=109.123.250.0 ansible_user=root ansible_python_interpreter=/usr/bin/python3.12
+contabo21 ansible_host=37.60.251.50 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo22 ansible_host=37.60.251.53 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo23 ansible_host=37.60.251.102 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo24 ansible_host=37.60.251.224 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo25 ansible_host=37.60.251.169 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo26 ansible_host=37.60.251.238 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo27 ansible_host=37.60.252.226 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo28 ansible_host=37.60.252.178 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo29 ansible_host=37.60.252.141 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo30 ansible_host=37.60.252.136 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo31 ansible_host=37.60.251.206 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo32 ansible_host=37.60.251.168 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo33 ansible_host=37.60.254.24 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo34 ansible_host=37.60.253.252 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo35 ansible_host=37.60.253.64 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo36 ansible_host=37.60.253.31 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo37 ansible_host=37.60.253.18 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo38 ansible_host=37.60.252.237 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo39 ansible_host=37.60.252.135 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo40 ansible_host=37.60.252.6 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo43 ansible_host=213.199.48.218 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo44 ansible_host=213.199.33.48 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo45 ansible_host=213.199.50.137 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo46 ansible_host=213.199.51.188 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo47 ansible_host=84.247.135.48 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo48 ansible_host=37.60.229.171 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo49 ansible_host=84.247.134.120 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo50 ansible_host=157.173.115.104 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo51 ansible_host=157.173.115.105 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo52 ansible_host=37.60.227.67 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo53 ansible_host=37.60.233.34 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo54 ansible_host=157.173.117.196 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo55 ansible_host=157.173.122.165 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo56 ansible_host=37.60.227.73 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo57 ansible_host=84.247.132.189 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo58 ansible_host=84.247.133.75 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo59 ansible_host=84.247.177.2 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo60 ansible_host=213.199.51.47 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo61 ansible_host=62.169.17.181 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo62 ansible_host=84.247.133.56 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabox ansible_host=109.123.250.0 ansible_user=root nsible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
 
 [slaves]
 contabo21
