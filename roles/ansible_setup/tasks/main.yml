@@ -1,0 +1,52 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for ansible_setup
+
+- name: Ensure Python is installed
+  raw: test -e /usr/bin/python3 || (apt-get update && apt-get install -y python3)
+  changed_when: false
+  become: yes
+
+- name: Install necessary system packages
+  ansible.builtin.apt:
+    name:
+      - git
+      - python3-pip
+      - python3-venv
+      - build-essential
+      - libssl-dev
+      - libffi-dev
+      - python3-dev
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Create the project directory
+  ansible.builtin.file:
+    path: "{{ project_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  become: yes
+
+- name: Create Python virtual environment for Ansible
+  ansible.builtin.command:
+    cmd: "python3 -m venv {{ venv_dir }}"
+    creates: "{{ venv_dir }}/bin/activate"
+  become: yes
+
+- name: Install Ansible and required Python libraries into the virtual environment
+  ansible.builtin.pip:
+    name:
+      - ansible
+      - pyjwt
+      - cryptography
+      - pyopenssl
+      - jmespath
+      - netaddr
+      - pyvmomi
+      - setuptools
+    virtualenv: "{{ venv_dir }}"
+    state: present
+  become: yes

@@ -3,6 +3,8 @@
   ansible.builtin.apt:
     name:
       - nfs-kernel-server
+      - sshpass
+      - python3-jwt
       - python3-pip         # Installs pip for the system Python
       - python3-venv        # Good practice to have for virtual environments
       - python3-cryptography # Installs the required 'cryptography' library

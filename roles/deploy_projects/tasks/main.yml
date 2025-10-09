@@ -7,6 +7,8 @@
     version: master
     update: yes
 
+
+
 - name: Clone/Update Celery project repository
   ansible.builtin.git:
     repo: "https://x-access-token:{{ github_access_token }}@github.com/peterchap/celery_master.git"
@@ -27,6 +29,28 @@
     state: present
     update_cache: yes
 
+- name: Create Python virtual environment for Ansible
+  ansible.builtin.pip:
+    name: pip
+    state: latest
+    virtualenv: "{{ ansible_directory }}/ansible_env"
+    virtualenv_command: "/usr/bin/python3.12 -m venv"
+
+- name: Install Ansible and required Python libraries into the virtual environment
+  ansible.builtin.pip:
+    name:
+      - ansible
+      - pyjwt
+      - cryptography
+      - pyopenssl
+      - jmespath
+      - netaddr
+      - pyvmomi
+      - setuptools
+    virtualenv: "{{ ansible_directory }}/ansible_env"
+    state: present
+  become: yes
+  
 - name: Create virtual environment and install/update pip for Celery
   ansible.builtin.pip:
     name: pip

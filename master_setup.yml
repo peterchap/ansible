@@ -10,6 +10,6 @@
     - deploy_projects
     - unbound
     - python_install
-    #- nfs_master
+    - nfs_master
     
     
