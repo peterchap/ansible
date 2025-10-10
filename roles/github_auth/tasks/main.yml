@@ -10,5 +10,7 @@
       app_id: "{{ github_app_id }}"
       installation_id: "{{ github_installation_id }}"
       private_key: "{{ lookup('file', github_private_key_path) }}"
+  delegate_to: localhost
+  connection: local
 
 
