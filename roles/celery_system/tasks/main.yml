@@ -12,7 +12,7 @@
       User=root
       Group=root
       WorkingDirectory=/root/celery_project/
-      ExecStart=/bin/bash -c 'source /root/celery_project/celeryapp/bin/activate && /root/celery_project -A celery_app worker --loglevel=info -Q file_queue'
+      ExecStart=/bin/bash -c 'source /root/celery_project/celeryapp/bin/activate && celery -A celery_app worker --loglevel=info -Q file_queue'
 
       # Correct redirection of logs
       StandardOutput=file:/root/celery_app/celery_worker.log
