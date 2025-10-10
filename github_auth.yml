@@ -1,8 +1,9 @@
 ---
-- name: Copy githubtoken
-  ansible.builtin.fetch:
+- name: Copy GitHub token to slaves
+  ansible.builtin.copy:
     src: ~/ghtoken.txt
-    dest: ~/
+    dest: ~/ghtoken.txt
+    mode: '0600'
 
-- name: Authorize gh
+- name: Authorize gh CLI
   shell: gh auth login --with-token < ~/ghtoken.txt

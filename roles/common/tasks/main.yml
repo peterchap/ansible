@@ -12,11 +12,5 @@
     state: present
     update_cache: yes
 
-- name: Install PyJWT via pip for GitHub App authentication
-  ansible.builtin.pip:
-    name: PyJWT
-    executable: pip3
-    state: present
-
 - name: Configure firewall
   ansible.builtin.include_tasks: firewall.yml
