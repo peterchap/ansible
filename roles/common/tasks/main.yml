@@ -12,6 +12,12 @@
       - git                 # Make sure git is installed
     state: present
     update_cache: yes
+
+- name: Ensure PyJWT is installed for GitHub App authentication
+  pip:
+    name: PyJWT
+    state: present
+    executable: pip3
     
 - name: Configure firewall
   ansible.builtin.include_tasks: firewall.yml
