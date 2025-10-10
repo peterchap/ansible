@@ -4,7 +4,6 @@
   vars_files:
   # - ~/ansible/pass.yml
   roles:
-    - common
     - unbound
     - github
     - python_install
