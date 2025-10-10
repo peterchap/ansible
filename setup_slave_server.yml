@@ -3,10 +3,10 @@
   become: true
   roles:
     - common
+    - github_auth 
+    - github
     - unbound
     - python_install
-    - github_auth
-    - github
     - celery_system
     - celery_slave
     - nfs
