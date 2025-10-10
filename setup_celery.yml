@@ -1,11 +1,11 @@
----
+leryapp---
 - name: Set up Celery on slave servers
   hosts: slaves
   become: yes
 
   vars:
     project_dir: /root/celery_app
-    venv_dir: "{{ project_dir }}/venv"  # Virtual environment directory
+    venv_dir: "{{ project_dir }}/celeryapp"  # Virtual environment directory
     master_rabbitmq_ip: "10.0.0.2"  # Replace with your master server's IP
     master_redis_ip: "10.0.0.2"     # Replace with your master server's IP
     input_folder: "/mnt/shared/subfiles"  # Path to the shared NFS folder
@@ -112,7 +112,7 @@
           User=root
           Group=root
           WorkingDirectory=/root/celery_app/
-          ExecStart=/bin/bash -c 'source /root/celeryapp/bin/activate && /root/celeryapp/bin/celery -A celery_app worker --loglevel=info -Q file_queue'
+          ExecStart=/bin/bash -c 'source /root/celery_app/celeryapp/bin/activate && /root/celery_app/bin/celery -A celery_app worker --loglevel=info -Q file_queue'
 
           # Correct redirection of logs
           StandardOutput=file:/root/celery_app/celery_worker.log
