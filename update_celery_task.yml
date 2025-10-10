@@ -7,7 +7,7 @@
   vars:
     project_dir: /root/celery_app
     venv_dir: "{{ project_dir }}/venv"
-    master_rabbitmq_ip: 82.208.21.122
+    master_rabbitmq_ip: 109.123.250.0
   tasks:
     - name: Create Celery systemd service file for worker
       copy:

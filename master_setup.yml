@@ -10,6 +10,7 @@
     - deploy_projects
     - unbound
     - python_install
+    - rabbitmq-server
     - nfs_master
     
     

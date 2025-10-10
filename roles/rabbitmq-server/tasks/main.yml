@@ -1,0 +1,51 @@
+---
+# tasks file for rabbitmq-server
+
+- name: Install and setup RabbitMQ on master server
+  hosts: contabox
+  become: yes
+  tasks:
+    - name: Ensure apt packages are up to date
+      apt:
+        update_cache: yes
+
+    - name: Install Erlang (RabbitMQ dependency)
+      apt:
+        name: erlang-nox
+        state: present
+
+    - name: Install RabbitMQ server
+      apt:
+        name: rabbitmq-server
+        state: present
+
+    - name: Ensure RabbitMQ is started and enabled
+      service:
+        name: rabbitmq-server
+        state: started
+        enabled: yes
+
+    - name: Optionally add a new RabbitMQ user (recommended for production)
+      rabbitmq_user:
+        user: "myuser"
+        password: "mypassword"
+        vhost: "/"
+        configure_priv: ".*"
+        read_priv: ".*"
+        write_priv: ".*"
+        state: present
+
+    - name: Ensure guest user can't connect remotely (optional security step)
+      rabbitmq_user:
+        user: guest
+        state: absent
+      when: ansible_hostname != "localhost"
+
+    - name: Open RabbitMQ ports in firewall (if UFW is used)
+      ufw:
+        rule: allow
+        port: "{{ item }}"
+      loop:
+        - 5672      # AMQP port
+        - 15672     # Management UI port
+      when: ansible_facts['os_family'] == "Debian"

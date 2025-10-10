@@ -2,7 +2,6 @@
 - hosts: slaves
   become: true
   roles:
-    - common
     - unbound
     - github
     - python_install

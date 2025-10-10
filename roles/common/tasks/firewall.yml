@@ -29,6 +29,12 @@
     port: 443
   become: yes
 
+- name: Allow Rabbit port 5672
+  community.general.ufw:
+    rule: allow
+    port: 5672
+  become: yes
+
 - name: Allow all traffic from internal network
   community.general.ufw:
     rule: allow
@@ -39,3 +45,4 @@
   community.general.ufw:
     state: enabled
   become: yes
+
