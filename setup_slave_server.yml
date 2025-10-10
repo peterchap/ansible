@@ -3,9 +3,9 @@
   become: true
   roles:
     - unbound
+    - github_auth
     - github
     - python_install
-    - github_auth 
     - celery_system
     - celery_slave
     - nfs
