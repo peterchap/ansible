@@ -22,7 +22,7 @@
     state: latest
     virtualenv: "{{ celery_directory }}/celeryapp"
     virtualenv_command: /usr/bin/python3.13 -m venv
-	
+
 - name: Install Celery project requirements into its virtualenv
   ansible.builtin.pip:
     requirements: "{{ celery_directory }}/requirements.txt"
