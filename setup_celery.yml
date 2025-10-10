@@ -1,13 +1,13 @@
 ---
 - name: Set up Celery on slave servers
-  hosts: badslaves
+  hosts: slaves
   become: yes
 
   vars:
     project_dir: /root/celery_app
     venv_dir: "{{ project_dir }}/venv"  # Virtual environment directory
-    master_rabbitmq_ip: "10.0.0.9"  # Replace with your master server's IP
-    master_redis_ip: "10.0.0.9"     # Replace with your master server's IP
+    master_rabbitmq_ip: "10.0.0.2"  # Replace with your master server's IP
+    master_redis_ip: "10.0.0.2"     # Replace with your master server's IP
     input_folder: "/mnt/shared/subfiles"  # Path to the shared NFS folder
     processed_folder: "/mnt/shared/processed"  # Path to the processed folder in NFS
 
@@ -20,7 +20,7 @@
     - name: Install Python3 and pip3
       apt:
         name:
-          - python3.12
+          - python3.13
           - python3-pip
           - python3-venv
         state: present
@@ -34,7 +34,7 @@
         group: "{{ ansible_user }}"
 
     - name: Create virtual environment
-      command: python3.12 -m venv {{ venv_dir }}
+      command: python3.13 -m venv {{ venv_dir }}
 
 
     - name: Install Celery and Redis client for Python
