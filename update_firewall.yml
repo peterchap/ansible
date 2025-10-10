@@ -1,6 +1,6 @@
 ---
 - name: Update firewall on client servers
-  hosts: runall
+  hosts: slaves
   gather_facts: no
   tasks:
      - name: Allow Prometheus on port 9100
@@ -8,3 +8,4 @@
          rule: allow
          port: 9100
        become: yes
+
