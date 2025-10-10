@@ -1,0 +1,39 @@
+#SPDX-License-Identifier: MIT-0
+---
+
+# Setup virtual environment and download github repository for Slave
+
+- name: Ensure the python3.13-venv package is installed for creating virtual environments
+  ansible.builtin.apt:
+    name: python3.13-venv
+    state: present
+    update_cache: yes
+ 
+- name: Clone/Update Celery project repository
+  ansible.builtin.git:
+    repo: "https://x-access-token:{{ github_access_token }}@github.com/peterchap/celery_app.git"
+    dest: "{{ celery_directory }}" # Defined in defaults/main.yml
+    version: master
+    update: yes
+
+- name: Create virtual environment and install/update pip for Celery
+  ansible.builtin.pip:
+    name: pip
+    state: latest
+    virtualenv: "{{ celery_directory }}/celeryapp"
+    virtualenv_command: /usr/bin/python3.13 -m venv
+	
+- name: Install Celery project requirements into its virtualenv
+  ansible.builtin.pip:
+    requirements: "{{ celery_directory }}/requirements.txt"
+    virtualenv: "{{ celery_directory }}/celeryapp"
+
+- name: Reload systemd to apply the new service
+  systemd:
+    daemon_reload: yes
+
+- name: Enable and start the Celery worker service
+  systemd:
+    name: celery_worker
+    enabled: yes
+    state: started

@@ -1,14 +1,12 @@
 ---
 - hosts: slaves
   become: true
-  vars_files:
-  # - ~/ansible/pass.yml
   roles:
     - common
     - unbound
     - github
     - python_install
-    - github_auth
-    - python_script 
-    - celery
+    - github_auth 
+    - celery_system
+    - celery_slave
     - nfs
