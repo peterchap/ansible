@@ -1,5 +1,6 @@
 ---
 # Set up Celery on slave servers
+# Set up Celery on slave servers
 - name: Create Celery systemd service file for worker
   copy:
     dest: /etc/systemd/system/celery_worker.service
@@ -7,20 +8,19 @@
       [Unit]
       Description=Celery Worker
       After=network.target
-
+      
       [Service]
+      Type=simple
       User=root
       Group=root
-      WorkingDirectory=/root/celery_project/
-      ExecStart=/bin/bash -c 'source /root/celery_project/celeryapp/bin/activate && celery -A celery_app worker --loglevel=info -Q file_queue'
-
-      # Correct redirection of logs
-      StandardOutput=file:/root/celery_app/celery_worker.log
-      StandardError=file:/root/celery_app/celery_worker_error.log
-
+      WorkingDirectory=/root/celery_project
+      Environment="PATH=/root/celery_project/celeryapp/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ExecStart=/root/celery_project/celeryapp/bin/celery -A celery_app worker --loglevel=info -Q file_queue
+      StandardOutput=file:/root/celery_project/celery_worker.log
+      StandardError=file:/root/celery_project/celery_worker_error.log
       Restart=always
       RestartSec=10
-
+      
       [Install]
       WantedBy=multi-user.target
     mode: '0644'
