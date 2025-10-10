@@ -6,6 +6,12 @@
       - apt-transport-https
       - ca-certificates
       - gnupg
+      - sshpass
+      - python3-jwt
+      - python3-pip         # Installs pip for the system Python
+      - python3-venv        # Good practice to have for virtual environments
+      - python3-cryptography # Installs the required 'cryptography' library
+      - python3-openssl     # Often a required dependency for cryptography
     state: present
 
 - name: Add deadsnakes PPA GPG key manually
@@ -34,9 +40,3 @@
       - python3.13-venv     
     state: present
     update_cache: yes
-    
-- name: Ensure PyJWT is installed for GitHub App authentication
-  pip:
-    name: PyJWT
-    state: present
-    executable: pip3
