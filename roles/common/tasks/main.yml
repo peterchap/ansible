@@ -4,7 +4,6 @@
     name:
       - nfs-kernel-server
       - sshpass
-      - python3-jwt
       - python3-pip         # Installs pip for the system Python
       - python3-venv        # Good practice to have for virtual environments
       - python3-cryptography # Installs the required 'cryptography' library
@@ -13,11 +12,11 @@
     state: present
     update_cache: yes
 
-- name: Ensure PyJWT is installed for GitHub App authentication
-  pip:
+- name: Install PyJWT via pip for GitHub App authentication
+  ansible.builtin.pip:
     name: PyJWT
-    state: present
     executable: pip3
-    
+    state: present
+
 - name: Configure firewall
   ansible.builtin.include_tasks: firewall.yml
