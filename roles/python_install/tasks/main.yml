@@ -31,6 +31,12 @@
   ansible.builtin.apt:
     name:
       - python3.13
-      - python3.13-venv
+      - python3.13-venv     
     state: present
     update_cache: yes
+    
+- name: Ensure PyJWT is installed for GitHub App authentication
+  pip:
+    name: PyJWT
+    state: present
+    executable: pip3
