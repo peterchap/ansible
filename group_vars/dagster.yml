@@ -1,0 +1,55 @@
+# group_vars/dagster.yml (for future dagster server)
+---
+# Dagster orchestration server (separate from celery master)
+
+dagster_home: /opt/dagster
+dagster_venv: "{{ dagster_home }}/venv"
+dagster_user: dagster
+dagster_group: dagster
+
+# Dagster components
+dagster_webserver_enabled: true
+dagster_webserver_port: 3001
+dagster_webserver_host: "0.0.0.0"
+
+dagster_daemon_enabled: true
+dagster_daemon_heartbeat_tolerance: 300
+
+# Database (PostgreSQL recommended for production)
+dagster_postgres_enabled: true
+dagster_postgres_host: "{{ master_ip }}"
+dagster_postgres_db: dagster
+dagster_postgres_user: dagster
+dagster_postgres_password: "{{ vault_dagster_postgres_password }}"
+
+# Storage configuration
+dagster_storage_base: "{{ nfs_base_path }}/dagster"
+
+# Cloud integrations
+dagster_cloud_integrations:
+  gcp:
+    project_id: "your-gcp-project"
+    credentials_path: "/opt/dagster/credentials/gcp-service-account.json"
+  aws:
+    region: "us-east-1"
+    credentials_path: "/opt/dagster/credentials/aws-credentials"
+  azure:
+    storage_account: "yourstorageaccount"
+    credentials_path: "/opt/dagster/credentials/azure-credentials"
+
+# UFW rules for Dagster
+dagster_ufw_ports:
+  - { port: 3001, proto: tcp, from_ip: "{{ admin_allowed_ips }}", comment: 'Dagster Web UI' }
+  - { port: 4000, proto: tcp, from_ip: "{{ private_network }}", comment: 'Dagster gRPC' }
+
+# Python packages for cloud integrations
+dagster_pip_packages:
+  - dagster
+  - dagster-webserver
+  - dagster-postgres
+  - dagster-celery
+  - dagster-gcp  # Google Cloud
+  - dagster-aws  # AWS
+  - dagster-azure  # Azure
+  - pandas
+  - pyarrow

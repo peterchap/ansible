@@ -1,0 +1,49 @@
+#SPDX-License-Identifier: MIT-0
+# roles/ufw/tasks/main.yml
+---
+- name: Install UFW
+  apt:
+    name: ufw
+    state: present
+
+- name: Set UFW default policies
+  ufw:
+    direction: "{{ item.direction }}"
+    policy: "{{ item.policy }}"
+  loop:
+    - { direction: 'incoming', policy: 'deny' }
+    - { direction: 'outgoing', policy: 'allow' }
+
+- name: Allow SSH from anywhere (critical!)
+  ufw:
+    rule: allow
+    port: "{{ ssh_port }}"
+    proto: tcp
+    comment: SSH
+
+- name: Allow standard ports (if defined)
+  ufw:
+    rule: allow
+    port: "{{ item.port }}"
+    proto: "{{ item.proto | default('tcp') }}"
+    from_ip: "{{ item.from_ip | default('any') }}"
+    comment: "{{ item.comment | default('') }}"
+  loop: "{{ ufw_allowed_ports | default([]) }}"
+  when: ufw_allowed_ports is defined
+
+- name: Allow admin ports from admin IPs
+  ufw:
+    rule: allow
+    port: "{{ item.0.port }}"
+    proto: "{{ item.0.proto | default('tcp') }}"
+    from_ip: "{{ item.1 }}"
+    comment: "{{ item.0.comment | default('Admin access') }}"
+  loop: "{{ ufw_allowed_admin_ports | default([]) | product(admin_allowed_ips | default([])) | list }}"
+  when: 
+    - ufw_allowed_admin_ports is defined
+    - admin_allowed_ips is defined
+
+- name: Enable UFW
+  ufw:
+    state: enabled
+    logging: "{{ ufw_logging | default('on') }}"

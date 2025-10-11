@@ -1,0 +1,7 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for ufw
+ufw_reset: false
+ufw_logging: 'on'
+ssh_port: 22
+ufw_allowed_ports: []

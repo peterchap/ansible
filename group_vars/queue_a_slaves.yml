@@ -1,0 +1,4 @@
+# group_vars/queue_a_slaves.yml
+---
+celery_queues: "queue_a"
+celery_worker_description: "Celery Worker - Queue A"

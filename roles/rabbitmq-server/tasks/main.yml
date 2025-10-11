@@ -18,6 +18,29 @@
       apt:
         name: rabbitmq-server
         state: present
+        
+    - name: Ensure RabbitMQ is running and enabled
+      systemd:
+        name: rabbitmq-server
+        state: started
+        enabled: yes
+
+    - name: Deploy RabbitMQ configuration file
+      template:
+        src: rabbitmq.conf.j2
+        dest: /etc/rabbitmq/rabbitmq.conf
+        owner: rabbitmq
+        group: rabbitmq
+        mode: '0644'
+        backup: yes
+      notify: Restart RabbitMQ
+
+    - name: Enable RabbitMQ management plugin (optional)
+      rabbitmq_plugin:
+        name: rabbitmq_management
+        state: enabled
+      when: rabbitmq_management_enabled | default(false)
+      notify: Restart RabbitMQ
 
     - name: Ensure RabbitMQ is started and enabled
       service:
@@ -41,11 +64,23 @@
         state: absent
       when: ansible_hostname != "localhost"
 
-    - name: Open RabbitMQ ports in firewall (if UFW is used)
+    - name: Open RabbitMQ AMQP port in UFW
       ufw:
         rule: allow
-        port: "{{ item }}"
-      loop:
-        - 5672      # AMQP port
-        - 15672     # Management UI port
-      when: ansible_facts['os_family'] == "Debian"
+        port: 5672
+        proto: tcp
+        comment: RabbitMQ AMQP
+        from_ip: "{{ item }}"
+      loop: "{{ rabbitmq_allowed_ips | default(['any']) }}"
+      notify: Reload UFW
+
+    - name: Open RabbitMQ Management UI port
+      ufw:
+        rule: allow
+        port: 15672
+        proto: tcp
+        comment: RabbitMQ Management
+        from_ip: "{{ item }}"
+      loop: "{{ rabbitmq_management_ips | default([]) }}"
+      when: rabbitmq_management_enabled | default(false)
+      notify: Reload UFW

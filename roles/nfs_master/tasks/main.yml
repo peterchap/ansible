@@ -37,3 +37,17 @@
 - name: Export NFS shares
   command: exportfs -a
   notify: Restart NFS server
+  
+- name: Open NFS ports in UFW
+  ufw:
+    rule: allow
+    port: "{{ item.port }}"
+    proto: "{{ item.proto }}"
+    comment: "{{ item.comment }}"
+    from_ip: "{{ nfs_allowed_network }}"
+  loop:
+    - { port: 2049, proto: tcp, comment: 'NFS' }
+    - { port: 2049, proto: udp, comment: 'NFS' }
+    - { port: 111, proto: tcp, comment: 'RPC portmapper' }
+    - { port: 111, proto: udp, comment: 'RPC portmapper' }
+  notify: Reload UFW

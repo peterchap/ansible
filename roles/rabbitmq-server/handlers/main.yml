@@ -1,2 +1,18 @@
 ---
 # handlers file for rabbitmq-server
+- name: Restart RabbitMQ
+  systemd:
+    name: rabbitmq-server
+    state: restarted
+  register: rabbitmq_restart
+
+- name: Wait for RabbitMQ to start
+  pause:
+    seconds: 10
+  when: rabbitmq_restart.changed
+
+- name: Verify RabbitMQ is running
+  command: rabbitmqctl status
+  register: rabbitmq_status
+  changed_when: false
+  listen: "Restart RabbitMQ"
