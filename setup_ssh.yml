@@ -1,5 +1,5 @@
 ---
-- hosts: slaves
+- hosts: contabo21
   gather_facts: no
   tasks:
     - name: Generate SSH key pair on control machine if not exists
@@ -9,7 +9,7 @@
         type: rsa
         size: 4096
       run_once: true
-      
+
     - name: Remove old known_hosts entry (if exists)
       local_action: command ssh-keygen -R {{ ansible_host }}
       failed_when: false
