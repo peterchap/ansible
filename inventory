@@ -4,7 +4,7 @@ contabo21 ansible_host=10.0.0.32 ansible_connection=ssh ansible_user=root ansibl
 contabo22 ansible_host=10.0.0.38 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
 contabo23 ansible_host=10.0.0.7 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
 contabo24 ansible_host=10.0.0.8 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
-contabo25 ansible_host=	10.0.0.24 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
+contabo25 ansible_host=10.0.0.24 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
 contabo26 ansible_host=10.0.0.33 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
 contabo27 ansible_host=10.0.0.39 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
 contabo28 ansible_host=10.0.0.34 ansible_connection=ssh ansible_user=root ansible_ssh_pass=zwS9n9a96 ansible_python_interpreter=/usr/bin/python3.12
@@ -131,36 +131,34 @@ contabo62
 contabox
 
 [queue_a_slaves]
-contabo01
-contabo02
-# ... queue A workers
+contabo21
+contabo22
 
 [queue_b_slaves]
-contabo14
-contabo15
-# ... queue B workers
+contabo31
+contabo32
 
 [queue_c_slaves]
-contabo27
-contabo28
+contabo51
+contabo52
 # ... queue C workers
 
-[dagster]
-dagster_server ansible_host=10.0.0.2
+#[dagster]
+#dagster_server ansible_host=10.0.0.2
 
 # Future: Monitoring stack
-[monitoring]
-monitoring_server ansible_host=10.0.0.2
+#[monitoring]
+#monitoring_server ansible_host=10.0.0.2
 
 # Logical groupings
-[processing:children]
-master
-slaves
+#[processing:children]
+#master
+#slaves
 
-[data_pipeline:children]
-processing
-dagster
+#[data_pipeline:children]
+#processing
+#dagster
 
-[infrastructure:children]
-data_pipeline
-monitoring
+#[infrastructure:children]
+#data_pipeline
+#monitoring
