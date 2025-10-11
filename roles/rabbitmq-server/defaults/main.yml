@@ -1,10 +1,18 @@
 ---
-# RabbitMQ role defaults (edit as needed)
+# RabbitMQ Configuration
+rabbitmq_consumer_timeout: 7200000  # 2 hours in milliseconds
+rabbitmq_management_enabled: true
+rabbitmq_bind_ip: "0.0.0.0"
 
-rabbitmq_users: []
-rabbitmq_ports:
-  - 5672   # AMQP
-  - 15672  # Management UI
-rabbitmq_service_name: rabbitmq-server
-rabbitmq_vhosts: []
-rabbitmq_plugins: []
+# Connection settings
+rabbitmq_host: localhost
+rabbitmq_port: 5672
+rabbitmq_user: guest
+rabbitmq_pass: guest
+rabbitmq_vhost: /
+
+# Firewall settings
+rabbitmq_allowed_ips:
+  - "{{ private_network }}"
+
+rabbitmq_management_ips: []

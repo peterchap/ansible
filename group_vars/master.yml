@@ -1,0 +1,53 @@
+# group_vars/master.yml
+---
+# Master server - orchestration hub
+
+# Celery Master
+celery_master_dir: /root/celery_master
+celery_master_venv: "{{ celery_master_dir }}/venv"
+celery_master_pip_packages:
+  - celery
+  - kombu
+  - pyarrow
+  - django-celery-beat
+
+# RabbitMQ Configuration
+rabbitmq_management_enabled: true
+rabbitmq_allowed_ips:
+  - "{{ private_network }}"  # All slaves
+
+# RabbitMQ Management UI - restricted to admin access only
+rabbitmq_management_ips: "{{ admin_allowed_ips }}"
+
+# NFS Server Configuration
+nfs_allowed_network: "{{ private_network }}"
+nfs_export_options: "rw,sync,no_subtree_check,no_root_squash"
+
+# Monitoring ports (Prometheus, Grafana, etc.)
+monitoring_enabled: true
+monitoring_allowed_ips: "{{ admin_allowed_ips }}"
+
+# UFW - Master firewall rules
+ufw_allowed_ports:
+  # Internal services - private network only
+  - { port: 5672, proto: tcp, from_ip: "{{ private_network }}", comment: 'RabbitMQ AMQP' }
+  - { port: 2049, proto: tcp, from_ip: "{{ private_network }}", comment: 'NFS' }
+  - { port: 2049, proto: udp, from_ip: "{{ private_network }}", comment: 'NFS' }
+  - { port: 111, proto: tcp, from_ip: "{{ private_network }}", comment: 'RPC portmapper' }
+  - { port: 111, proto: udp, from_ip: "{{ private_network }}", comment: 'RPC portmapper' }
+
+# Admin/Monitoring interfaces - restricted to admin IPs
+ufw_allowed_admin_ports:
+  - { port: 15672, proto: tcp, comment: 'RabbitMQ Management UI' }
+  - { port: 9090, proto: tcp, comment: 'Prometheus' }
+  - { port: 3000, proto: tcp, comment: 'Grafana' }
+  # Add other monitoring tools as needed
+
+# Combine ports with appropriate IPs
+ufw_master_additional_ports: >-
+  {{ ufw_allowed_admin_ports | map('combine', {'from_ip': item}) | list }}
+  
+# Future: Dagster orchestrator will go here
+dagster_enabled: false
+dagster_webserver_port: 3001
+dagster_daemon_enabled: true

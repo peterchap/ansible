@@ -1,0 +1,45 @@
+# group_vars/all.yml
+---
+# Common settings for all hosts
+ansible_python_interpreter: /usr/bin/python3
+ansible_user: root
+
+# Network settings
+private_network: "10.0.0.0/22"
+master_ip: "10.0.0.2"
+
+# SSH settings
+ssh_port: 22
+
+# UFW settings
+ufw_logging: 'on'
+ufw_default_incoming: deny
+ufw_default_outgoing: allow
+
+# Admin/Monitoring access (your workstation/VPN)
+admin_allowed_ips:
+  - "10.0.1.0/24"  # Admin network/VPN subnet
+  # - "YOUR_VPN_IP/32"  # Or specific IPs
+
+# NFS settings
+nfs_base_path: /srv/nfs/shared
+nfs_mount_point: /mnt/nfs_shared
+
+# RabbitMQ connection settings
+rabbitmq_host: "{{ master_ip }}"
+rabbitmq_port: 5672
+rabbitmq_user: guest
+rabbitmq_pass: guest
+rabbitmq_vhost: /
+
+# Future: Cloud egress (slaves need to reach cloud APIs)
+allow_cloud_egress: true
+
+# Secrets management (use Ansible Vault for production)
+vault_rabbitmq_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          ...encrypted...
+
+vault_dagster_postgres_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          ...encrypted...

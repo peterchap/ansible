@@ -1,0 +1,17 @@
+jinja2# RabbitMQ Configuration
+# Managed by Ansible
+
+# Consumer timeout - time RabbitMQ waits for task acknowledgement
+# Default: 1800000 ms (30 minutes)
+# Set to 2 hours for long-running DNS processing tasks
+consumer_timeout = {{ rabbitmq_consumer_timeout | default('7200000') }}
+
+# Heartbeat interval (seconds)
+# heartbeat = 60
+
+# Network settings
+# listeners.tcp.default = {{ rabbitmq_bind_ip | default('0.0.0.0') }}:5672
+
+# Memory and disk thresholds
+# vm_memory_high_watermark.relative = 0.4
+# disk_free_limit.relative = 1.0

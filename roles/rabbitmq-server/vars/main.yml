@@ -1,2 +1,9 @@
 ---
 # vars file for rabbitmq-server
+rabbitmq_consumer_timeout: 7200000  # 2 hours for long DNS tasks
+rabbitmq_management_enabled: true
+rabbitmq_allowed_ips:
+  - "{{ private_network }}"
+rabbitmq_management_ips:
+  - "127.0.0.1"
+  - "{{ master_ip }}"

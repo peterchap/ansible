@@ -1,0 +1,42 @@
+# group_vars/slaves.yml
+---
+# Slave servers - compute workers
+internal_ip: "{{ ansible_host }}"
+
+# Celery Worker
+celery_worker_dir: /root/celery_project
+celery_worker_venv: "{{ celery_worker_dir }}/celeryapp"
+celery_worker_pip_packages:
+  - celery
+  - kombu
+  - pyarrow
+  # Future cloud libraries
+  # - google-cloud-storage
+  # - boto3  # AWS
+  # - azure-storage-blob
+
+# Worker configuration
+celery_queues: "queue_a,queue_b,queue_c"
+celery_concurrency: 4
+celery_loglevel: info
+celery_max_tasks_per_child: 100  # Restart worker after N tasks (memory management)
+
+# NFS Client
+nfs_server: "{{ master_ip }}"
+nfs_mount_opts: "rw,sync,hard,intr"
+nfs_automount: true
+
+# UFW - Slaves only need outbound
+# No inbound ports needed (they connect TO master, not FROM master)
+ufw_allowed_ports: []
+
+# Future: Cloud egress rules
+# Allow slaves to reach cloud APIs (no ingress needed, egress is allowed by default)
+cloud_endpoints:
+  gcp: "*.googleapis.com"
+  aws: "*.amazonaws.com"
+  azure: "*.azure.com"
+
+# Optional: Monitoring agent on slaves
+monitoring_agent_enabled: true
+monitoring_agent_port: 9100  # Node exporter
