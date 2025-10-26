@@ -1,29 +1,55 @@
 server:
   interface: 127.0.0.1
+  interface: ::1
+  access-control: 127.0.0.1/8 allow
+  access-control: ::1 allow
   port: 53
+  
   logfile: "/var/log/unbound/unbound.log"
   verbosity: 1
   log-queries: no
   use-syslog: no
   log-time-ascii: yes
+
+  num-threads:: 2-4        
+  so-reuseport: yes
+  
+  msg-cache-size: 256m
   msg-cache-size: 256m
   rrset-cache-size: 512m
-  prefetch: yes
-  prefetch-key: yes
+  key-cache-size: 64m
+  neg-cache-size: 32m
   cache-max-ttl: 86400
   cache-min-ttl: 3600
-  infra-host-ttl: 60
   infra-cache-slabs: 4
+  
+  prefetch: yes
+  prefetch-key: yes
+  infra-host-ttl: 60
   serve-expired: yes
+  serve-expired-ttl: 86400
+  serve-expired-reply-ttl: 30
+  serve-expired-client-timeout: 1800
+  
+  aggressive-nsec: yes
+  
+  edns-buffer-size: 1232
+  max-udp-size: 1232
   outgoing-range: 512
+  unwanted-reply-threshold: 10000000
   do-ip4: yes
-  do-ip6: no
+  do-ip6: yes
   do-udp: yes
   do-tcp: yes
 
+  qname-minimisation: yes
+  harden-below-nxdomain: yes
+  harden-referral-path: yes
+  
 forward-zone:
     name: "."
     forward-first: yes        # Use forwarders only if recursive fails
     forward-addr: 8.8.8.8     # Google Public DNS
     forward-addr: 1.1.1.1     # Cloudflare DNS
     forward-addr: 9.9.9.9     # Quad9
+
